@@ -1,0 +1,214 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// AUTENTICAÇÃO E MULTI-TENANCY
+// ═══════════════════════════════════════════════════════════════
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      Role     @default(USER)
+  tenantId  String?
+  tenant    Tenant?  @relation(fields: [tenantId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Tenant {
+  id          String   @id @default(cuid())
+  nome        String
+  cnpj        String?  @unique
+  tipo        String
+  ativo       Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  clientes    Cliente[]
+  uploads     Upload[]
+
+  @@map("tenants")
+}
+
+enum Role {
+  ADMIN
+  AUDITOR
+  USER
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CLIENTES (empresas analisadas)
+// ═══════════════════════════════════════════════════════════════
+
+model Cliente {
+  id          String   @id @default(cuid())
+  nome        String
+  cnpj        String?
+  tipo        String
+  periodo     String
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  planoContas   PlanoContas[]
+  lancamentos   Lancamento[]
+  dreItems      DREItem[]
+  crediarios    Crediario[]
+  patrimoniais  Patrimonial[]
+  biReports     BIReport[]
+
+  @@map("clientes")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PLANO DE CONTAS
+// ═══════════════════════════════════════════════════════════════
+
+model PlanoContas {
+  id                  String   @id @default(cuid())
+  codigo              String
+  nome                String
+  nivel               Int
+  tipo                String
+  codigoPai           String?
+  categoriaGerencial  String?
+  clienteId           String
+  cliente             Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  lancamentos         Lancamento[]
+
+  @@unique([clienteId, codigo])
+  @@map("plano_contas")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LANÇAMENTOS (MOVIMENTO ANALÍTICO)
+// ═══════════════════════════════════════════════════════════════
+
+model Lancamento {
+  id          String   @id @default(cuid())
+  data        DateTime
+  codigo      String
+  descricao   String
+  valor       Float
+  tipo        String
+  banco       String?
+  loja        String?
+  categoria   String?
+  clienteId   String
+  cliente     Cliente     @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  contaId     String?
+  conta       PlanoContas? @relation(fields: [contaId], references: [id])
+  createdAt   DateTime @default(now())
+
+  @@index([clienteId, data])
+  @@index([clienteId, banco])
+  @@index([clienteId, tipo])
+  @@map("lancamentos")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// DRE (Demonstrativo de Resultado do Exercício)
+// ═══════════════════════════════════════════════════════════════
+
+model DREItem {
+  id          String   @id @default(cuid())
+  codigo      String
+  nome        String
+  nivel       Int
+  tipo        String
+  codigoPai   String?
+  valores     Json
+  total       Float
+  clienteId   String
+  cliente     Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  @@unique([clienteId, codigo])
+  @@map("dre_items")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CREDIÁRIO (Contas a Receber)
+// ═══════════════════════════════════════════════════════════════
+
+model Crediario {
+  id            String   @id @default(cuid())
+  clienteNome   String
+  valorOriginal Float
+  valorPago     Float
+  saldo         Float
+  status        String
+  dataVenda     DateTime
+  clienteId     String
+  cliente       Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  @@index([clienteId, status])
+  @@map("crediarios")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PATRIMONIAL (Aportes, Retornos, Empréstimos)
+// ═══════════════════════════════════════════════════════════════
+
+model Patrimonial {
+  id          String   @id @default(cuid())
+  tipo        String
+  socio       String
+  valor       Float
+  data        DateTime
+  descricao   String?
+  clienteId   String
+  cliente     Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  @@index([clienteId, tipo])
+  @@map("patrimoniais")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UPLOADS DE PLANILHAS
+// ═══════════════════════════════════════════════════════════════
+
+model Upload {
+  id          String   @id @default(cuid())
+  filename    String
+  gcsPath     String
+  mimeType    String
+  size        Int
+  status      String   @default("pending")
+  resultado   Json?
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("uploads")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// BI REPORTS (Relatórios salvos)
+// ═══════════════════════════════════════════════════════════════
+
+model BIReport {
+  id          String   @id @default(cuid())
+  titulo      String
+  tipo        String
+  filtros     Json
+  dados       Json
+  clienteId   String
+  cliente     Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@map("bi_reports")
+}

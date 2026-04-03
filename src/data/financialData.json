@@ -1,0 +1,2418 @@
+{
+  "kpis": {
+    "receitas_brutas": 10500623.33,
+    "deducoes": -1638377.55,
+    "receita_liquida": 8862245.78,
+    "despesas": -9147556.15,
+    "resultado_operacional": -285310.38,
+    "financeiro": -92271.78,
+    "resultado_final": -377582.16,
+    "total_lancamentos": 10287,
+    "total_lojas": 36,
+    "total_bancos": 29
+  },
+  "evolucao_mensal": [
+    {
+      "mes": "2025-05",
+      "mes_label": "May/25",
+      "receitas": 1050171.57,
+      "despesas": 925848.25,
+      "deducoes": 138565.93,
+      "financeiro": 3755.14,
+      "resultado": -10487.47
+    },
+    {
+      "mes": "2025-06",
+      "mes_label": "Jun/25",
+      "receitas": 998172.53,
+      "despesas": 977669.75,
+      "deducoes": 130005.03,
+      "financeiro": 68139.35,
+      "resultado": -41362.9
+    },
+    {
+      "mes": "2025-07",
+      "mes_label": "Jul/25",
+      "receitas": 1121205.29,
+      "despesas": 1041095.43,
+      "deducoes": 144002.24,
+      "financeiro": 24927.0,
+      "resultado": -38965.37
+    },
+    {
+      "mes": "2025-08",
+      "mes_label": "Aug/25",
+      "receitas": 1204348.49,
+      "despesas": 1092922.11,
+      "deducoes": 198133.38,
+      "financeiro": 41827.39,
+      "resultado": -44879.61
+    },
+    {
+      "mes": "2025-09",
+      "mes_label": "Sep/25",
+      "receitas": 1262760.5,
+      "despesas": 1078963.7,
+      "deducoes": 208973.77,
+      "financeiro": -4046.34,
+      "resultado": -29223.3
+    },
+    {
+      "mes": "2025-10",
+      "mes_label": "Oct/25",
+      "receitas": 1344380.27,
+      "despesas": 1080381.5,
+      "deducoes": 287662.18,
+      "financeiro": -3718.33,
+      "resultado": -27381.74
+    },
+    {
+      "mes": "2025-11",
+      "mes_label": "Nov/25",
+      "receitas": 1197201.99,
+      "despesas": 1009045.7,
+      "deducoes": 175436.94,
+      "financeiro": 16802.25,
+      "resultado": 29521.6
+    },
+    {
+      "mes": "2025-12",
+      "mes_label": "Dec/25",
+      "receitas": 1130903.46,
+      "despesas": 1022965.59,
+      "deducoes": 175667.81,
+      "financeiro": -27501.35,
+      "resultado": -95231.3
+    },
+    {
+      "mes": "2026-01",
+      "mes_label": "Jan/26",
+      "receitas": 1191479.22,
+      "despesas": 918664.11,
+      "deducoes": 179930.28,
+      "financeiro": 86333.46,
+      "resultado": 179218.29
+    }
+  ],
+  "bancos": [
+    {
+      "banco": "BMG",
+      "lancamentos": 2591,
+      "valor_total": 9013236.92,
+      "receitas": 13461869.59,
+      "despesas": -4448632.67
+    },
+    {
+      "banco": "Banco C6",
+      "lancamentos": 281,
+      "valor_total": 565615.48,
+      "receitas": 685192.47,
+      "despesas": -119576.99
+    },
+    {
+      "banco": "Banco Facta",
+      "lancamentos": 228,
+      "valor_total": 241369.78,
+      "receitas": 349677.56,
+      "despesas": -108307.78
+    },
+    {
+      "banco": "Icred",
+      "lancamentos": 124,
+      "valor_total": 164296.67,
+      "receitas": 187521.76,
+      "despesas": -23225.09
+    },
+    {
+      "banco": "Banco Daycoval",
+      "lancamentos": 180,
+      "valor_total": 90884.0,
+      "receitas": 107217.6,
+      "despesas": -16333.6
+    },
+    {
+      "banco": "Banco Fox",
+      "lancamentos": 83,
+      "valor_total": 69801.05,
+      "receitas": 356190.6,
+      "despesas": -286389.55
+    },
+    {
+      "banco": "Vctex",
+      "lancamentos": 135,
+      "valor_total": 69386.35,
+      "receitas": 165589.12,
+      "despesas": -96202.76
+    },
+    {
+      "banco": "BRB",
+      "lancamentos": 71,
+      "valor_total": 44831.27,
+      "receitas": 58025.53,
+      "despesas": -13194.26
+    },
+    {
+      "banco": "Pic-Pay",
+      "lancamentos": 53,
+      "valor_total": 30431.81,
+      "receitas": 34956.45,
+      "despesas": -4524.64
+    },
+    {
+      "banco": "Credcesta",
+      "lancamentos": 91,
+      "valor_total": 29079.22,
+      "receitas": 159801.15,
+      "despesas": -130721.93
+    },
+    {
+      "banco": "BANRISUL",
+      "lancamentos": 82,
+      "valor_total": 25463.21,
+      "receitas": 39788.12,
+      "despesas": -14324.91
+    },
+    {
+      "banco": "Banco Digio",
+      "lancamentos": 69,
+      "valor_total": 20049.92,
+      "receitas": 36229.5,
+      "despesas": -16179.58
+    },
+    {
+      "banco": "Futuro Previdência",
+      "lancamentos": 28,
+      "valor_total": 12520.94,
+      "receitas": 29392.9,
+      "despesas": -16871.96
+    },
+    {
+      "banco": "Banco Quero Mais",
+      "lancamentos": 34,
+      "valor_total": 10493.37,
+      "receitas": 27173.34,
+      "despesas": -16679.97
+    },
+    {
+      "banco": "Crefaz",
+      "lancamentos": 30,
+      "valor_total": 8480.83,
+      "receitas": 33875.71,
+      "despesas": -25394.88
+    },
+    {
+      "banco": "Crefisa",
+      "lancamentos": 69,
+      "valor_total": 5523.92,
+      "receitas": 6520.05,
+      "despesas": -996.13
+    },
+    {
+      "banco": "Banco Happy",
+      "lancamentos": 15,
+      "valor_total": 5322.53,
+      "receitas": 6185.1,
+      "despesas": -862.57
+    },
+    {
+      "banco": "Presença Bank",
+      "lancamentos": 15,
+      "valor_total": 5129.04,
+      "receitas": 7509.41,
+      "despesas": -2380.37
+    },
+    {
+      "banco": "Banco Safra",
+      "lancamentos": 25,
+      "valor_total": 4511.83,
+      "receitas": 5537.6,
+      "despesas": -1025.77
+    },
+    {
+      "banco": "Meu Cashcard",
+      "lancamentos": 3,
+      "valor_total": 4342.63,
+      "receitas": 4342.63,
+      "despesas": 0.0
+    },
+    {
+      "banco": "Banco Caixa",
+      "lancamentos": 12,
+      "valor_total": 2098.86,
+      "receitas": 2204.98,
+      "despesas": -106.12
+    },
+    {
+      "banco": "Novo Saque",
+      "lancamentos": 15,
+      "valor_total": 1614.18,
+      "receitas": 11179.48,
+      "despesas": -9565.3
+    },
+    {
+      "banco": "Qualiconsig",
+      "lancamentos": 1,
+      "valor_total": 1260.27,
+      "receitas": 1260.27,
+      "despesas": 0.0
+    },
+    {
+      "banco": "Flamex",
+      "lancamentos": 3,
+      "valor_total": 172.71,
+      "receitas": 339.51,
+      "despesas": -166.8
+    },
+    {
+      "banco": "PAN",
+      "lancamentos": 108,
+      "valor_total": -2805.99,
+      "receitas": 32643.71,
+      "despesas": -35449.7
+    },
+    {
+      "banco": "Finanto",
+      "lancamentos": 18,
+      "valor_total": -14890.14,
+      "receitas": 480.08,
+      "despesas": -15370.22
+    },
+    {
+      "banco": "Amigo Z",
+      "lancamentos": 26,
+      "valor_total": -15020.55,
+      "receitas": 4779.22,
+      "despesas": -19799.77
+    },
+    {
+      "banco": "SANTANDER",
+      "lancamentos": 66,
+      "valor_total": -265910.39,
+      "receitas": 7295.88,
+      "despesas": -273206.27
+    },
+    {
+      "banco": "ITAÚ",
+      "lancamentos": 196,
+      "valor_total": -410043.94,
+      "receitas": 1153873.73,
+      "despesas": -1563917.67
+    }
+  ],
+  "lojas": [
+    {
+      "loja": "Matriz - Help",
+      "lancamentos": 821,
+      "valor_total": -2477288.03,
+      "receitas": 9266210.86,
+      "despesas": -11743498.9
+    },
+    {
+      "loja": "Volta Redonda - Help",
+      "lancamentos": 366,
+      "valor_total": 376521.4,
+      "receitas": 832010.46,
+      "despesas": -455489.06
+    },
+    {
+      "loja": "Bangu - Help",
+      "lancamentos": 338,
+      "valor_total": 452769.0,
+      "receitas": 786971.26,
+      "despesas": -334202.25
+    },
+    {
+      "loja": "Niterói - Help",
+      "lancamentos": 333,
+      "valor_total": 433047.33,
+      "receitas": 751810.12,
+      "despesas": -318762.79
+    },
+    {
+      "loja": "Nova Iguaçu - Help",
+      "lancamentos": 347,
+      "valor_total": 401612.31,
+      "receitas": 692870.94,
+      "despesas": -291258.62
+    },
+    {
+      "loja": "Uruguaiana 1 - Help",
+      "lancamentos": 303,
+      "valor_total": 247188.23,
+      "receitas": 668463.34,
+      "despesas": -421275.11
+    },
+    {
+      "loja": "Nilópolis - Help",
+      "lancamentos": 321,
+      "valor_total": 258176.08,
+      "receitas": 524164.51,
+      "despesas": -265988.42
+    },
+    {
+      "loja": "Teresópolis - Help",
+      "lancamentos": 407,
+      "valor_total": -278435.87,
+      "receitas": 445388.74,
+      "despesas": -723824.61
+    },
+    {
+      "loja": "Barra Mansa - Help",
+      "lancamentos": 335,
+      "valor_total": 81193.08,
+      "receitas": 445305.54,
+      "despesas": -364112.46
+    },
+    {
+      "loja": "Magé - Help",
+      "lancamentos": 324,
+      "valor_total": 211589.33,
+      "receitas": 427337.73,
+      "despesas": -215748.4
+    },
+    {
+      "loja": "Resende - Help",
+      "lancamentos": 316,
+      "valor_total": 218287.35,
+      "receitas": 423908.8,
+      "despesas": -205621.44
+    },
+    {
+      "loja": "Matriz - Imediata",
+      "lancamentos": 301,
+      "valor_total": -940630.83,
+      "receitas": 407393.69,
+      "despesas": -1348024.52
+    },
+    {
+      "loja": "Corretores SC - Filial",
+      "lancamentos": 207,
+      "valor_total": 83712.03,
+      "receitas": 403587.84,
+      "despesas": -319875.81
+    },
+    {
+      "loja": "Petrópolis - Help",
+      "lancamentos": 330,
+      "valor_total": 105294.46,
+      "receitas": 354691.79,
+      "despesas": -249397.33
+    },
+    {
+      "loja": "Méier - Help",
+      "lancamentos": 315,
+      "valor_total": 105529.11,
+      "receitas": 319797.48,
+      "despesas": -214268.37
+    },
+    {
+      "loja": "São Gonçalo - Help",
+      "lancamentos": 290,
+      "valor_total": 110479.2,
+      "receitas": 296578.87,
+      "despesas": -186099.67
+    },
+    {
+      "loja": "Corretores MG - Filial",
+      "lancamentos": 143,
+      "valor_total": 40850.58,
+      "receitas": 278967.68,
+      "despesas": -238117.1
+    },
+    {
+      "loja": "Nova Friburgo - Help",
+      "lancamentos": 317,
+      "valor_total": 78914.92,
+      "receitas": 276298.46,
+      "despesas": -197383.55
+    },
+    {
+      "loja": "Barra do Piraí - Help",
+      "lancamentos": 268,
+      "valor_total": 101149.04,
+      "receitas": 272443.81,
+      "despesas": -171294.77
+    },
+    {
+      "loja": "Corretores RJ - Filial",
+      "lancamentos": 280,
+      "valor_total": 129990.29,
+      "receitas": 267369.93,
+      "despesas": -137379.64
+    },
+    {
+      "loja": "Ilha do Governador - Help",
+      "lancamentos": 333,
+      "valor_total": 71576.77,
+      "receitas": 263834.28,
+      "despesas": -192257.51
+    },
+    {
+      "loja": "Uruguaiana 2 - Help",
+      "lancamentos": 301,
+      "valor_total": -95397.93,
+      "receitas": 252638.25,
+      "despesas": -348036.18
+    },
+    {
+      "loja": "Madureira - Help",
+      "lancamentos": 291,
+      "valor_total": -28753.62,
+      "receitas": 226896.31,
+      "despesas": -255649.93
+    },
+    {
+      "loja": "Corretores SP - Filial",
+      "lancamentos": 306,
+      "valor_total": -16401.95,
+      "receitas": 180869.77,
+      "despesas": -197271.72
+    },
+    {
+      "loja": "Rio Bonito - Help",
+      "lancamentos": 296,
+      "valor_total": 3386.02,
+      "receitas": 168059.88,
+      "despesas": -164673.86
+    },
+    {
+      "loja": "Corretores PI - Filial",
+      "lancamentos": 250,
+      "valor_total": -28571.0,
+      "receitas": 134827.41,
+      "despesas": -163398.4
+    },
+    {
+      "loja": "Piripiri - Imediata",
+      "lancamentos": 196,
+      "valor_total": 40633.08,
+      "receitas": 134538.22,
+      "despesas": -93905.14
+    },
+    {
+      "loja": "Matriz - Iniciativa",
+      "lancamentos": 57,
+      "valor_total": -61759.79,
+      "receitas": 128464.94,
+      "despesas": -190224.73
+    },
+    {
+      "loja": "Nova Iguaçú - Imediata",
+      "lancamentos": 292,
+      "valor_total": -44363.21,
+      "receitas": 112740.81,
+      "despesas": -157104.03
+    },
+    {
+      "loja": "Madureira - Imediata",
+      "lancamentos": 255,
+      "valor_total": -104495.35,
+      "receitas": 99378.01,
+      "despesas": -203873.36
+    },
+    {
+      "loja": "Corretores RS - Filial",
+      "lancamentos": 193,
+      "valor_total": 17348.8,
+      "receitas": 85894.34,
+      "despesas": -68545.54
+    },
+    {
+      "loja": "Mendes - Imediata",
+      "lancamentos": 289,
+      "valor_total": -34734.61,
+      "receitas": 77625.44,
+      "despesas": -112360.06
+    },
+    {
+      "loja": "Ilha do Governador - Imediata",
+      "lancamentos": 234,
+      "valor_total": -50774.42,
+      "receitas": 36697.48,
+      "despesas": -87471.91
+    },
+    {
+      "loja": "Call Center - Imediata",
+      "lancamentos": 166,
+      "valor_total": -183479.53,
+      "receitas": 29701.92,
+      "despesas": -213181.44
+    },
+    {
+      "loja": "Virtual - Venda Interna - Imediata",
+      "lancamentos": 144,
+      "valor_total": -73676.09,
+      "receitas": 29694.55,
+      "despesas": -103370.64
+    },
+    {
+      "loja": "Arrecadação - Venda Interna - Imediata",
+      "lancamentos": 22,
+      "valor_total": -17882.34,
+      "receitas": 0.0,
+      "despesas": -17882.34
+    }
+  ],
+  "categorias": [
+    {
+      "categoria": "Receitas Diferida",
+      "tipo": "Financeiro",
+      "lancamentos": 155,
+      "valor_total": 5845803.16
+    },
+    {
+      "categoria": "PGTO Antecipação",
+      "tipo": "Financeiro",
+      "lancamentos": 83,
+      "valor_total": -5534721.56
+    },
+    {
+      "categoria": "Despesas com Pessoal",
+      "tipo": "Despesas",
+      "lancamentos": 1985,
+      "valor_total": -4047016.3
+    },
+    {
+      "categoria": "Receitas de Venda",
+      "tipo": "Receitas",
+      "lancamentos": 2613,
+      "valor_total": 3827076.91
+    },
+    {
+      "categoria": "Receitas Eventuais",
+      "tipo": "Receitas",
+      "lancamentos": 222,
+      "valor_total": 2979338.24
+    },
+    {
+      "categoria": "Antecipação Kgiro",
+      "tipo": "Receitas",
+      "lancamentos": 749,
+      "valor_total": 2798953.53
+    },
+    {
+      "categoria": "Despesas Ocupação",
+      "tipo": "Despesas",
+      "lancamentos": 1063,
+      "valor_total": -1682151.85
+    },
+    {
+      "categoria": "Despesas Operacionais",
+      "tipo": "Despesas",
+      "lancamentos": 713,
+      "valor_total": -1467479.46
+    },
+    {
+      "categoria": "Comissões",
+      "tipo": "Deduções da Receita",
+      "lancamentos": 483,
+      "valor_total": -989282.46
+    },
+    {
+      "categoria": "Receitas Recorrentes",
+      "tipo": "Receitas",
+      "lancamentos": 36,
+      "valor_total": 895254.65
+    },
+    {
+      "categoria": "Pró-Labore",
+      "tipo": "Despesas",
+      "lancamentos": 68,
+      "valor_total": -886208.78
+    },
+    {
+      "categoria": "Impostos",
+      "tipo": "Deduções da Receita",
+      "lancamentos": 237,
+      "valor_total": -649095.09
+    },
+    {
+      "categoria": "Conta Corrente Empresas",
+      "tipo": "Conta Corrente Empresas",
+      "lancamentos": 92,
+      "valor_total": -489813.98
+    },
+    {
+      "categoria": "Dívidas",
+      "tipo": "Dívidas e Investimentos",
+      "lancamentos": 78,
+      "valor_total": -416652.93
+    },
+    {
+      "categoria": "Comunição e Sistemas",
+      "tipo": "Despesas",
+      "lancamentos": 703,
+      "valor_total": -360180.74
+    },
+    {
+      "categoria": "Manutenções",
+      "tipo": "Despesas",
+      "lancamentos": 235,
+      "valor_total": -356269.99
+    },
+    {
+      "categoria": "Despesas Comerciais",
+      "tipo": "Despesas",
+      "lancamentos": 374,
+      "valor_total": -348249.03
+    },
+    {
+      "categoria": "Investimentos",
+      "tipo": "Dívidas e Investimentos",
+      "lancamentos": 78,
+      "valor_total": 117862.57
+    },
+    {
+      "categoria": "Estornos e Perdas",
+      "tipo": "Financeiro",
+      "lancamentos": 320,
+      "valor_total": -104563.03
+    }
+  ],
+  "dre": [
+    {
+      "linha": "Receitas Brutas",
+      "tipo": "header",
+      "valor": 10500623.33
+    },
+    {
+      "linha": "  Receitas de Venda",
+      "tipo": "item",
+      "valor": 3827076.91
+    },
+    {
+      "linha": "  Antecipação Kgiro",
+      "tipo": "item",
+      "valor": 2798953.53
+    },
+    {
+      "linha": "  Receitas Eventuais",
+      "tipo": "item",
+      "valor": 2979338.24
+    },
+    {
+      "linha": "  Receitas Recorrentes",
+      "tipo": "item",
+      "valor": 895254.65
+    },
+    {
+      "linha": "Deduções da Receita",
+      "tipo": "header",
+      "valor": -1638377.55
+    },
+    {
+      "linha": "  Impostos",
+      "tipo": "item",
+      "valor": -649095.09
+    },
+    {
+      "linha": "  Comissões",
+      "tipo": "item",
+      "valor": -989282.46
+    },
+    {
+      "linha": "RECEITA LÍQUIDA",
+      "tipo": "total",
+      "valor": 8862245.78
+    },
+    {
+      "linha": "Despesas",
+      "tipo": "header",
+      "valor": -9147556.15
+    },
+    {
+      "linha": "  Despesas Ocupação",
+      "tipo": "item",
+      "valor": -1682151.85
+    },
+    {
+      "linha": "  Comunicação e Sistemas",
+      "tipo": "item",
+      "valor": -360180.74
+    },
+    {
+      "linha": "  Despesas com Pessoal",
+      "tipo": "item",
+      "valor": -4047016.3
+    },
+    {
+      "linha": "  Pró-Labore",
+      "tipo": "item",
+      "valor": -886208.78
+    },
+    {
+      "linha": "  Despesas Operacionais",
+      "tipo": "item",
+      "valor": -1467479.46
+    },
+    {
+      "linha": "  Despesas Comerciais",
+      "tipo": "item",
+      "valor": -348249.03
+    },
+    {
+      "linha": "  Manutenções",
+      "tipo": "item",
+      "valor": -356269.99
+    },
+    {
+      "linha": "RESULTADO OPERACIONAL",
+      "tipo": "total",
+      "valor": -285310.38
+    },
+    {
+      "linha": "Financeiro",
+      "tipo": "header",
+      "valor": -92271.78
+    },
+    {
+      "linha": "  Receitas Diferida",
+      "tipo": "item",
+      "valor": 5845803.16
+    },
+    {
+      "linha": "  PGTO Antecipação",
+      "tipo": "item",
+      "valor": -5534721.56
+    },
+    {
+      "linha": "  Estornos e Perdas",
+      "tipo": "item",
+      "valor": -104563.03
+    },
+    {
+      "linha": "  Dívidas e Investimentos",
+      "tipo": "item",
+      "valor": -298790.35
+    },
+    {
+      "linha": "RESULTADO FINAL",
+      "tipo": "resultado",
+      "valor": -377582.16
+    }
+  ],
+  "plano_contas": [
+    {
+      "codigo": "01.01.01.01.01.01",
+      "nome": "Comissão Seguro",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Seguro",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "BMG",
+      "servico": "Seguro Prestamista",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.02",
+      "nome": "Comissão Cartao",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Cartao",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "BMG",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.03",
+      "nome": "Comissão Cartão Benefício",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Cartão Benefício",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "BMG",
+      "servico": "Cartão Benefício",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.04",
+      "nome": "Saldo Pano Card",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Saldo Pano Card",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.05",
+      "nome": "Saldo Pago Conta",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Saldo Pago Conta",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "Crédito em Conta",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.06",
+      "nome": "Sando Pago Cartão Benefício",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Sando Pago Cartão Benefício",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "Cartão Benefício",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.07",
+      "nome": "Saldo Pago FGTS",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Saldo Pago FGTS",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "FGTS",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.08",
+      "nome": "Comissão Consignado",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Consignado",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "BMG",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.09",
+      "nome": "Comissão Saque FGTS",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Saque FGTS",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "BMG",
+      "servico": "FGTS",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.10",
+      "nome": "Comissão Cartao Diferida",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Cartao Diferida",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "BMG",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.11",
+      "nome": "Comissão Cartao Benefício Diferida",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Cartao Benefício Diferida",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "BMG",
+      "servico": "Cartão Benefício",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.12",
+      "nome": "Comissão Crédito em Conta",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Crédito em Conta",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "BMG",
+      "servico": "Crédito em Conta",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.13",
+      "nome": "Comissão Diferida Saque FGTS",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Diferida Saque FGTS",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "BMG",
+      "servico": "FGTS",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.14",
+      "nome": "Comissão Consignado Diferida",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Consignado Diferida",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "BMG",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.15",
+      "nome": "Comissão Rotativo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Comissão Rotativo",
+      "tipo_seq": "Rotativo/Carteiras",
+      "banco": "BMG",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.16",
+      "nome": "CRED BMG em Conta Bonus Desafio",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > CRED BMG em Conta Bonus Desafio",
+      "tipo_seq": "Bonus",
+      "banco": "BMG",
+      "servico": "Crédito em Conta",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.17",
+      "nome": "Fraudes",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Fraudes",
+      "tipo_seq": "Fraudes",
+      "banco": "BMG",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.18",
+      "nome": "Estorno Comissão Cartao",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estorno Comissão Cartao",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.19",
+      "nome": "Estorno Comissão Cartão Beneficio Diferida",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estorno Comissão Cartão Beneficio Diferida",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Cartão Benefício",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.20",
+      "nome": "Estorno Comissão Cartão Beneficio",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estorno Comissão Cartão Beneficio",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Cartão Benefício",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.21",
+      "nome": "Estorno Comissão Cartão Diferida",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estorno Comissão Cartão Diferida",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.22",
+      "nome": "Estorno Comissão Seguro",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estorno Comissão Seguro",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Seguro Prestamista",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.23",
+      "nome": "Estono Crédito Conta",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estono Crédito Conta",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Crédito em Conta",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.24",
+      "nome": "Estono Comissão Consignado",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estono Comissão Consignado",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.25",
+      "nome": "Acerto/Reposição Card",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Acerto/Reposição Card",
+      "tipo_seq": "PGTO Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.26",
+      "nome": "Acerto/Reposição Conta",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Acerto/Reposição Conta",
+      "tipo_seq": "PGTO Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "Crédito em Conta",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.27",
+      "nome": "Acerto/Reposição Cartão Beneficio",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Acerto/Reposição Cartão Beneficio",
+      "tipo_seq": "PGTO Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "Cartão Benefício",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.28",
+      "nome": "Acerto/Reposição Consiginado",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Acerto/Reposição Consiginado",
+      "tipo_seq": "PGTO Antecipação CMS Kgiro",
+      "banco": "BMG",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.29",
+      "nome": "Estono Comissão Consignado Diferido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estono Comissão Consignado Diferido",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "BMG",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.30",
+      "nome": "Estorno Comissão Rotativo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Estorno Comissão Rotativo",
+      "tipo_seq": "Estorno",
+      "banco": "BMG",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.01.31",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco BMG > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "BMG",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.02.01",
+      "nome": "Comissão Consignado",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Comissão Consignado",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "ITAÚ",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.02.02",
+      "nome": "Comissão Diferida Saque FGTS",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Comissão Diferida Saque FGTS",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "ITAÚ",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.02.03",
+      "nome": "Bonus/Premiação",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Bonus/Premiação",
+      "tipo_seq": "Bonus",
+      "banco": "ITAÚ",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.02.04",
+      "nome": "Antecipação",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Antecipação",
+      "tipo_seq": "PGTO Antecipação CMS Kgiro",
+      "banco": "ITAÚ",
+      "servico": "Consignado",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.02.05",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "ITAÚ",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.02.06",
+      "nome": "Fraude",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Fraude",
+      "tipo_seq": "Fraudes",
+      "banco": "ITAÚ",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.02.07",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Itau > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "ITAÚ",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.03.01",
+      "nome": "Empréstimo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Santander > Empréstimo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "SANTANDER",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.03.02",
+      "nome": "Diferido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Santander > Diferido",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "SANTANDER",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.03.03",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Santander > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "SANTANDER",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.03.04",
+      "nome": "Fraude",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Santander > Fraude",
+      "tipo_seq": "Fraudes",
+      "banco": "SANTANDER",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.03.05",
+      "nome": "Antecipação",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Santander > Antecipação",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "SANTANDER",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.03.06",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Santander > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "SANTANDER",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.04.01",
+      "nome": "Seguro",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Seguro",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PAN",
+      "servico": "Seguro Prestamista",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.02",
+      "nome": "Cartão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Cartão",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PAN",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.02.01",
+      "nome": "Rotativo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Cartão > Rotativo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PAN",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.02.02",
+      "nome": "Diferido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Cartão > Diferido",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PAN",
+      "servico": "Cartão Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.03",
+      "nome": "Consignado",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Consignado",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PAN",
+      "servico": "Consignado",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.04",
+      "nome": "Resgates",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Resgates",
+      "tipo_seq": "Outras Receitas",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.05",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.06",
+      "nome": "Fraude",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Fraude",
+      "tipo_seq": "Fraudes",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.07",
+      "nome": "Substabelecido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Substabelecido",
+      "tipo_seq": "Outras Receitas",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.08",
+      "nome": "Diferido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Diferido",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.09",
+      "nome": "Antecipação",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Antecipação",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.04.10",
+      "nome": "Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Pan > Comissão",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PAN",
+      "servico": "",
+      "tipo_conta": "+"
+    },
+    {
+      "codigo": "01.01.01.01.05.01",
+      "nome": "Seguro",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Seguro",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PortoCred",
+      "servico": "Seguro Prestamista",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.02",
+      "nome": "Diferido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Cartão > Diferido",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PortoCred",
+      "servico": "Cartão Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.03",
+      "nome": "Consignado",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Consignado",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PortoCred",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.04",
+      "nome": "Resgates",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Resgates",
+      "tipo_seq": "Outras Receitas",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.05",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.06",
+      "nome": "Fraude",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Fraude",
+      "tipo_seq": "Fraudes",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.07",
+      "nome": "Substabelecido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Substabelecido",
+      "tipo_seq": "Outras Receitas",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.08",
+      "nome": "Diferido",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Diferido",
+      "tipo_seq": "Comissão Diferida",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.09",
+      "nome": "Antecipação",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Antecipação",
+      "tipo_seq": "Antecipação CMS Kgiro",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.05.10",
+      "nome": "Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > PortoCred > Comissão",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "PortoCred",
+      "servico": "",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.06.01",
+      "nome": "Empréstimos",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Qualiconsig > Empréstimos",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "Qualiconsig",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.07.01",
+      "nome": "Empréstimo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco C6 > Empréstimo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "Banco C6",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.07.02",
+      "nome": "Estornos",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco C6 > Estornos",
+      "tipo_seq": "Estorno",
+      "banco": "Banco C6",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.07.03",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco C6 > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "Banco C6",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.08.01",
+      "nome": "Empréstimo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Facta > Empréstimo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "Banco Facta",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.08.02",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Facta > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "Banco Facta",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.08.03",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Facta > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "Banco Facta",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.09.01",
+      "nome": "Empréstimo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Quero Mais > Empréstimo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "Banco Quero Mais",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.09.02",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Quero Mais > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "Banco Quero Mais",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.09.03",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Quero Mais > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "Banco Quero Mais",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.10.01",
+      "nome": "Empréstimo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Safra > Empréstimo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "Banco Safra",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    },
+    {
+      "codigo": "01.01.01.01.10.02",
+      "nome": "Estorno",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Safra > Estorno",
+      "tipo_seq": "Estorno",
+      "banco": "Banco Safra",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.10.03",
+      "nome": "Pagamento de Comissão",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Safra > Pagamento de Comissão",
+      "tipo_seq": "PGTO Comissões Corretores",
+      "banco": "Banco Safra",
+      "servico": "",
+      "tipo_conta": "-"
+    },
+    {
+      "codigo": "01.01.01.01.11.01",
+      "nome": "Empréstimo",
+      "hierarquia": "Grupo Imediata > Receitas > Receitas de Produção > Bancos > Banco Banrisul > Empréstimo",
+      "tipo_seq": "Comissão à Vista",
+      "banco": "BANRISUL",
+      "servico": "Consignado",
+      "tipo_conta": ""
+    }
+  ],
+  "movimento_top": [
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 504394.27,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 453944.11,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 329890.19,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 328754.18,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 305943.04,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 305101.13,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 304140.85,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 301211.2,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 300074.63,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 265991.26,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 263100.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 254860.61,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 235438.66,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 209676.67,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 165490.31,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 165285.2,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 160900.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 156659.75,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 140891.93,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 137800.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 137610.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 128904.32,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 121833.52,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 118492.66,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 116110.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 110130.25,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 105190.31,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 102523.62,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 93062.29,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 90442.73,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 90100.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas de Venda",
+      "Detalhamento": "Comissão à Vista",
+      "Valor": 88999.07,
+      "Loja": "Corretores SC - Filial",
+      "Banco": "Banco Fox"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 88700.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 88100.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 87570.27,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 87300.55,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 77000.6,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 74762.55,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 74650.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 74178.4,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 72448.29,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 71451.65,
+      "Loja": "Matriz - Help",
+      "Banco": "ITAÚ"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 70425.45,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 69051.72,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Dívidas e Investimentos",
+      "Categoria": "Investimentos",
+      "Detalhamento": "Aquisição de Veículos e Imóveis",
+      "Valor": 68133.04,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 67920.57,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 67410.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Estornos e Perdas",
+      "Detalhamento": "Fraudes",
+      "Valor": 66987.28,
+      "Loja": "Corretores RJ - Filial",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 66700.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 66404.88,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Dívidas e Investimentos",
+      "Categoria": "Investimentos",
+      "Detalhamento": "Aquisição de Veículos e Imóveis",
+      "Valor": 64245.79,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 58779.36,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 57996.82,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 57695.73,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 55214.13,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 54849.2,
+      "Loja": "Matriz - Imediata",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 54009.17,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 53227.82,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 51251.65,
+      "Loja": "Matriz - Imediata",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 50744.82,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 48158.29,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 47179.59,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 47100.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 45282.69,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 44103.78,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 44087.82,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 43920.69,
+      "Loja": "Bangu - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/06/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 43403.5,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 43331.96,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas de Venda",
+      "Detalhamento": "Comissão à Vista",
+      "Valor": 43206.93,
+      "Loja": "Corretores SC - Filial",
+      "Banco": "Banco Fox"
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 43163.96,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 42660.54,
+      "Loja": "Matriz - Imediata",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 42623.62,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 42166.26,
+      "Loja": "Niterói - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 41896.78,
+      "Loja": "Nova Iguaçu - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 41753.7,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 39525.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 39000.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 38859.58,
+      "Loja": "Uruguaiana 1 - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 38530.51,
+      "Loja": "Bangu - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 38205.43,
+      "Loja": "Uruguaiana 1 - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 38175.48,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 38122.27,
+      "Loja": "Uruguaiana 1 - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/01/2026",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 38000.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 37983.15,
+      "Loja": "Niterói - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 37693.58,
+      "Loja": "Niterói - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Recorrentes",
+      "Detalhamento": "Rotativo/Carteiras",
+      "Valor": 36780.15,
+      "Loja": "Matriz - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 36013.45,
+      "Loja": "Uruguaiana 1 - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 35936.65,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 35546.04,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/08/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 35545.57,
+      "Loja": "Uruguaiana 1 - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 35500.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/05/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 35400.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas de Venda",
+      "Detalhamento": "Comissão à Vista",
+      "Valor": 35322.77,
+      "Loja": "Corretores SC - Filial",
+      "Banco": "Banco Fox"
+    },
+    {
+      "Caixa": "01/09/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 35313.39,
+      "Loja": "Niterói - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/07/2025",
+      "Tipo": "Conta Corrente Empresas",
+      "Categoria": "Conta Corrente Empresas",
+      "Detalhamento": "Conta Corrente Empresas",
+      "Valor": 35145.0,
+      "Loja": "Matriz - Help",
+      "Banco": 0
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Receitas Eventuais",
+      "Detalhamento": "Bonus",
+      "Valor": 35036.92,
+      "Loja": "Niterói - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/12/2025",
+      "Tipo": "Financeiro",
+      "Categoria": "Receitas Diferida",
+      "Detalhamento": "Comissão Diferida",
+      "Valor": 34990.6,
+      "Loja": "Uruguaiana 1 - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/10/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 34877.25,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    },
+    {
+      "Caixa": "01/11/2025",
+      "Tipo": "Receitas",
+      "Categoria": "Antecipação Kgiro",
+      "Detalhamento": "Antecipação CMS Kgiro",
+      "Valor": 34876.72,
+      "Loja": "Volta Redonda - Help",
+      "Banco": "BMG"
+    }
+  ]
+}
