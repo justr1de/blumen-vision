@@ -1,70 +1,87 @@
-"use client";
+'use client';
 
-import { useState, createContext, useContext, useCallback } from "react";
-import Sidebar from "@/components/layout/Sidebar";
-import { getClientData, getAllClients } from "@/lib/data";
-import type { ClientData } from "@/types/financial";
+import { useEffect, useState, createContext, useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import Sidebar from '@/components/layout/Sidebar';
 
-// ─── Client Context ──────────────────────────────────────────
-interface ClientContextType {
-  client: ClientData;
-  clientId: string;
-  setClientId: (id: string) => void;
-  allClients: { id: string; nome: string; tipo: string; periodo: string }[];
+// ─── Auth Context ──────────────────────────────────────────
+interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  tenantId: string | null;
+  tenantName?: string;
+  isMaster: boolean;
+  permissions: string[];
 }
 
-const ClientContext = createContext<ClientContextType | null>(null);
+interface AuthContextType {
+  user: UserData;
+}
 
-export function useClient() {
-  const ctx = useContext(ClientContext);
-  if (!ctx) throw new Error("useClient must be used within DashboardLayout");
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export function useAuth() {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error('useAuth must be used within DashboardLayout');
   return ctx;
 }
 
 // ─── Layout ──────────────────────────────────────────────────
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [clientId, setClientId] = useState("imediata");
-  const client = getClientData(clientId);
-  const allClients = getAllClients();
+  const router = useRouter();
+  const [user, setUser] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const handleClientChange = useCallback((id: string) => {
-    setClientId(id);
-  }, []);
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (!res.ok || !data.user) {
+          router.push('/login');
+          return;
+        }
+        setUser(data.user);
+      } catch {
+        router.push('/login');
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, [router]);
 
-  if (!client) {
+  if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-muted-foreground">Carregando dados do cliente...</p>
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4 animate-pulse">
+            <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                    d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+              <circle cx="12" cy="12" r="3" strokeWidth={1.5} />
+            </svg>
+          </div>
+          <p className="text-sm text-muted-foreground">Carregando...</p>
+        </div>
       </div>
     );
   }
 
-  const sidebarClients = allClients.map((c) => ({
-    ...c,
-    periodo: getClientData(c.id)?.periodo ?? "",
-  }));
-
-  const activeClient = {
-    id: clientId,
-    nome: client.nome,
-    tipo: client.tipo,
-    periodo: client.periodo,
-  };
+  if (!user) return null;
 
   return (
-    <ClientContext.Provider value={{ client, clientId, setClientId: handleClientChange, allClients: sidebarClients }}>
-      <div className="flex min-h-screen">
-        <Sidebar
-          clients={sidebarClients}
-          activeClient={activeClient}
-          onClientChange={handleClientChange}
-        />
-        <main className="flex-1 lg:ml-[260px] pt-14 lg:pt-0">
-          <div className="p-4 sm:p-6 lg:p-8">
+    <AuthContext.Provider value={{ user }}>
+      <div className="flex min-h-screen bg-background">
+        <Sidebar user={user} />
+        <main className="flex-1 min-w-0">
+          <div className="p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
             {children}
           </div>
         </main>
       </div>
-    </ClientContext.Provider>
+    </AuthContext.Provider>
   );
 }

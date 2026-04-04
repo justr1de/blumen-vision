@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Toaster } from "sonner";
 import "./globals.css";
+
+// Force dynamic rendering for all pages
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Blumen Vision — Inteligência Financeira",
@@ -9,6 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Force dynamic rendering by reading headers
+  headers();
+  
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
@@ -17,13 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
           rel="stylesheet"
-        />
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5TVX1B8MH" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K5TVX1B8MH');`,
-          }}
         />
       </head>
       <body className="min-h-screen">

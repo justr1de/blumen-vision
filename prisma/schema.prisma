@@ -12,15 +12,21 @@ datasource db {
 // ═══════════════════════════════════════════════════════════════
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  password  String
-  role      Role     @default(USER)
-  tenantId  String?
-  tenant    Tenant?  @relation(fields: [tenantId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  password      String
+  role          Role      @default(VIEWER)
+  tenantId      String?
+  tenant        Tenant?   @relation(fields: [tenantId], references: [id])
+  isMaster      Boolean   @default(false)
+  active        Boolean   @default(true)
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  messages      Message[] @relation("sender")
+  permissions   UserPermission[]
 
   @@map("users")
 }
@@ -29,47 +35,96 @@ model Tenant {
   id          String   @id @default(cuid())
   nome        String
   cnpj        String?  @unique
-  tipo        String
+  masterEmail String   @unique
   ativo       Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   users       User[]
-  clientes    Cliente[]
+  grupos      Grupo[]
   uploads     Upload[]
+  messages    Message[]
 
   @@map("tenants")
 }
 
+model UserPermission {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  module     String   // vision_caixa, vision_capital, vision_producao, vision_decisao, tributario
+  canView    Boolean  @default(true)
+  canEdit    Boolean  @default(false)
+  canExport  Boolean  @default(false)
+
+  @@unique([userId, module])
+  @@map("user_permissions")
+}
+
 enum Role {
-  ADMIN
-  AUDITOR
-  USER
+  SUPER_ADMIN
+  TENANT_MASTER
+  ANALYST
+  VIEWER
 }
 
 // ═══════════════════════════════════════════════════════════════
-// CLIENTES (empresas analisadas)
+// HIERARQUIA GERENCIAL — 3 NÍVEIS LIVRES
+// Grupo → Segmento → Unidade
 // ═══════════════════════════════════════════════════════════════
 
-model Cliente {
+model Grupo {
   id          String   @id @default(cuid())
   nome        String
-  cnpj        String?
-  tipo        String
-  periodo     String
+  descricao   String?
   tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  ativo       Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  planoContas   PlanoContas[]
+  segmentos   Segmento[]
+
+  @@unique([tenantId, nome])
+  @@map("grupos")
+}
+
+model Segmento {
+  id          String   @id @default(cuid())
+  nome        String
+  descricao   String?
+  grupoId     String
+  grupo       Grupo    @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  ativo       Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  unidades    Unidade[]
+
+  @@unique([grupoId, nome])
+  @@map("segmentos")
+}
+
+model Unidade {
+  id          String   @id @default(cuid())
+  nome        String
+  cnpj        String?
+  endereco    String?
+  segmentoId  String
+  segmento    Segmento @relation(fields: [segmentoId], references: [id], onDelete: Cascade)
+  ativo       Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   lancamentos   Lancamento[]
+  planoContas   PlanoContas[]
   dreItems      DREItem[]
   crediarios    Crediario[]
   patrimoniais  Patrimonial[]
-  biReports     BIReport[]
+  kpis          KPI[]
 
-  @@map("clientes")
+  @@unique([segmentoId, nome])
+  @@map("unidades")
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -84,12 +139,12 @@ model PlanoContas {
   tipo                String
   codigoPai           String?
   categoriaGerencial  String?
-  clienteId           String
-  cliente             Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  unidadeId           String
+  unidade             Unidade  @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
 
   lancamentos         Lancamento[]
 
-  @@unique([clienteId, codigo])
+  @@unique([unidadeId, codigo])
   @@map("plano_contas")
 }
 
@@ -103,19 +158,17 @@ model Lancamento {
   codigo      String
   descricao   String
   valor       Float
-  tipo        String
+  tipo        String   // receita, despesa, transferencia
   banco       String?
-  loja        String?
   categoria   String?
-  clienteId   String
-  cliente     Cliente     @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  unidadeId   String
+  unidade     Unidade     @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
   contaId     String?
   conta       PlanoContas? @relation(fields: [contaId], references: [id])
   createdAt   DateTime @default(now())
 
-  @@index([clienteId, data])
-  @@index([clienteId, banco])
-  @@index([clienteId, tipo])
+  @@index([unidadeId, data])
+  @@index([unidadeId, tipo])
   @@map("lancamentos")
 }
 
@@ -132,10 +185,10 @@ model DREItem {
   codigoPai   String?
   valores     Json
   total       Float
-  clienteId   String
-  cliente     Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  unidadeId   String
+  unidade     Unidade  @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
 
-  @@unique([clienteId, codigo])
+  @@unique([unidadeId, codigo])
   @@map("dre_items")
 }
 
@@ -151,10 +204,10 @@ model Crediario {
   saldo         Float
   status        String
   dataVenda     DateTime
-  clienteId     String
-  cliente       Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  unidadeId     String
+  unidade       Unidade  @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
 
-  @@index([clienteId, status])
+  @@index([unidadeId, status])
   @@map("crediarios")
 }
 
@@ -169,11 +222,32 @@ model Patrimonial {
   valor       Float
   data        DateTime
   descricao   String?
-  clienteId   String
-  cliente     Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  unidadeId   String
+  unidade     Unidade  @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
 
-  @@index([clienteId, tipo])
+  @@index([unidadeId, tipo])
   @@map("patrimoniais")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// KPIs POR UNIDADE (snapshot mensal)
+// ═══════════════════════════════════════════════════════════════
+
+model KPI {
+  id              String   @id @default(cuid())
+  periodo         String   // "2026-04"
+  receitaTotal    Float    @default(0)
+  lucroLiquido    Float    @default(0)
+  margemLiquida   Float    @default(0)
+  saldoCaixa      Float    @default(0)
+  endividamento   Float    @default(0)
+  folhaPct        Float    @default(0)
+  unidadeId       String
+  unidade         Unidade  @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+
+  @@unique([unidadeId, periodo])
+  @@map("kpis")
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -183,7 +257,7 @@ model Patrimonial {
 model Upload {
   id          String   @id @default(cuid())
   filename    String
-  gcsPath     String
+  storagePath String
   mimeType    String
   size        Int
   status      String   @default("pending")
@@ -197,18 +271,20 @@ model Upload {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// BI REPORTS (Relatórios salvos)
+// MENSAGENS (Cliente → Admin)
 // ═══════════════════════════════════════════════════════════════
 
-model BIReport {
+model Message {
   id          String   @id @default(cuid())
-  titulo      String
-  tipo        String
-  filtros     Json
-  dados       Json
-  clienteId   String
-  cliente     Cliente  @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  assunto     String
+  conteudo    String
+  lida        Boolean  @default(false)
+  senderId    String
+  sender      User     @relation("sender", fields: [senderId], references: [id])
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
   createdAt   DateTime @default(now())
 
-  @@map("bi_reports")
+  @@index([tenantId, lida])
+  @@map("messages")
 }

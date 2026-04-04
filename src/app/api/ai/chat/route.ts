@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from "next/server";
 import { getModel, FINANCIAL_SYSTEM_PROMPT } from "@/lib/gemini";
 
