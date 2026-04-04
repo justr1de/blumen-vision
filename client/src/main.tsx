@@ -5,7 +5,6 @@ import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
 import superjson from "superjson";
 import App from "./App";
-import { getLoginUrl } from "./const";
 import "./index.css";
 
 const queryClient = new QueryClient();
@@ -18,7 +17,12 @@ const redirectToLoginIfUnauthorized = (error: unknown) => {
 
   if (!isUnauthorized) return;
 
-  window.location.href = getLoginUrl();
+  // Só redireciona se não estiver em rota pública
+  const publicPaths = ["/", "/login", "/registro", "/esqueci-senha", "/sobre"];
+  const currentPath = window.location.pathname;
+  if (publicPaths.some(p => currentPath === p || currentPath.startsWith(p + "/"))) return;
+
+  window.location.href = `/login?returnTo=${encodeURIComponent(currentPath)}`;
 };
 
 queryClient.getQueryCache().subscribe(event => {

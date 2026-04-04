@@ -3,7 +3,7 @@
  * Sem autenticação, apresenta a marca e direciona para login
  */
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import BlumenSymbol from "@/components/BlumenSymbol";
@@ -88,7 +88,7 @@ export default function LandingPage() {
               <Button
                 size="sm"
                 className="gap-2 bg-blumen-navy hover:bg-blumen-navy/90 text-white"
-                onClick={() => { window.location.href = getLoginUrl(); }}
+                onClick={() => { window.location.href = "/login"; }}
               >
                 <LogIn className="w-3.5 h-3.5" />
                 Entrar
@@ -134,7 +134,7 @@ export default function LandingPage() {
                     <Button
                       size="lg"
                       className="gap-2 bg-blumen-olive hover:bg-blumen-olive/90 text-white font-semibold"
-                      onClick={() => { window.location.href = getLoginUrl(); }}
+                      onClick={() => { window.location.href = "/login"; }}
                     >
                       Começar Agora
                       <ArrowRight className="w-4 h-4" />

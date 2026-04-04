@@ -7,7 +7,7 @@
  *   <RequireAuth role="super_admin">...</RequireAuth> → apenas super_admin
  */
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
+
 import { Loader2, ShieldAlert, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -56,7 +56,7 @@ export default function RequireAuth({ children, role = "user", fallback }: Requi
             </p>
           </div>
           <Button
-            onClick={() => { window.location.href = getLoginUrl(); }}
+            onClick={() => { window.location.href = "/login"; }}
             className="bg-blumen-navy hover:bg-blumen-navy/90 text-white gap-2"
           >
             <LogIn className="w-4 h-4" />

@@ -42,11 +42,6 @@ function determineAutoRole(email: string | null | undefined, openId: string): 's
     }
   }
 
-  // Owner do app → admin
-  if (openId === ENV.ownerOpenId) {
-    return 'admin';
-  }
-
   return 'user';
 }
 
@@ -125,6 +120,25 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user: database not available");
+    return undefined;
+  }
+  const result = await db.select().from(users).where(eq(users.email, email.toLowerCase())).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function updateUserPassword(openId: string, passwordHash: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot update password: database not available");
+    return;
+  }
+  await db.update(users).set({ passwordHash }).where(eq(users.openId, openId));
 }
 
 // TODO: add feature queries here as your schema grows.

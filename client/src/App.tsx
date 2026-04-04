@@ -20,6 +20,10 @@ import BlumenAIPage from "./pages/BlumenAIPage";
 // Landing page pública
 import LandingPage from "./pages/LandingPage";
 
+// Páginas de autenticação
+import LoginPage from "./pages/LoginPage";
+import RegistroPage from "./pages/RegistroPage";
+
 /**
  * Rotas do Painel de Gestão — protegidas por role admin/super_admin
  * Acessível apenas por: contato@dataro-it.com.br, anderson@blumenbiz.com, camila@blumenbiz.com
@@ -75,6 +79,10 @@ function Router() {
     <Switch>
       {/* Landing page pública — sem autenticação */}
       <Route path="/" component={LandingPage} />
+
+      {/* Autenticação */}
+      <Route path="/login" component={LoginPage} />
+      <Route path="/registro" component={RegistroPage} />
 
       {/* Painel de Gestão — admin/super_admin */}
       <Route path="/gestao/:rest*" component={AdminPanel} />

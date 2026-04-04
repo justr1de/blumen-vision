@@ -5,7 +5,7 @@ import { SUPER_ADMIN_EMAILS, ADMIN_EMAIL_DOMAINS } from '../shared/const';
  * Replica a lógica de determineAutoRole do db.ts para testes unitários
  * sem depender de conexão com banco de dados
  */
-function determineAutoRole(email: string | null | undefined, openId: string, ownerOpenId: string = 'owner-test'): 'super_admin' | 'admin' | 'user' {
+function determineAutoRole(email: string | null | undefined, _openId: string): 'super_admin' | 'admin' | 'user' {
   if (email) {
     const emailLower = email.toLowerCase().trim();
 
@@ -17,10 +17,6 @@ function determineAutoRole(email: string | null | undefined, openId: string, own
     if (domain && ADMIN_EMAIL_DOMAINS.some(d => d.toLowerCase() === domain)) {
       return 'admin';
     }
-  }
-
-  if (openId === ownerOpenId) {
-    return 'admin';
   }
 
   return 'user';
@@ -62,16 +58,6 @@ describe('Role auto-assignment', () => {
     it('should prioritize super_admin over admin for contato@dataro-it.com.br', () => {
       // contato@dataro-it.com.br is in SUPER_ADMIN_EMAILS, so it should be super_admin, not just admin
       expect(determineAutoRole('contato@dataro-it.com.br', 'some-id')).toBe('super_admin');
-    });
-  });
-
-  describe('Owner fallback', () => {
-    it('should assign admin to app owner by openId', () => {
-      expect(determineAutoRole(null, 'owner-test', 'owner-test')).toBe('admin');
-    });
-
-    it('should not assign admin to non-owner', () => {
-      expect(determineAutoRole(null, 'not-owner', 'owner-test')).toBe('user');
     });
   });
 
