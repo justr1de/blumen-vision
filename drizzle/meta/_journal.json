@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1775249481551,
+      "tag": "0000_gray_leper_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1775254602627,
+      "tag": "0001_tense_forgotten_one",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1775321879417,
+      "tag": "0002_cooing_callisto",
+      "breakpoints": true
+    }
+  ]
+}

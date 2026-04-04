@@ -1,63 +1,62 @@
-# ═══════════════════════════════════════════════════════════════
-# Blumen Vision — Dockerfile para Cloud Run
-# Next.js 14 + Prisma + PostgreSQL
-# ═══════════════════════════════════════════════════════════════
+# ============================================================
+# Blúmen Vision — Dockerfile para Google Cloud Run
+# Multi-stage build: Node.js (frontend + backend)
+# ============================================================
 
-# ── Stage 1: Dependencies ─────────────────────────────────────
-FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat openssl
+# Stage 1: Build
+FROM node:22-alpine AS builder
+
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml* ./
-COPY prisma ./prisma/
+# Instalar pnpm
+RUN corepack enable && corepack prepare pnpm@10.4.1 --activate
 
-RUN corepack enable pnpm && pnpm install --frozen-lockfile
+# Copiar arquivos de dependências
+COPY package.json pnpm-lock.yaml ./
+COPY patches/ ./patches/
 
-# Generate Prisma Client
-RUN npx prisma generate
+# Instalar dependências
+RUN pnpm install --frozen-lockfile
 
-# ── Stage 2: Build ────────────────────────────────────────────
-FROM node:20-alpine AS builder
-RUN apk add --no-cache libc6-compat openssl
-WORKDIR /app
-
-COPY --from=deps /app/node_modules ./node_modules
+# Copiar código-fonte
 COPY . .
 
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
+# Build do frontend (Vite) e backend (esbuild)
+RUN pnpm build
 
-RUN corepack enable pnpm && pnpm build
-
-# ── Stage 3: Production ──────────────────────────────────────
-FROM node:20-alpine AS runner
-RUN apk add --no-cache libc6-compat openssl
+# Stage 2: Production
+FROM node:22-alpine AS production
 
 WORKDIR /app
 
+# Instalar pnpm
+RUN corepack enable && corepack prepare pnpm@10.4.1 --activate
+
+# Copiar package.json e instalar apenas dependências de produção
+COPY package.json pnpm-lock.yaml ./
+COPY patches/ ./patches/
+RUN pnpm install --frozen-lockfile --prod
+
+# Copiar build artifacts do stage anterior
+COPY --from=builder /app/dist ./dist
+
+# Copiar drizzle migrations (necessário para db:push em runtime)
+COPY --from=builder /app/drizzle ./drizzle
+COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
+
+# Copiar shared constants
+COPY --from=builder /app/shared ./shared
+
+# O Cloud Run injeta a variável PORT automaticamente
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=8080
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Expor a porta
+EXPOSE 8080
 
-# Copy public assets
-COPY --from=builder /app/public ./public
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/ || exit 1
 
-# Copy standalone output
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Copy Prisma schema and client from deps stage
-COPY --from=deps /app/prisma ./prisma
-COPY --from=deps /app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
-
-USER nextjs
-
-# Cloud Run uses PORT env var
-EXPOSE 3000
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
-
-CMD ["node", "server.js"]
+# Iniciar a aplicação
+CMD ["node", "dist/index.js"]

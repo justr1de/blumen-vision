@@ -1,151 +1,138 @@
-# Blumen Vision — Inteligência Financeira
+# Blumen Vision — Módulos Financeiro e Operação
 
-Plataforma de auditoria contábil, conciliação de empréstimos e geração de BIs gerenciais com Gemini AI. Desenvolvida para a **Financeira Arnuti** como ferramenta de análise e apresentação de dados financeiros.
+Sistema de inteligência financeira para auditoria contábil, conciliação de empréstimos e análise de DRE, com integração Gemini AI para processamento de documentos.
 
-## Stack Tecnológica
+## Visão Geral
 
-| Camada | Tecnologia |
-|---|---|
-| **Frontend** | Next.js 14 (App Router) + React 18 + Tailwind CSS 3 |
-| **Backend** | Next.js API Routes + Prisma ORM |
-| **Banco de Dados** | Cloud SQL PostgreSQL 17 |
-| **AI** | Google Gemini API (gemini-2.5-flash) |
-| **Storage** | Google Cloud Storage (uploads) |
-| **Deploy** | Cloud Run (southamerica-east1) |
-| **CI/CD** | Cloud Build (cloudbuild.yaml) |
-| **Gráficos** | Recharts |
-| **Ícones** | Lucide React |
+O Blumen Vision é uma plataforma que auxilia auditoras contábeis na identificação de erros em lançamentos financeiros, cálculo de incongruências e apresentação de resultados corretos sobre valores devidos e pagos. O sistema transforma planilhas complexas em dashboards gerenciais intuitivos.
 
-## Pré-requisitos
+## Arquitetura
 
-Para desenvolvimento local, é necessário ter instalado Node.js 20+, pnpm e acesso ao Cloud SQL PostgreSQL. Para deploy, é necessário ter o projeto GCP `blumenvision` configurado com Cloud Run, Cloud Build e Cloud SQL habilitados.
-
-## Configuração Local
-
-```bash
-# 1. Clone o repositório
-git clone https://github.com/justr1de/blumen-vision.git
-cd blumen-vision
-
-# 2. Instale dependências
-pnpm install
-
-# 3. Configure variáveis de ambiente
-cp .env.example .env
-# Edite .env com suas credenciais
-
-# 4. Gere o Prisma Client
-npx prisma generate
-
-# 5. Execute migrações (quando conectado ao banco)
-npx prisma migrate deploy
-
-# 6. Inicie o servidor de desenvolvimento
-pnpm dev
+```
+┌─────────────────────────────────────────────────────┐
+│                    Frontend (React)                  │
+│  Painel Geral │ DRE │ Movimento │ Plano de Contas   │
+│  Crediário │ Patrimonial │ Blumen AI                │
+└──────────────────────┬──────────────────────────────┘
+                       │ tRPC
+┌──────────────────────┴──────────────────────────────┐
+│                  Backend (Express + tRPC)             │
+│  ai.chat │ ai.analyzePdf │ ai.analyzeStructured      │
+│  auth.me │ auth.logout │ system.*                     │
+└──────────────────────┬──────────────────────────────┘
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+    ┌─────┴─────┐           ┌──────┴──────┐
+    │  Database  │           │  Gemini AI  │
+    │  (MySQL)   │           │ (Vertex AI) │
+    └───────────┘           └─────────────┘
 ```
 
-O servidor estará disponível em `http://localhost:3000`.
+## Módulos
+
+### Módulo Financeiro
+- **Painel Geral** — KPIs, evolução mensal, concentração por banco/cliente
+- **DRE Gerencial** — Demonstrativo de Resultado do Exercício com drill-down
+- **Movimento Analítico** — Tabela de lançamentos com filtros por banco, loja, tipo
+- **Plano de Contas** — Hierarquia contábil com mapeamento De→Para
+
+### Módulo Operação
+- **Crediário** — Análise de contas a receber e inadimplência
+- **Patrimonial** — Aportes, retornos e empréstimos de sócios
+
+### Blumen AI (Gemini)
+- **Chat Financeiro** — Assistente especializado em contabilidade e finanças
+- **Análise de PDF** — Upload e interpretação de documentos financeiros
+- **Extração Estruturada** — Extração automática de dados em JSON (DRE, extrato, contrato, balancete)
+
+## Clientes Suportados
+
+| Cliente | Tipo | Período |
+|---------|------|---------|
+| Grupo Imediata | Financeira (BMG) | Mai-Out/2025 |
+| Indústria de Tijolos | Indústria Cerâmica | Ago-Dez/2022 |
+
+## Stack Tecnológico
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Frontend | React 19, Tailwind CSS 4, Recharts, Framer Motion |
+| Backend | Express 4, tRPC 11, Drizzle ORM |
+| Banco de Dados | MySQL (Manus) / PostgreSQL 17 (Cloud SQL) |
+| IA | Google Gemini 2.5 Flash (via API Key ou Vertex AI) |
+| Cloud | Google Cloud Run, Cloud SQL, Cloud Storage |
+| Testes | Vitest |
 
 ## Estrutura do Projeto
 
 ```
-src/
-├── app/
-│   ├── (dashboard)/          # Páginas do dashboard (com sidebar)
-│   │   ├── painel/           # Painel Geral com KPIs e gráficos
-│   │   ├── dre/              # DRE Gerencial hierárquico
-│   │   ├── movimento/        # Lançamentos analíticos
-│   │   ├── plano-contas/     # Estrutura hierárquica de contas
-│   │   ├── crediario/        # Vendas a prazo e recebimentos
-│   │   ├── patrimonial/      # Aportes, retornos e empréstimos
-│   │   ├── bi/               # Business Intelligence
-│   │   ├── blumen-ai/        # Chat com Gemini AI
-│   │   ├── uploads/          # Upload de planilhas
-│   │   └── layout.tsx        # Layout com sidebar e contexto de cliente
-│   ├── api/
-│   │   ├── ai/chat/          # Chat com Gemini
-│   │   ├── ai/analyze-pdf/   # Análise de PDF com AI
-│   │   ├── ai/analyze-structured/ # Análise estruturada
-│   │   ├── ai/health/        # Health check
-│   │   ├── data/             # API de dados financeiros
-│   │   └── upload/           # Upload de planilhas
-│   ├── layout.tsx            # Layout raiz
-│   └── page.tsx              # Redirect para /painel
-├── components/
-│   ├── layout/Sidebar.tsx    # Sidebar com navegação e seletor de cliente
-│   └── layout/ThemeProvider.tsx
-├── data/                     # Dados JSON (seed inicial)
-├── lib/
-│   ├── data.ts               # Acesso a dados de clientes
-│   ├── format.ts             # Formatação (moeda, data, %)
-│   ├── gemini.ts             # Cliente Gemini AI
-│   ├── prisma.ts             # Singleton Prisma Client
-│   └── utils.ts              # Utilitários (cn)
-├── types/
-│   └── financial.ts          # Tipos TypeScript
-prisma/
-│   └── schema.prisma         # Schema do banco (multi-tenant)
+blumen-financeiro/
+├── client/                 # Frontend React
+│   └── src/
+│       ├── pages/          # Páginas do portal
+│       ├── components/     # Componentes reutilizáveis
+│       ├── contexts/       # Contextos (Cliente, Tema)
+│       ├── hooks/          # Hooks customizados
+│       └── lib/            # Utilitários (format, trpc)
+├── server/                 # Backend tRPC
+│   ├── ai.ts              # Router de IA (Gemini)
+│   ├── routers.ts         # Router principal
+│   ├── db.ts              # Helpers de banco de dados
+│   └── storage.ts         # Helpers S3
+├── drizzle/                # Schema e migrações
+├── cloud-run/              # Código equivalente para GCP
+│   ├── main.py            # FastAPI + Gemini
+│   ├── Dockerfile         # Container para Cloud Run
+│   └── README.md          # Instruções de deploy
+└── shared/                 # Tipos e constantes compartilhados
 ```
 
-## Deploy no Cloud Run
+## Configuração
 
-O deploy pode ser feito manualmente via CLI ou automaticamente via Cloud Build.
+Consulte [ENV_SETUP.md](./ENV_SETUP.md) para a lista completa de variáveis de ambiente.
 
-### Deploy Manual
+### Desenvolvimento Local
 
 ```bash
-# 1. Autentique no GCP
-gcloud auth login
-gcloud config set project blumenvision
+# Instalar dependências
+pnpm install
 
-# 2. Build da imagem
-gcloud builds submit --tag gcr.io/blumenvision/blumen-vision
+# Configurar variáveis de ambiente
+# (ver ENV_SETUP.md)
 
-# 3. Deploy no Cloud Run
-gcloud run deploy blumen-vision \
-  --image gcr.io/blumenvision/blumen-vision \
-  --region southamerica-east1 \
-  --platform managed \
-  --allow-unauthenticated \
-  --memory 1Gi \
-  --set-env-vars "DATABASE_URL=postgresql://...,GEMINI_API_KEY=..."
+# Sincronizar banco de dados
+pnpm db:push
+
+# Iniciar servidor de desenvolvimento
+pnpm dev
+
+# Executar testes
+pnpm test
 ```
 
-### Deploy Automático (Cloud Build)
+### Deploy no Cloud Run
 
-Configure um trigger no Cloud Build apontando para o repositório GitHub. O arquivo `cloudbuild.yaml` já está configurado. Defina as variáveis de substituição `_DATABASE_URL` e `_GEMINI_API_KEY` no trigger.
+```bash
+cd cloud-run
+gcloud run deploy blumen-vision-api \
+  --source . \
+  --region southamerica-east1 \
+  --set-env-vars "GEMINI_API_KEY=sua_chave"
+```
 
-## Módulos
+## Testes
 
-O sistema possui os seguintes módulos, cada um acessível via sidebar lateral.
+```bash
+pnpm test
+```
 
-**Painel Geral** apresenta KPIs consolidados (receitas, despesas, resultado operacional), gráfico de evolução mensal, concentração por banco/cliente e distribuição por categoria.
-
-**DRE Gerencial** exibe o Demonstrativo de Resultado do Exercício em formato hierárquico expansível, com valores mensais e totais, busca por conta e destaque para contas totalizadoras.
-
-**Movimento Analítico** lista todos os lançamentos com filtros por banco, tipo e busca textual, paginação, ordenação e exportação CSV.
-
-**Plano de Contas** mostra a estrutura hierárquica de contas com expansão/colapso, tipo (totalizadora/lançamento) e categoria gerencial.
-
-**Crediário** (disponível para Indústria de Tijolos) apresenta vendas a prazo com status de pagamento, gráfico de distribuição e totais.
-
-**Patrimonial** (disponível para Indústria de Tijolos) exibe aportes, retornos e empréstimos dos sócios com gráfico comparativo.
-
-**BI Gerencial** oferece indicadores avançados como margem operacional, radar de indicadores, alertas automáticos e análise de concentração.
-
-**Blumen AI** é um chat integrado com Gemini que responde perguntas sobre os dados financeiros do cliente selecionado.
-
-**Uploads** permite envio de planilhas Excel/CSV para análise automatizada com Gemini.
-
-## Variáveis de Ambiente
-
-| Variável | Obrigatória | Descrição |
-|---|---|---|
-| `DATABASE_URL` | Sim | Connection string PostgreSQL |
-| `GEMINI_API_KEY` | Sim | Chave da API Google Gemini |
-| `GCS_BUCKET_NAME` | Não | Bucket do Cloud Storage para uploads |
-| `NEXT_PUBLIC_APP_URL` | Não | URL pública da aplicação |
+Os testes cobrem:
+- Validação da chave Gemini API
+- Autenticação das rotas de IA
+- Health check do Gemini
+- Logout de sessão
 
 ## Licença
 
-Projeto proprietário — Financeira Arnuti / Blumen Biz. Todos os direitos reservados.
+Proprietário — Blumen Biz. Todos os direitos reservados.
