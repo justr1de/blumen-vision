@@ -2,8 +2,8 @@ import { Settings, Database, Shield, Server } from 'lucide-react'
 
 export default function AdminConfiguracoesPage() {
   const configs = [
-    { label: 'Banco de Dados', value: 'Neon PostgreSQL (sa-east-1)', icon: Database, status: 'Conectado' },
-    { label: 'Deploy', value: 'Vercel (Production)', icon: Server, status: 'Ativo' },
+    { label: 'Banco de Dados', value: 'Cloud SQL PostgreSQL (southamerica-east1)', icon: Database, status: 'Conectado' },
+    { label: 'Deploy', value: 'GCP Cloud Run (Production)', icon: Server, status: 'Ativo' },
     { label: 'Autenticação', value: 'JWT com cookies HttpOnly', icon: Shield, status: 'Ativo' },
     { label: 'Multitenancy', value: 'Isolamento por tenant_id', icon: Settings, status: 'Ativo' },
   ]

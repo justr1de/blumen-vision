@@ -77,9 +77,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Nenhum arquivo enviado' }, { status: 400 })
     }
 
-    // Verificar tamanho (4.5MB para Vercel)
-    if (file.size > 4.5 * 1024 * 1024) {
-      return NextResponse.json({ error: 'Arquivo muito grande. Máximo 4.5MB.' }, { status: 400 })
+    // Verificar tamanho (32MB para Cloud Run)
+    if (file.size > 32 * 1024 * 1024) {
+      return NextResponse.json({ error: 'Arquivo muito grande. Máximo 32MB.' }, { status: 400 })
     }
 
     const ext = file.name.split('.').pop()?.toLowerCase()
