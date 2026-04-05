@@ -44,7 +44,7 @@ export default function LoginPage() {
         <ThemeToggle />
       </div>
 
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <DarkLogo lightSrc="/logo-blumen-biz.png" darkSrc="/logo-blumen-biz-white.png" alt="Blúmen Biz" width={160} height={48} className="h-10 w-auto mx-auto" />
           <p
@@ -55,15 +55,15 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="card p-8">
+        <div className="card p-10">
           <h2
-            className="text-xl mb-1"
+            className="text-xl mb-1 text-center"
             style={{ fontFamily: 'var(--font-display)', fontWeight: 500, color: 'var(--text-primary)' }}
           >
             Entrar na plataforma
           </h2>
-          <p className="text-sm mb-6" style={{ color: 'var(--text-tertiary)', fontFamily: 'var(--font-body)' }}>
-            Insira suas credenciais para acessar o sistema
+          <p className="text-sm mb-6 text-center" style={{ color: 'var(--text-tertiary)', fontFamily: 'var(--font-body)' }}>
+            Insira suas credenciais para acessar o Blúmen Vision
           </p>
 
           {error && (
