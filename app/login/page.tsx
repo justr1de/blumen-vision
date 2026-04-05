@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DarkLogo from '@/components/DarkLogo'
 import { useRouter } from 'next/navigation'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, Shield } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
 
 export default function LoginPage() {
@@ -13,6 +13,17 @@ export default function LoginPage() {
   const [showPw, setShowPw] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  useEffect(() => {
+    const host = window.location.hostname
+    // Detecta ambiente admin pelo hostname (Cloud Run ou domínio customizado)
+    const adminHosts = ['admin.blumenbiz.com.br', 'admin.blumenvision.com.br']
+    const isAdminEnv = adminHosts.some(h => host.includes(h)) || 
+      (host.includes('blumen-vision') && !host.includes('blumen-vision-app'))
+    setIsAdmin(isAdminEnv)
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -53,6 +64,23 @@ export default function LoginPage() {
           >
             Clareza para negócios
           </p>
+          {isAdmin && (
+            <div className="flex items-center justify-center mt-4">
+              <span
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase"
+                style={{
+                  background: 'linear-gradient(135deg, var(--navy), var(--navy-light, #1a5c6e))',
+                  color: '#ffffff',
+                  fontFamily: 'var(--font-body)',
+                  boxShadow: '0 2px 8px rgba(15, 76, 92, 0.3)',
+                  letterSpacing: '0.15em',
+                }}
+              >
+                <Shield className="w-3.5 h-3.5" />
+                Gestão
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="card p-10">
