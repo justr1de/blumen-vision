@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Fundo transparente -->
+  
+  <!-- Haste vertical do 'b' - navy -->
+  <rect x="100" y="60" width="72" height="392" rx="8" fill="#1D3B5F"/>
+  
+  <!-- Barriga do 'b' - navy -->
+  <path d="M 172 220 
+           C 172 220, 172 200, 200 185 
+           C 240 165, 300 165, 340 195 
+           C 380 225, 390 270, 390 310 
+           C 390 350, 370 395, 330 420 
+           C 290 445, 240 450, 200 440 
+           C 172 430, 172 410, 172 410 
+           Z" 
+        fill="#1D3B5F"/>
+  
+  <!-- Espaço interno da barriga do 'b' -->
+  <ellipse cx="270" cy="330" rx="65" ry="65" fill="white"/>
+  
+  <!-- Losango/acento no topo do 'b' - navy -->
+  <polygon points="155,30 185,60 155,90 125,60" fill="#1D3B5F" transform="rotate(-15, 155, 60)"/>
+  
+  <!-- Raios de luz - olive/verde -->
+  <g transform="translate(115, 195)">
+    <!-- Raio 1 - superior esquerdo -->
+    <rect x="-45" y="-15" width="28" height="10" rx="3" fill="#6B8F3E" transform="rotate(-60, -30, -10)"/>
+    <!-- Raio 2 -->
+    <rect x="-55" y="5" width="28" height="10" rx="3" fill="#6B8F3E" transform="rotate(-35, -40, 10)"/>
+    <!-- Raio 3 -->
+    <rect x="-58" y="28" width="28" height="10" rx="3" fill="#6B8F3E" transform="rotate(-10, -44, 33)"/>
+    <!-- Raio 4 - inferior -->
+    <rect x="-52" y="50" width="28" height="10" rx="3" fill="#6B8F3E" transform="rotate(15, -38, 55)"/>
+    <!-- Raio 5 -->
+    <rect x="-40" y="68" width="28" height="10" rx="3" fill="#6B8F3E" transform="rotate(40, -26, 73)"/>
+  </g>
+</svg>
