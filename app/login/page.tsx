@@ -57,15 +57,8 @@ export default function LoginPage() {
 
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <DarkLogo lightSrc="/logo-blumen-biz.png" darkSrc="/logo-blumen-biz-white.png" alt="Blúmen Biz" width={160} height={48} className="h-10 w-auto mx-auto" />
-          <p
-            className="text-xs mt-3 tracking-[0.2em] uppercase"
-            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 600 }}
-          >
-            Clareza para negócios
-          </p>
           {isAdmin && (
-            <div className="flex items-center justify-center mt-4">
+            <div className="flex items-center justify-center mb-5">
               <span
                 className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase"
                 style={{
@@ -81,6 +74,13 @@ export default function LoginPage() {
               </span>
             </div>
           )}
+          <DarkLogo lightSrc="/logo-blumen-biz.png" darkSrc="/logo-blumen-biz-white.png" alt="Blúmen Biz" width={160} height={48} className="h-10 w-auto mx-auto" />
+          <p
+            className="text-xs mt-3 tracking-[0.2em] uppercase"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 600 }}
+          >
+            Clareza para negócios
+          </p>
         </div>
 
         <div className="card p-10">
