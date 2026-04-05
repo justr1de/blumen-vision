@@ -18,8 +18,8 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'Blúmen Biz | Auditoria Financeira',
-  description: 'Plataforma inteligente de auditoria e conciliação de repasses financeiros',
+  title: 'Blúmen Biz | Clareza para negócios',
+  description: 'Clareza para negócios — Luz à decisão, equilíbrio ao pensamento e direção aos negócios',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '48x48' },

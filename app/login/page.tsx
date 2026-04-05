@@ -51,7 +51,7 @@ export default function LoginPage() {
             className="text-xs mt-3 tracking-[0.2em] uppercase"
             style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 600 }}
           >
-            Plataforma de Auditoria Financeira
+            Clareza para negócios
           </p>
         </div>
 
