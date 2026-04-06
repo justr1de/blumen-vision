@@ -7,8 +7,8 @@ import ThemeToggle from '@/components/ThemeToggle'
 
 const modulos = [
   {
-    id: 'lumen-financeiro',
-    nome: 'Blúmen Financeiro',
+    id: 'vision-caixa',
+    nome: 'Vision Caixa',
     subtitulo: 'Auditoria & Conciliação',
     descricao:
       'Auditoria e conciliação de repasses financeiros. Identifique divergências, cruze dados de produção e FLAT, e tenha controle total sobre comissões e valores.',
@@ -27,19 +27,19 @@ const modulos = [
     href: '/login',
   },
   {
-    id: 'lumen-pessoas',
-    nome: 'Blúmen Pessoas',
-    subtitulo: 'Gestão de Pessoas',
+    id: 'vision-capital',
+    nome: 'Vision Capital',
+    subtitulo: 'Gestão de Capital',
     descricao:
-      'Gestão de clientes, beneficiários e agentes. Centralize informações cadastrais, acompanhe históricos e mantenha a base de dados sempre atualizada.',
+      'Endividamento, investimentos e comprometimento financeiro. Controle de capital de giro, análise de dívidas e planejamento de investimentos estratégicos.',
     destaques: [
-      'Cadastro centralizado de beneficiários',
-      'Histórico completo de interações',
-      'Gestão de agentes e colaboradores',
-      'Visão estratégica organizacional',
+      'Controle de endividamento e capital de giro',
+      'Análise de investimentos e retornos',
+      'Comprometimento financeiro consolidado',
+      'Planejamento estratégico de capital',
     ],
-    iconPath: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2',
-    iconType: 'users' as const,
+    iconPath: 'piggybank',
+    iconType: 'piggybank' as const,
     cor: '#6B8F71',
     corLight: 'rgba(107, 143, 113, 0.08)',
     badge: 'Em breve',
@@ -47,15 +47,15 @@ const modulos = [
     href: null,
   },
   {
-    id: 'lumen-operacao',
-    nome: 'Blúmen Operação',
-    subtitulo: 'Controle Operacional',
+    id: 'vision-producao',
+    nome: 'Vision Produção',
+    subtitulo: 'Controle Operacional & Pessoas',
     descricao:
-      'Controle operacional de contratos e processos. Acompanhe o ciclo de vida das operações, status de pagamento, ADE e movimentações em tempo real.',
+      'Margem, folha de pagamento, custos operacionais e gestão de pessoas. Acompanhe o ciclo de vida das operações, colaboradores e indicadores de desempenho em tempo real.',
     destaques: [
-      'Ciclo de vida completo dos contratos',
+      'Margem e custos operacionais',
+      'Gestão de folha de pagamento',
       'Monitoramento de status em tempo real',
-      'Controle de ADE e movimentações',
       'Indicadores de desempenho operacional',
     ],
     iconPath: 'gear',
@@ -66,26 +66,7 @@ const modulos = [
     badgeStyle: 'olive' as const,
     href: null,
   },
-  {
-    id: 'lumen-fluxo-receita',
-    nome: 'Blúmen Fluxo de Receita',
-    subtitulo: 'Análise de Receitas',
-    descricao:
-      'Análise e projeção de fluxo de receita. Dashboards gerenciais com indicadores de performance, tendências e previsões financeiras inteligentes.',
-    destaques: [
-      'Dashboards gerenciais em tempo real',
-      'Projeções financeiras inteligentes',
-      'Indicadores de performance (KPIs)',
-      'Análise de tendências e sazonalidade',
-    ],
-    iconPath: '22 12 18 12 15 21 9 3 6 12 2 12',
-    iconType: 'polyline' as const,
-    cor: '#4A6FA5',
-    corLight: 'rgba(74, 111, 165, 0.08)',
-    badge: 'Em breve',
-    badgeStyle: 'olive' as const,
-    href: null,
-  },
+
 ]
 
 function ModuleIcon({ type, path }: { type: string; path: string }) {
@@ -124,6 +105,15 @@ function ModuleIcon({ type, path }: { type: string; path: string }) {
       <svg {...props}>
         <circle cx="12" cy="12" r="3" />
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+      </svg>
+    )
+  }
+  if (type === 'piggybank') {
+    return (
+      <svg {...props}>
+        <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2" />
+        <path d="M2 9.5a2.5 2.5 0 0 1 0 5" />
+        <circle cx="15.5" cy="9.5" r="1" fill="currentColor" />
       </svg>
     )
   }
@@ -296,9 +286,9 @@ export default function BlumenVisionSuitPage() {
                   animationDelay: '300ms',
                 }}
               >
-                Quatro módulos integrados que transformam dados brutos em
-                decisões estratégicas. Da auditoria financeira à projeção de
-                receitas, cada módulo foi desenhado para oferecer clareza e
+                Três módulos integrados que transformam dados brutos em
+                decisões estratégicas. Da auditoria financeira à gestão de
+                capital, cada módulo foi desenhado para oferecer clareza e
                 precisão.
               </p>
         </div>

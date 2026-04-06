@@ -6,10 +6,9 @@ import ThemeToggle from '@/components/ThemeToggle'
 import Tooltip from '@/components/Tooltip'
 import {
   Eye,
-  DollarSign,
-  Users,
-  Settings,
-  TrendingUp,
+  Wallet,
+  Factory,
+  PiggyBank,
   ArrowRight,
   LogOut,
   Sparkles,
@@ -25,44 +24,34 @@ interface SistemasContentProps {
 
 const modulos = [
   {
-    id: 'lumen-financeiro',
-    nome: 'Blúmen Financeiro',
+    id: 'vision-caixa',
+    nome: 'Vision Caixa',
     descricao: 'Auditoria e conciliação de repasses financeiros. Identifique divergências, cruze dados de produção e FLAT, e tenha controle total sobre comissões e valores.',
-    icon: DollarSign,
+    icon: Wallet,
     href: '/painel',
     cor: 'navy',
     badge: 'Ativo',
     shadowColor: 'rgba(29, 59, 95, 0.3)',
   },
   {
-    id: 'lumen-pessoas',
-    nome: 'Blúmen Pessoas',
-    descricao: 'Gestão de clientes, beneficiários e agentes. Centralize informações cadastrais, acompanhe históricos e mantenha a base de dados sempre atualizada.',
-    icon: Users,
-    href: '/sistemas/lumen-pessoas',
-    cor: 'olive',
-    badge: 'Em breve',
-    shadowColor: 'rgba(111, 150, 62, 0.3)',
-  },
-  {
-    id: 'lumen-operacao',
-    nome: 'Blúmen Operação',
-    descricao: 'Controle operacional de contratos e processos. Acompanhe o ciclo de vida das operações, status de pagamento, ADE e movimentações em tempo real.',
-    icon: Settings,
-    href: '/sistemas/lumen-operacao',
-    cor: 'cyan',
-    badge: 'Em breve',
-    shadowColor: 'rgba(42, 80, 128, 0.3)',
-  },
-  {
-    id: 'lumen-fluxo-receita',
-    nome: 'Blúmen Fluxo de Receita',
-    descricao: 'Análise e projeção de fluxo de receita. Dashboards gerenciais com indicadores de performance, tendências e previsões financeiras inteligentes.',
-    icon: TrendingUp,
-    href: '/sistemas/lumen-fluxo-receita',
+    id: 'vision-producao',
+    nome: 'Vision Produção',
+    descricao: 'Margem, folha de pagamento, custos operacionais e gestão de pessoas. Acompanhe o ciclo de vida das operações, colaboradores e indicadores de desempenho em tempo real.',
+    icon: Factory,
+    href: '/sistemas/vision-producao',
     cor: 'gold',
     badge: 'Em breve',
     shadowColor: 'rgba(139, 105, 20, 0.3)',
+  },
+  {
+    id: 'vision-capital',
+    nome: 'Vision Capital',
+    descricao: 'Endividamento, investimentos e comprometimento financeiro. Controle de capital de giro, análise de dívidas e planejamento de investimentos estratégicos.',
+    icon: PiggyBank,
+    href: '/sistemas/vision-capital',
+    cor: 'olive',
+    badge: 'Em breve',
+    shadowColor: 'rgba(111, 150, 62, 0.3)',
   },
 ]
 
@@ -164,7 +153,7 @@ export default function SistemasContent({ user }: SistemasContentProps) {
         </div>
 
         {/* Grid de Módulos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {modulos.map((modulo, index) => {
             const isActive = modulo.badge === 'Ativo'
             return (

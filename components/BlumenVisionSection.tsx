@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const modulos = [
   {
-    nome: 'Blúmen Financeiro',
+    nome: 'Vision Caixa',
     descricao:
       'Auditoria, conciliação de empréstimos e identificação automática de divergências nos lançamentos.',
     icon: (
@@ -28,35 +28,9 @@ const modulos = [
     badgeStyle: 'navy',
   },
   {
-    nome: 'Blúmen Pessoas',
+    nome: 'Vision Produção',
     descricao:
-      'Gestão de pessoas, colaboradores e estrutura organizacional com visão estratégica.',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
-    cor: '#6B8F71',
-    badge: 'Em breve',
-    badgeStyle: 'olive',
-  },
-  {
-    nome: 'Blúmen Operação',
-    descricao:
-      'Controle operacional de processos, fluxos de trabalho e indicadores de desempenho.',
+      'Margem, folha de pagamento, custos operacionais e gestão de pessoas com indicadores de desempenho.',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -78,9 +52,9 @@ const modulos = [
     badgeStyle: 'olive',
   },
   {
-    nome: 'Blúmen Fluxo de Receita',
+    nome: 'Vision Capital',
     descricao:
-      'Controle de receitas, projeções financeiras e análise de fluxo de caixa em tempo real.',
+      'Endividamento, investimentos e comprometimento financeiro. Controle de capital de giro e planejamento estratégico.',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -93,10 +67,12 @@ const modulos = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2" />
+        <path d="M2 9.5a2.5 2.5 0 0 1 0 5" />
+        <circle cx="15.5" cy="9.5" r="1" fill="currentColor" />
       </svg>
     ),
-    cor: '#4A6FA5',
+    cor: '#6B8F71',
     badge: 'Em breve',
     badgeStyle: 'olive',
   },
@@ -146,14 +122,14 @@ export default function BlumenVisionSection() {
               fontWeight: 300,
             }}
           >
-            Plataforma integrada de gest&atilde;o. Quatro m&oacute;dulos que
+            Plataforma integrada de gest&atilde;o. Tr&ecirc;s m&oacute;dulos que
             transformam dados em decis&otilde;es estrat&eacute;gicas para o seu
             neg&oacute;cio.
           </p>
         </div>
 
         {/* Grid de módulos */}
-        <div className="grid sm:grid-cols-2 gap-8 mb-16">
+        <div className="grid sm:grid-cols-3 gap-8 mb-16">
           {modulos.map((modulo, i) => (
             <div
               key={i}
