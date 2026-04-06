@@ -369,10 +369,7 @@ export default function BlumenVisionSuitPage() {
                             style={{
                               fontFamily: 'var(--font-body)',
                               fontWeight: 700,
-                              background:
-                                modulo.badgeStyle === 'navy'
-                                  ? 'var(--navy)'
-                                  : 'var(--olive)',
+                              background: 'var(--olive)',
                               color: '#ffffff',
                             }}
                           >
