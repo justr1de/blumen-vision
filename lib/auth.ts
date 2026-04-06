@@ -86,9 +86,15 @@ export async function requireAuth(): Promise<UserPayload> {
   return session
 }
 
+const ADMIN_ROLES = ['admin', 'super_admin']
+
+export function isAdminRole(role: string): boolean {
+  return ADMIN_ROLES.includes(role)
+}
+
 export async function requireAdmin(): Promise<UserPayload> {
   const session = await requireAuth()
-  if (session.role !== 'admin') {
+  if (!isAdminRole(session.role)) {
     throw new Error('FORBIDDEN')
   }
   return session

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import pool from '@/lib/db'
-import { getSession } from '@/lib/auth'
+import { getSession, isAdminRole } from '@/lib/auth'
 import crypto from 'crypto'
 
 function hashPassword(password: string): string {
@@ -20,7 +20,7 @@ function slugify(text: string): string {
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session || session.role !== 'admin') {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
   }
 
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   const session = await getSession()
-  if (!session || session.role !== 'admin') {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
   }
 

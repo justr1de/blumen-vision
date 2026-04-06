@@ -5,6 +5,9 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || 'blumen-biz-secret-key-change-in-production-2025'
 )
 
+// Roles com acesso administrativo
+const ADMIN_ROLES = ['admin', 'super_admin']
+
 // Rotas públicas (não requerem autenticação)
 const PUBLIC_PATHS = ['/', '/login', '/sobre', '/api/auth/login']
 
@@ -31,7 +34,7 @@ export async function middleware(req: NextRequest) {
     const { payload } = await jwtVerify(token, JWT_SECRET)
 
     // Verificar acesso admin
-    if (pathname.startsWith('/admin') && payload.role !== 'admin') {
+    if (pathname.startsWith('/admin') && !ADMIN_ROLES.includes(payload.role as string)) {
       return NextResponse.redirect(new URL('/painel', req.url))
     }
 

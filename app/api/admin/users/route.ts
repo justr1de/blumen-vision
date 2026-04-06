@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import pool from '@/lib/db'
-import { getSession } from '@/lib/auth'
+import { getSession, isAdminRole } from '@/lib/auth'
 import crypto from 'crypto'
 
 function hashPassword(password: string): string {
@@ -12,7 +12,7 @@ function hashPassword(password: string): string {
 // GET — Listar todos os usuários com dados do tenant
 export async function GET() {
   const session = await getSession()
-  if (!session || session.role !== 'admin') {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
   }
 
@@ -30,7 +30,7 @@ export async function GET() {
 // POST — Criar novo usuário vinculado a um tenant
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session || session.role !== 'admin') {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
   }
 
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
 // PUT — Editar usuário (nome, e-mail, role, is_active, senha opcional, tenant)
 export async function PUT(req: NextRequest) {
   const session = await getSession()
-  if (!session || session.role !== 'admin') {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
   }
 
@@ -167,7 +167,7 @@ export async function PUT(req: NextRequest) {
 // DELETE — Excluir usuário permanentemente
 export async function DELETE(req: NextRequest) {
   const session = await getSession()
-  if (!session || session.role !== 'admin') {
+  if (!session || !isAdminRole(session.role)) {
     return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
   }
 
