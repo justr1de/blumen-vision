@@ -24,8 +24,8 @@ const modulos = [
       </svg>
     ),
     cor: '#1D3B5F',
-    badge: 'Ativo',
-    badgeStyle: 'navy',
+    badge: 'Em breve',
+    badgeStyle: 'olive',
   },
   {
     nome: 'Vision Produção',

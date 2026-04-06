@@ -28,9 +28,9 @@ const modulos = [
     nome: 'Vision Caixa',
     descricao: 'Auditoria e conciliação de repasses financeiros. Identifique divergências, cruze dados de produção e FLAT, e tenha controle total sobre comissões e valores.',
     icon: Wallet,
-    href: '/painel',
+    href: '/sistemas/vision-caixa',
     cor: 'navy',
-    badge: 'Ativo',
+    badge: 'Em breve',
     shadowColor: 'rgba(29, 59, 95, 0.3)',
   },
   {

@@ -22,9 +22,9 @@ const modulos = [
     iconType: 'path-line' as const,
     cor: '#1D3B5F',
     corLight: 'rgba(29, 59, 95, 0.08)',
-    badge: 'Ativo',
-    badgeStyle: 'navy' as const,
-    href: '/login',
+    badge: 'Em breve',
+    badgeStyle: 'olive' as const,
+    href: null,
   },
   {
     id: 'vision-capital',
