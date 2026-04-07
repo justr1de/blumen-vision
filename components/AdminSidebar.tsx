@@ -51,7 +51,7 @@ export default function AdminSidebar() {
       </div>
 
       {/* Navegação principal */}
-      <nav className="flex-1 p-3 space-y-1">
+      <nav className="flex-1 p-3 flex flex-col gap-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href))
           return (
@@ -69,7 +69,7 @@ export default function AdminSidebar() {
       </nav>
 
       {/* Footer — Usuários, Configurações, Sair */}
-      <div className="p-3 space-y-1" style={{ borderTop: '1px solid var(--border-primary)' }}>
+      <div className="p-3 flex flex-col gap-1" style={{ borderTop: '1px solid var(--border-primary)' }}>
         <Tooltip text="Voltar para Blúmen Vision" position="right">
           <Link
             href="/sistemas"

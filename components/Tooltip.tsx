@@ -71,7 +71,7 @@ export default function Tooltip({ text, children, position = 'top', delay = 300 
       onMouseLeave={hide}
       onFocus={show}
       onBlur={hide}
-      className="inline-flex"
+      className="flex w-full"
     >
       {children}
       {visible && (

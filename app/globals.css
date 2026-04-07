@@ -588,6 +588,8 @@ h1, h2, h3 {
   overflow: hidden;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 /* Modo claro — inativo */
