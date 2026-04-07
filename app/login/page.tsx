@@ -139,7 +139,21 @@ export default function LoginPage() {
         </div>
 
         <div className="text-center mt-8">
+          <div style={{ height: '1px', background: 'var(--border-primary)', opacity: 0.4 }} className="max-w-xs mx-auto mb-6" />
           <DarkLogo lightSrc="/logo-camila-arnuti.png" darkSrc="/logo-camila-arnuti-white.png" alt="Camila Arnuti" width={100} height={30} className="h-5 w-auto mx-auto opacity-30" />
+          <p
+            className="mt-3"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 600, opacity: 0.75, fontSize: '1.05rem', letterSpacing: '0.04em' }}
+          >
+            Blúmen Vision
+          </p>
+          <p
+            className="mt-1"
+            style={{ fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.18em', fontSize: '0.68rem' }}
+          >
+            <span style={{ color: 'var(--text-muted)', opacity: 0.5 }}>VER. ENTENDER. </span>
+            <span style={{ color: 'var(--olive)', opacity: 0.75 }}>DECIDIR.</span>
+          </p>
         </div>
         <div className="mt-6">
           <DataRoFooter />

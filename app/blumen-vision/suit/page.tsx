@@ -642,30 +642,7 @@ export default function BlumenVisionSuitPage() {
       {/* ===== FOOTER ===== */}
       <footer className="pb-12">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <div
-            className="rounded-xl py-8 px-6 mb-8"
-            style={{ background: 'var(--navy, #1D3B5F)' }}
-          >
-            <p
-              className="text-base sm:text-lg font-semibold"
-              style={{
-                color: '#ffffff',
-                fontFamily: 'var(--font-display)',
-              }}
-            >
-              Blúmen Vision · Plataforma de Inteligência Empresarial
-            </p>
-            <p
-              className="text-sm mt-2 italic"
-              style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontFamily: 'var(--font-display)',
-              }}
-            >
-              Ver. Entender. Decidir. · Blúmen Biz © 2026
-            </p>
-          </div>
-
+          <div style={{ height: '1px', background: 'var(--border-primary)', opacity: 0.4 }} className="max-w-xs mx-auto mb-6" />
           <DarkLogo
             lightSrc="/logo-camila-arnuti.png"
             darkSrc="/logo-camila-arnuti-white.png"
@@ -674,6 +651,19 @@ export default function BlumenVisionSuitPage() {
             height={30}
             className="h-5 w-auto mx-auto opacity-30"
           />
+          <p
+            className="mt-3 text-center"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 600, opacity: 0.75, fontSize: '1.05rem', letterSpacing: '0.04em' }}
+          >
+            Blúmen Vision
+          </p>
+          <p
+            className="mt-1 text-center"
+            style={{ fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.18em', fontSize: '0.68rem' }}
+          >
+            <span style={{ color: 'var(--text-muted)', opacity: 0.5 }}>VER. ENTENDER. </span>
+            <span style={{ color: 'var(--olive)', opacity: 0.75 }}>DECIDIR.</span>
+          </p>
           <Link
             href="/"
             className="inline-block mt-4 text-xs transition-colors duration-300"
