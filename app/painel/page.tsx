@@ -39,6 +39,15 @@ async function getClientStats(tenantId: string) {
       totalRows: parseInt(rows.rows[0].total),
       recentUploads: recentUploads.rows,
     }
+  } catch (err) {
+    console.error('[Dashboard] Erro ao buscar stats:', err instanceof Error ? err.message : err)
+    return {
+      totalUploads: 0,
+      completedUploads: 0,
+      pendingUploads: 0,
+      totalRows: 0,
+      recentUploads: [],
+    }
   } finally {
     client.release()
   }

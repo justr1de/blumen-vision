@@ -3,14 +3,19 @@ import pool from '@/lib/db'
 import { FileUp } from 'lucide-react'
 
 async function getUploads() {
-  const result = await pool.query(`
-    SELECT u.*, t.name as tenant_name, us.name as user_name
-    FROM uploads u
-    JOIN tenants t ON u.tenant_id = t.id
-    JOIN users us ON u.user_id = us.id
-    ORDER BY u.created_at DESC
-  `)
-  return result.rows
+  try {
+    const result = await pool.query(`
+      SELECT u.*, t.name as tenant_name, us.name as user_name
+      FROM uploads u
+      JOIN tenants t ON u.tenant_id = t.id
+      JOIN users us ON u.user_id = us.id
+      ORDER BY u.created_at DESC
+    `)
+    return result.rows
+  } catch (err) {
+    console.error('[Admin Uploads] Erro ao buscar uploads:', err instanceof Error ? err.message : err)
+    return []
+  }
 }
 
 export default async function AdminUploadsPage() {

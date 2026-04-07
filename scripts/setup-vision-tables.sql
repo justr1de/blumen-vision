@@ -131,3 +131,47 @@ CREATE INDEX IF NOT EXISTS idx_units_segment ON units(segment_id);
 CREATE INDEX IF NOT EXISTS idx_segments_group ON segments(group_id);
 CREATE INDEX IF NOT EXISTS idx_bank_accounts_tenant ON bank_accounts(tenant_id);
 CREATE INDEX IF NOT EXISTS idx_categories_tenant ON categories(tenant_id);
+
+-- Tabela de Uploads
+CREATE TABLE IF NOT EXISTS uploads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  tenant_id UUID NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES users(id) ON DELETE SET NULL,
+  original_filename VARCHAR(500) NOT NULL,
+  stored_filename VARCHAR(500),
+  file_size BIGINT,
+  file_type VARCHAR(20),
+  status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'processing', 'completed', 'error')),
+  row_count INTEGER DEFAULT 0,
+  processed_at TIMESTAMP,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Tabela de Dados Processados (report_data)
+CREATE TABLE IF NOT EXISTS report_data (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  tenant_id UUID NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  upload_id UUID NOT NULL REFERENCES uploads(id) ON DELETE CASCADE,
+  row_number INTEGER NOT NULL,
+  cpf VARCHAR(20),
+  nome_cliente VARCHAR(500),
+  contrato VARCHAR(100),
+  produto VARCHAR(255),
+  status_operacao VARCHAR(100),
+  valor_principal DECIMAL(15,2),
+  valor_parcela DECIMAL(15,2),
+  data_operacao DATE,
+  data_pagamento DATE,
+  raw_data JSONB,
+  processed_data JSONB,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Índices para uploads e report_data
+CREATE INDEX IF NOT EXISTS idx_uploads_tenant ON uploads(tenant_id);
+CREATE INDEX IF NOT EXISTS idx_uploads_status ON uploads(status);
+CREATE INDEX IF NOT EXISTS idx_report_data_tenant ON report_data(tenant_id);
+CREATE INDEX IF NOT EXISTS idx_report_data_upload ON report_data(upload_id);
+CREATE INDEX IF NOT EXISTS idx_report_data_cpf ON report_data(cpf);
+CREATE INDEX IF NOT EXISTS idx_report_data_contrato ON report_data(contrato);

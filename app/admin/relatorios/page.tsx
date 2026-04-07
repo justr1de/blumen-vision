@@ -18,6 +18,13 @@ async function getGlobalStats() {
       totalValue: parseFloat(totalValue.rows[0].total),
       byTenant: byTenant.rows,
     }
+  } catch (err) {
+    console.error('[Admin Relatórios] Erro ao buscar stats:', err instanceof Error ? err.message : err)
+    return {
+      totalRows: 0,
+      totalValue: 0,
+      byTenant: [],
+    }
   } finally {
     client.release()
   }

@@ -34,6 +34,14 @@ async function getReportData(tenantId: string) {
       byProduct: byProduct.rows,
       byStatus: byStatus.rows,
     }
+  } catch (err) {
+    console.error('[Relatórios] Erro ao buscar dados:', err instanceof Error ? err.message : err)
+    return {
+      totalRows: 0,
+      totalValue: 0,
+      byProduct: [],
+      byStatus: [],
+    }
   } finally {
     client.release()
   }

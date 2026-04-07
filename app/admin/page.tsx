@@ -39,6 +39,16 @@ async function getAdminStats() {
       recentUploads: recentUploads.rows,
       recentTenants: recentTenants.rows,
     }
+  } catch (err) {
+    console.error('[Admin] Erro ao buscar stats:', err instanceof Error ? err.message : err)
+    return {
+      totalTenants: 0,
+      totalUsers: 0,
+      totalUploads: 0,
+      pendingUploads: 0,
+      recentUploads: [],
+      recentTenants: [],
+    }
   } finally {
     client.release()
   }
