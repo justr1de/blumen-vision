@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import DarkLogo from '@/components/DarkLogo'
 import ThemeToggle from '@/components/ThemeToggle'
 import Tooltip from '@/components/Tooltip'
+import DataRoFooter from '@/components/DataRoFooter'
 import {
   Eye,
   Wallet,
@@ -284,6 +285,9 @@ export default function SistemasContent({ user }: SistemasContentProps) {
             <span style={{ color: 'var(--text-muted)', opacity: 0.5 }}>VER. ENTENDER. </span>
             <span style={{ color: 'var(--olive)', opacity: 0.75 }}>DECIDIR.</span>
           </p>
+          <div className="mt-6">
+            <DataRoFooter />
+          </div>
         </div>
       </main>
     </div>

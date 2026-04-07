@@ -9,6 +9,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import TypeWriter from '@/components/TypeWriter'
 import ChatConversation from '@/components/ChatConversation'
 import BlumenVisionSection from '@/components/BlumenVisionSection'
+import DataRoFooter from '@/components/DataRoFooter'
 
 const MatrixRain = dynamic(() => import('@/components/MatrixRain'), { ssr: false })
 
@@ -601,6 +602,7 @@ export default function LandingPage() {
             Clareza para neg&oacute;cios.
           </p>
         </div>
+        <DataRoFooter />
       </footer>
     </div>
   )

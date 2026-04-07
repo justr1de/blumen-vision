@@ -5,6 +5,7 @@ import DarkLogo from '@/components/DarkLogo'
 import { useRouter } from 'next/navigation'
 import { Eye, EyeOff, Shield } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
+import DataRoFooter from '@/components/DataRoFooter'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -139,6 +140,9 @@ export default function LoginPage() {
 
         <div className="text-center mt-8">
           <DarkLogo lightSrc="/logo-camila-arnuti.png" darkSrc="/logo-camila-arnuti-white.png" alt="Camila Arnuti" width={100} height={30} className="h-5 w-auto mx-auto opacity-30" />
+        </div>
+        <div className="mt-6">
+          <DataRoFooter />
         </div>
       </div>
     </div>

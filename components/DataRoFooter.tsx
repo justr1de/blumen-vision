@@ -5,9 +5,7 @@ export default function DataRoFooter() {
     <footer
       className="w-full flex items-center justify-center gap-2 py-2 px-4"
       style={{
-        borderTop: '1px solid var(--border-primary)',
-        background: 'var(--bg-secondary)',
-        opacity: 0.7,
+        opacity: 0.3,
       }}
     >
       <a
@@ -20,17 +18,16 @@ export default function DataRoFooter() {
         <Image
           src="/logo-data-ro.png"
           alt="DATA-RO"
-          width={22}
-          height={22}
+          width={20}
+          height={20}
           className="w-auto"
-          style={{ height: '22px' }}
+          style={{ height: '20px', borderRadius: '4px' }}
         />
       </a>
       <span
         style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: '0.65rem',
-          color: 'var(--text-muted)',
+          fontSize: '0.6rem',
+          color: '#888',
           letterSpacing: '0.02em',
           whiteSpace: 'nowrap',
         }}
@@ -40,11 +37,11 @@ export default function DataRoFooter() {
           href="https://www.dataro-it.com.br"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: 'var(--text-tertiary)', fontWeight: 600, textDecoration: 'none' }}
+          style={{ color: '#999', fontWeight: 600, textDecoration: 'none' }}
         >
           DATA-RO Inteligência Territorial
         </a>
-        . 2026.
+        . 2026
       </span>
     </footer>
   )

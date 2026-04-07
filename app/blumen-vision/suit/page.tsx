@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import DarkLogo from '@/components/DarkLogo'
 import ThemeToggle from '@/components/ThemeToggle'
+import DataRoFooter from '@/components/DataRoFooter'
 
 const modulos = [
   {
@@ -661,6 +662,9 @@ export default function BlumenVisionSuitPage() {
           >
             ← Voltar para a página inicial
           </Link>
+          <div className="mt-6">
+            <DataRoFooter />
+          </div>
         </div>
       </footer>
     </div>
