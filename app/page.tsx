@@ -58,49 +58,49 @@ export default function LandingPage() {
         }}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          {/* Logo Blúmen Biz — esquerda */}
           <DarkLogo
             lightSrc="/logo-blumen-biz.png"
             darkSrc="/logo-blumen-biz-white.png"
             alt="Blúmen Biz"
             width={140}
             height={40}
-            className="h-9 w-auto"
+            className="h-9 w-auto flex-shrink-0"
           />
-          <div className="flex items-center gap-6">
-            {/* Links de navegação */}
-            <div className="hidden md:flex items-center gap-5">
-              <a
-                href="#solucao"
-                className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
-              >
-                Solução
-              </a>
-              <a
-                href="/blumen-vision/suit"
-                className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
-              >
-                Blúmen Vision
-              </a>
-              <a
-                href="#contato"
-                className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
-              >
-                Contato
-              </a>
-            </div>
 
-            <div className="w-px h-5 hidden md:block" style={{ background: 'var(--border-secondary)' }} />
+          {/* Links de navegação — centralizados */}
+          <div className="hidden md:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
+            <a
+              href="#solucao"
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+            >
+              Solução
+            </a>
+            <a
+              href="/blumen-vision/suit"
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+            >
+              Blúmen Vision
+            </a>
+            <a
+              href="#contato"
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+            >
+              Contato
+            </a>
+          </div>
 
-            {/* Logo Camila Arnuti */}
+          {/* Logo Camila Arnuti + Toggle — direita */}
+          <div className="flex items-center gap-4 flex-shrink-0">
             <DarkLogo
               lightSrc="/logo-camila-arnuti.png"
               darkSrc="/logo-camila-arnuti-white.png"
@@ -109,8 +109,6 @@ export default function LandingPage() {
               height={32}
               className="h-7 w-auto hidden sm:block"
             />
-
-            {/* Toggle claro/escuro — formato quadrado igual ao botão "b" */}
             <ThemeToggle />
           </div>
         </div>
