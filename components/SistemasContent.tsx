@@ -134,7 +134,7 @@ export default function SistemasContent({ user }: SistemasContentProps) {
               className="text-xs tracking-[0.2em] uppercase"
               style={{ color: 'var(--olive)', fontFamily: 'var(--font-body)', fontWeight: 700 }}
             >
-              Plataforma Integrada
+              Plataforma de Inteligência Empresarial
             </span>
           </div>
           <h1
@@ -267,21 +267,22 @@ export default function SistemasContent({ user }: SistemasContentProps) {
             lightSrc="/logo-camila-arnuti.png"
             darkSrc="/logo-camila-arnuti-white.png"
             alt="Camila Arnuti"
-            width={100}
-            height={30}
-            className="h-5 w-auto mx-auto opacity-30"
+            width={115}
+            height={35}
+            className="w-auto mx-auto opacity-30"
           />
           <p
-            className="text-xs mt-3 text-center"
-            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 500, opacity: 0.5 }}
+            className="mt-3 text-center"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 600, opacity: 0.65, fontSize: '0.8625rem' }}
           >
             Blúmen Vision
           </p>
           <p
-            className="text-xs mt-1 text-center"
-            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.15em', opacity: 0.4 }}
+            className="mt-1 text-center"
+            style={{ fontFamily: 'var(--font-body)', fontWeight: 800, letterSpacing: '0.18em', fontSize: '0.8625rem' }}
           >
-            VER. ENTENDER. DECIDIR.
+            <span style={{ color: 'var(--text-muted)', opacity: 0.6 }}>VER. ENTENDER. </span>
+            <span style={{ color: 'var(--olive)', opacity: 0.85 }}>DECIDIR.</span>
           </p>
         </div>
       </main>
