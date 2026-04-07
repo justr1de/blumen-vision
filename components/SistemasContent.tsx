@@ -267,23 +267,23 @@ export default function SistemasContent({ user }: SistemasContentProps) {
             lightSrc="/logo-camila-arnuti.png"
             darkSrc="/logo-camila-arnuti-white.png"
             alt="Camila Arnuti"
-            width={28}
-            height={9}
+            width={18}
+            height={6}
             className="w-auto mx-auto"
-            style={{ opacity: 0.25, height: '8px' }}
+            style={{ opacity: 0.18, height: '5px' }}
           />
           <p
             className="mt-3 text-center"
-            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 600, opacity: 0.65, fontSize: '0.8625rem' }}
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 600, opacity: 0.75, fontSize: '1.05rem', letterSpacing: '0.04em' }}
           >
             Blúmen Vision
           </p>
           <p
             className="mt-1 text-center"
-            style={{ fontFamily: 'var(--font-body)', fontWeight: 800, letterSpacing: '0.18em', fontSize: '0.8625rem' }}
+            style={{ fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.18em', fontSize: '0.68rem' }}
           >
-            <span style={{ color: 'var(--text-muted)', opacity: 0.6 }}>VER. ENTENDER. </span>
-            <span style={{ color: 'var(--olive)', opacity: 0.85 }}>DECIDIR.</span>
+            <span style={{ color: 'var(--text-muted)', opacity: 0.5 }}>VER. ENTENDER. </span>
+            <span style={{ color: 'var(--olive)', opacity: 0.75 }}>DECIDIR.</span>
           </p>
         </div>
       </main>
