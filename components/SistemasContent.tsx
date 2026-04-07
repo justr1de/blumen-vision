@@ -96,7 +96,7 @@ export default function SistemasContent({ user }: SistemasContentProps) {
             />
             <div className="w-px h-6" style={{ background: 'var(--border-primary)' }} />
             <span
-              className="text-xs tracking-[0.15em] uppercase"
+              className="text-xs tracking-[0.15em] uppercase leading-none self-center"
               style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 700 }}
             >
               Sistemas
