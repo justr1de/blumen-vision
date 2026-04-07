@@ -5,10 +5,12 @@ import { FileUp } from 'lucide-react'
 async function getUploads() {
   try {
     const result = await pool.query(`
-      SELECT u.*, t.name as tenant_name, us.name as user_name
+      SELECT u.id, u.filename, u.mime_type, u.size, u.status, u.resultado, u.created_at,
+             t.nome as tenant_name, t.name as tenant_name_alt,
+             us.name as user_name
       FROM uploads u
-      JOIN tenants t ON u.tenant_id = t.id
-      JOIN users us ON u.user_id = us.id
+      LEFT JOIN tenants t ON u.tenant_id = t.id
+      LEFT JOIN users us ON u.user_id = us.id
       ORDER BY u.created_at DESC
     `)
     return result.rows
@@ -32,7 +34,7 @@ export default async function AdminUploadsPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">Uploads</h1>
-        <p className="text-[var(--text-tertiary)] text-sm mt-1">Todas as planilhas enviadas pelos clientes</p>
+        <p className="text-[var(--text-tertiary)] text-sm mt-1">Todas as planilhas e documentos enviados pelos clientes</p>
       </div>
 
       {uploads.length === 0 ? (
@@ -49,23 +51,25 @@ export default async function AdminUploadsPage() {
                 <th className="text-left text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Arquivo</th>
                 <th className="text-left text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Cliente</th>
                 <th className="text-left text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Usuário</th>
-                <th className="text-center text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Linhas</th>
+                <th className="text-center text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Registros</th>
                 <th className="text-center text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Status</th>
                 <th className="text-right text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-6 py-4">Data</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--border-primary)]">
-              {uploads.map((u: Record<string, string | number | null>) => {
+              {uploads.map((u: Record<string, unknown>) => {
                 const st = statusLabel[u.status as string] || statusLabel.pending
+                const resultado = u.resultado as { row_count?: number; source?: string } | null
+                const tenantDisplay = (u.tenant_name || u.tenant_name_alt || '—') as string
                 return (
                   <tr key={String(u.id)} className="hover:bg-[var(--bg-tertiary)] transition-colors">
                     <td className="px-6 py-4">
-                      <p className="text-sm font-medium text-[var(--text-primary)] truncate max-w-[250px]">{u.original_filename}</p>
-                      <p className="text-xs text-[var(--text-muted)]">{u.file_type}</p>
+                      <p className="text-sm font-medium text-[var(--text-primary)] truncate max-w-[250px]">{u.filename as string}</p>
+                      <p className="text-xs text-[var(--text-muted)]">{u.mime_type as string}</p>
                     </td>
-                    <td className="px-6 py-4 text-sm text-[var(--text-secondary)]">{u.tenant_name}</td>
-                    <td className="px-6 py-4 text-sm text-[var(--text-secondary)]">{u.user_name}</td>
-                    <td className="px-6 py-4 text-center text-sm text-[var(--text-secondary)]">{u.row_count ?? '—'}</td>
+                    <td className="px-6 py-4 text-sm text-[var(--text-secondary)]">{tenantDisplay}</td>
+                    <td className="px-6 py-4 text-sm text-[var(--text-secondary)]">{(u.user_name as string) || '—'}</td>
+                    <td className="px-6 py-4 text-center text-sm text-[var(--text-secondary)]">{resultado?.row_count ?? '—'}</td>
                     <td className="px-6 py-4 text-center">
                       <span className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${st.cls}`}>{st.text}</span>
                     </td>

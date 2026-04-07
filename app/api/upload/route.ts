@@ -22,6 +22,9 @@ const MIME_MAP: Record<string, string> = {
   jpg: 'image/jpeg',
   jpeg: 'image/jpeg',
   webp: 'image/webp',
+  xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  xls: 'application/vnd.ms-excel',
+  csv: 'text/csv',
 }
 
 // Normalizar nome de coluna para facilitar mapeamento
@@ -176,29 +179,36 @@ export async function POST(req: NextRequest) {
     }
 
     // Salvar no banco de dados (isolado por tenant)
+    // Tabela uploads real: id, tenant_id, user_id, filename, file_url, file_key, mime_type, size, status, resultado, created_at, updated_at
     const client = await pool.connect()
     try {
       await client.query('BEGIN')
 
-      const storedFilename = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
+      const fileKey = `uploads/${session.tenantId}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
+      const mimeType = MIME_MAP[ext] || 'application/octet-stream'
+
       const uploadResult = await client.query(
-        `INSERT INTO uploads (tenant_id, user_id, original_filename, stored_filename, file_size, file_type, status, row_count, processed_at)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())
+        `INSERT INTO uploads (tenant_id, user_id, filename, file_url, file_key, mime_type, size, status, resultado, created_at, updated_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, 'completed', $8, NOW(), NOW())
          RETURNING id`,
         [
           session.tenantId,
           session.id,
           file.name,
-          storedFilename,
+          fileKey,
+          fileKey,
+          mimeType,
           file.size,
-          ext,
-          'completed',
-          result.rows.length,
+          JSON.stringify({
+            row_count: result.rows.length,
+            columns: result.columns,
+            source: result.source,
+          }),
         ]
       )
       const uploadId = uploadResult.rows[0].id
 
-      // Inserir cada linha processada
+      // Inserir cada linha processada na tabela report_data
       for (let i = 0; i < result.rows.length; i++) {
         const { raw, processed } = result.rows[i]
 

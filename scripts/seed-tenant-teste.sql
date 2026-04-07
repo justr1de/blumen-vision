@@ -1,44 +1,77 @@
--- =====================================================
--- Seed: Tenant de Teste para Upload de Documentos
--- Execute após a migração de tenants/filiais
--- =====================================================
+-- ============================================================
+-- SEED: Criar tenant de teste para upload de planilhas
+-- Banco: blumenvision (PostgreSQL / Cloud SQL)
+-- NOTA: tenants.id e users.id são INTEGER (serial)
+-- Requer extensão pgcrypto para crypt()
+-- ============================================================
 
--- Criar tenant de teste
-INSERT INTO tenants (id, name, slug, email, cnpj, phone, is_active, created_at)
-VALUES (
+-- Garantir extensão pgcrypto
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- 1. Criar tenant de teste (se não existir pelo slug)
+-- Colunas reais: uuid, nome, slug, plano, status, is_active, cnpj, created_at, updated_at
+INSERT INTO tenants (uuid, nome, slug, plano, status, is_active, cnpj, created_at, updated_at)
+SELECT
   gen_random_uuid(),
   'Empresa Teste',
   'empresa-teste',
-  'teste@blumenvision.com.br',
-  '00.000.000/0001-00',
-  '(69) 99999-0000',
+  'professional',
+  'active',
   true,
+  '00.000.000/0001-00',
+  NOW(),
   NOW()
-)
-ON CONFLICT (slug) DO NOTHING;
+WHERE NOT EXISTS (
+  SELECT 1 FROM tenants WHERE slug = 'empresa-teste'
+);
 
--- Criar usuário de teste vinculado ao tenant
--- Senha: teste123 (hash SHA256 com salt)
+-- 2. Atualizar campos extras do tenant (se a migração já foi executada)
 DO $$
-DECLARE
-  v_tenant_id UUID;
-  v_salt TEXT := 'a1b2c3d4e5f6a7b8a1b2c3d4e5f6a7b8';
-  v_hash TEXT;
 BEGIN
-  SELECT id INTO v_tenant_id FROM tenants WHERE slug = 'empresa-teste';
-  
-  IF v_tenant_id IS NOT NULL THEN
-    v_hash := v_salt || ':' || encode(digest(v_salt || 'teste123', 'sha256'), 'hex');
-    
-    INSERT INTO users (tenant_id, email, password_hash, name, role)
-    VALUES (v_tenant_id, 'teste@blumenvision.com.br', v_hash, 'Usuário Teste', 'manager')
-    ON CONFLICT (email) DO NOTHING;
-    
-    RAISE NOTICE 'Tenant de teste criado: %', v_tenant_id;
+  IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'tenants' AND column_name = 'razao_social') THEN
+    UPDATE tenants SET
+      razao_social = 'Empresa Teste Ltda',
+      nome_fantasia = 'Empresa Teste',
+      proprietario = 'Usuário Teste',
+      proprietario_cpf = '000.000.000-00',
+      email = 'teste@blumenvision.com.br',
+      telefone = '(00) 00000-0000'
+    WHERE slug = 'empresa-teste';
   END IF;
 END $$;
 
--- Nota: Para criar o tenant via interface, use o formulário em /admin/clientes/novo
--- Credenciais de teste:
+-- 3. Criar usuário de teste vinculado ao tenant
+-- Colunas reais: uuid, name, email, password_hash, login_method, role, status, email_verified, tenant_id, is_active
+DO $$
+DECLARE
+  v_tenant_id INTEGER;
+BEGIN
+  SELECT id INTO v_tenant_id FROM tenants WHERE slug = 'empresa-teste';
+
+  IF v_tenant_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM users WHERE email = 'teste@blumenvision.com.br') THEN
+    INSERT INTO users (uuid, name, email, password_hash, login_method, role, status, email_verified, tenant_id, is_active, created_at, updated_at)
+    VALUES (
+      gen_random_uuid(),
+      'Usuário Teste',
+      'teste@blumenvision.com.br',
+      crypt('teste123', gen_salt('bf')),
+      'credentials',
+      'user',
+      'active',
+      true,
+      v_tenant_id,
+      true,
+      NOW(),
+      NOW()
+    );
+    RAISE NOTICE 'Usuário de teste criado para tenant ID: %', v_tenant_id;
+  ELSE
+    RAISE NOTICE 'Tenant não encontrado ou usuário já existe';
+  END IF;
+END $$;
+
+-- ============================================================
+-- Credenciais de acesso:
 --   E-mail: teste@blumenvision.com.br
---   Senha: teste123
+--   Senha:  teste123
+-- ============================================================

@@ -8,10 +8,10 @@ async function getGlobalStats() {
     const totalRows = await client.query('SELECT COUNT(*) as count FROM report_data')
     const totalValue = await client.query('SELECT COALESCE(SUM(valor_principal), 0) as total FROM report_data')
     const byTenant = await client.query(`
-      SELECT t.name, COUNT(rd.id) as rows, COALESCE(SUM(rd.valor_principal), 0) as total
+      SELECT COALESCE(t.nome, t.name) as tenant_name, COUNT(rd.id) as rows, COALESCE(SUM(rd.valor_principal), 0) as total
       FROM report_data rd
       JOIN tenants t ON rd.tenant_id = t.id
-      GROUP BY t.name ORDER BY rows DESC
+      GROUP BY t.nome, t.name ORDER BY rows DESC
     `)
     return {
       totalRows: parseInt(totalRows.rows[0].count),
@@ -56,9 +56,9 @@ export default async function AdminRelatoriosPage() {
           <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">Volume por Cliente</h3>
           <div className="space-y-3">
             {stats.byTenant.map((t: Record<string, string | number>) => (
-              <div key={String(t.name)} className="flex items-center justify-between p-3 bg-[var(--bg-tertiary)] rounded-xl">
+              <div key={String(t.tenant_name)} className="flex items-center justify-between p-3 bg-[var(--bg-tertiary)] rounded-xl">
                 <div>
-                  <p className="text-sm font-medium text-[var(--text-primary)]">{t.name}</p>
+                  <p className="text-sm font-medium text-[var(--text-primary)]">{t.tenant_name}</p>
                   <p className="text-xs text-[var(--text-muted)]">{t.rows} registros</p>
                 </div>
                 <p className="text-sm font-semibold text-[var(--text-primary)]">{formatCurrency(Number(t.total))}</p>

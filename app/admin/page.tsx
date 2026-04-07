@@ -12,17 +12,17 @@ async function getAdminStats() {
     const pendingUploads = await client.query("SELECT COUNT(*) as count FROM uploads WHERE status = 'pending'")
 
     const recentUploads = await client.query(`
-      SELECT u.id, u.original_filename, u.status, u.created_at, u.row_count,
-             t.name as tenant_name, us.name as user_name
+      SELECT u.id, u.filename, u.status, u.created_at, u.resultado,
+             COALESCE(t.nome, t.name) as tenant_name, us.name as user_name
       FROM uploads u
-      JOIN tenants t ON u.tenant_id = t.id
-      JOIN users us ON u.user_id = us.id
+      LEFT JOIN tenants t ON u.tenant_id = t.id
+      LEFT JOIN users us ON u.user_id = us.id
       ORDER BY u.created_at DESC
       LIMIT 10
     `)
 
     const recentTenants = await client.query(`
-      SELECT t.id, t.name, t.slug, t.is_active, t.created_at,
+      SELECT t.id, COALESCE(t.nome, t.name) as name, t.slug, t.is_active, t.created_at,
              (SELECT COUNT(*) FROM users WHERE tenant_id = t.id) as user_count,
              (SELECT COUNT(*) FROM uploads WHERE tenant_id = t.id) as upload_count
       FROM tenants t
@@ -151,7 +151,7 @@ export default async function AdminDashboard() {
               {stats.recentUploads.map((u: Record<string, string | number>) => (
                 <div key={String(u.id)} className="flex items-center justify-between p-3 rounded-xl transition-all duration-300 hover:translate-x-1" style={{ background: 'var(--bg-tertiary)' }}>
                   <div>
-                    <p className="text-sm font-semibold truncate max-w-[200px]" style={{ color: 'var(--text-primary)' }}>{u.original_filename}</p>
+                    <p className="text-sm font-semibold truncate max-w-[200px]" style={{ color: 'var(--text-primary)' }}>{u.filename}</p>
                     <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{u.tenant_name} | {u.user_name}</p>
                   </div>
                   <span className={`badge ${
