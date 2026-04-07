@@ -72,28 +72,28 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
             <a
               href="#solucao"
-              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300 px-3 py-1.5 rounded-full backdrop-blur-md"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, background: 'color-mix(in srgb, var(--bg-primary) 50%, transparent)', border: '1px solid color-mix(in srgb, var(--border-primary) 40%, transparent)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--bg-primary) 50%, transparent)' }}
             >
               Solução
             </a>
             <a
               href="/blumen-vision/suit"
-              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300 px-3 py-1.5 rounded-full backdrop-blur-md"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, background: 'color-mix(in srgb, var(--bg-primary) 50%, transparent)', border: '1px solid color-mix(in srgb, var(--border-primary) 40%, transparent)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--bg-primary) 50%, transparent)' }}
             >
               Blúmen Vision
             </a>
             <a
               href="#contato"
-              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300 px-3 py-1.5 rounded-full backdrop-blur-md"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, background: 'color-mix(in srgb, var(--bg-primary) 50%, transparent)', border: '1px solid color-mix(in srgb, var(--border-primary) 40%, transparent)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--bg-primary) 50%, transparent)' }}
             >
               Contato
             </a>
