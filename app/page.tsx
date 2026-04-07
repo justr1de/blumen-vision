@@ -163,13 +163,15 @@ export default function LandingPage() {
             <>
               <div className="opacity-0 animate-fade-in-up mb-8">
                 <span
-                  className="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] tracking-[0.25em] uppercase backdrop-blur-md border"
+                  className="inline-flex items-center px-5 py-2 rounded-full text-[11px] tracking-[0.25em] uppercase backdrop-blur-xl border shadow-lg"
                   style={{
-                    color: 'var(--olive)',
+                    color: '#ffffff',
                     fontFamily: 'var(--font-body)',
                     fontWeight: 700,
-                    backgroundColor: 'color-mix(in srgb, var(--olive) 10%, transparent)',
-                    borderColor: 'color-mix(in srgb, var(--olive) 30%, transparent)',
+                    backgroundColor: 'color-mix(in srgb, var(--navy) 85%, transparent)',
+                    borderColor: 'color-mix(in srgb, var(--olive) 60%, transparent)',
+                    textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+                    letterSpacing: '0.25em',
                   }}
                 >
                   Auditoria &amp; Concilia&ccedil;&atilde;o
