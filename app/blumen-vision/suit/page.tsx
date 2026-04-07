@@ -341,7 +341,11 @@ export default function BlumenVisionSuitPage() {
           <div
             className="opacity-0 animate-fade-in-up py-6 rounded-xl"
             style={{
-              background: 'var(--navy, #1D3B5F)',
+              background: 'linear-gradient(135deg, rgba(29,59,95,0.85) 0%, rgba(29,59,95,0.95) 40%, rgba(22,48,78,0.9) 100%)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 4px 24px rgba(29,59,95,0.15), inset 0 1px 0 rgba(255,255,255,0.06)',
               animationDelay: '500ms',
               animationFillMode: 'forwards',
             }}
@@ -353,7 +357,7 @@ export default function BlumenVisionSuitPage() {
                 fontFamily: 'var(--font-display)',
               }}
             >
-              Ver. Entender. Decidir.
+              Ver. Entender. <span style={{ color: 'var(--olive, #6F963E)' }}>Decidir.</span>
             </p>
           </div>
         </div>
@@ -615,13 +619,7 @@ export default function BlumenVisionSuitPage() {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div
             className="rounded-xl py-8 px-6 mb-8"
-            style={{
-              background: 'linear-gradient(135deg, rgba(29,59,95,0.85) 0%, rgba(29,59,95,0.95) 40%, rgba(22,48,78,0.9) 100%)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 4px 24px rgba(29,59,95,0.15), inset 0 1px 0 rgba(255,255,255,0.06)',
-            }}
+            style={{ background: 'var(--navy, #1D3B5F)' }}
           >
             <p
               className="text-base sm:text-lg font-semibold"
@@ -639,7 +637,7 @@ export default function BlumenVisionSuitPage() {
                 fontFamily: 'var(--font-display)',
               }}
             >
-              Ver. Entender. <span style={{ color: 'var(--olive, #6F963E)', fontWeight: 600 }}>Decidir.</span> · Blúmen Biz © 2026
+              Ver. Entender. Decidir. · Blúmen Biz © 2026
             </p>
           </div>
 
