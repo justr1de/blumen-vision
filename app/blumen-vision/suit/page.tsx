@@ -9,14 +9,15 @@ const modulos = [
   {
     id: 'vision-caixa',
     nome: 'Vision Caixa',
-    subtitulo: 'Auditoria & Conciliação',
+    subtitulo: 'Fluxo de Caixa & Controle Financeiro',
+    headline: 'O caixa de hoje você já sabe. O problema é o de amanhã.',
     descricao:
-      'Auditoria e conciliação de repasses financeiros. Identifique divergências, cruze dados de produção e FLAT, e tenha controle total sobre comissões e valores.',
+      'Entrada, saída, parcela a vencer, conta a pagar — tudo acontece ao mesmo tempo e a sensação é de que você está sempre um passo atrás. O Vision Caixa transforma o fluxo de caixa num instrumento de decisão: acompanhe todas as contas do grupo numa visão consolidada, antecipe vencimentos antes que virem problema e saiba com clareza se o caixa cobre os próximos dias — ou não.',
     destaques: [
-      'Cruzamento automático por contrato, CPF e ADE',
-      'Identificação de divergências de valores',
-      'Relatórios gerenciais personalizados',
-      'Processamento em menos de 3 segundos',
+      'Visão consolidada de todas as contas do grupo',
+      'Antecipação de vencimentos e alertas',
+      'Projeção de fluxo de caixa',
+      'Clareza sobre cobertura dos próximos dias',
     ],
     iconPath: 'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6',
     iconType: 'path-line' as const,
@@ -27,16 +28,38 @@ const modulos = [
     href: null,
   },
   {
+    id: 'vision-producao',
+    nome: 'Vision Produção',
+    subtitulo: 'Margem, Custos & Equipe',
+    headline: 'Você sabe qual produto do seu negócio realmente dá lucro? Não receita — lucro.',
+    descricao:
+      'A maioria dos empresários conhece o faturamento mas não conhece a margem real de cada produto, serviço ou unidade. Vende muito o que sobra pouco, mantém o que come o resultado e corta o que sustenta o negócio — sem perceber. O Vision Produção conecta vendas, custos, precificação e equipe numa visão integrada, para que você saiba exatamente onde o negócio ganha, onde perde e o que vale a pena escalar.',
+    destaques: [
+      'Margem real por produto, serviço ou unidade',
+      'Conexão entre vendas, custos e precificação',
+      'Visão integrada de equipe e operação',
+      'Identificação do que vale a pena escalar',
+    ],
+    iconPath: 'gear',
+    iconType: 'gear' as const,
+    cor: '#8B6914',
+    corLight: 'rgba(139, 105, 20, 0.08)',
+    badge: 'Em breve',
+    badgeStyle: 'olive' as const,
+    href: null,
+  },
+  {
     id: 'vision-capital',
     nome: 'Vision Capital',
-    subtitulo: 'Gestão de Capital',
+    subtitulo: 'Patrimônio, Dívidas & Investimentos',
+    headline: 'Você sabe quanto o seu negócio vale? Não o faturamento — o que ele realmente vale.',
     descricao:
-      'Endividamento, investimentos e comprometimento financeiro. Controle de capital de giro, análise de dívidas e planejamento de investimentos estratégicos.',
+      'Patrimônio parado, dívidas que crescem sem que ninguém acompanhe e investimentos tomados mais por intuição do que por critério. O Vision Capital organiza o que você possui, o que deve e o que está comprometido — para que cada decisão de investimento, financiamento ou crescimento seja tomada com a mesma clareza que um gestor de grandes empresas tem à disposição.',
     destaques: [
-      'Controle de endividamento e capital de giro',
-      'Análise de investimentos e retornos',
+      'Organização de patrimônio e dívidas',
+      'Acompanhamento de investimentos',
       'Comprometimento financeiro consolidado',
-      'Planejamento estratégico de capital',
+      'Clareza para decisões de crescimento',
     ],
     iconPath: 'piggybank',
     iconType: 'piggybank' as const,
@@ -47,26 +70,26 @@ const modulos = [
     href: null,
   },
   {
-    id: 'vision-producao',
-    nome: 'Vision Produção',
-    subtitulo: 'Controle Operacional & Pessoas',
+    id: 'vision-decisao',
+    nome: 'Vision Decisão',
+    subtitulo: 'Visão Gerencial Completa',
+    headline: 'Ter informação não é o mesmo que ter visão. E decidir sem visão é uma aposta.',
     descricao:
-      'Margem, folha de pagamento, custos operacionais e gestão de pessoas. Acompanhe o ciclo de vida das operações, colaboradores e indicadores de desempenho em tempo real.',
+      'Caixa num lugar, resultado noutro, patrimônio na memória — cada parte do negócio conta uma história diferente e você fica tentando montar o quadro sozinho. O Vision Decisão integra todos os módulos numa visão gerencial completa: resultado, margem e fluxo lado a lado, com projeções e simulação de cenários para que você não fique só olhando o que já aconteceu — mas antecipe o que pode acontecer e decida antes que o problema chegue.',
     destaques: [
-      'Margem e custos operacionais',
-      'Gestão de folha de pagamento',
-      'Monitoramento de status em tempo real',
-      'Indicadores de desempenho operacional',
+      'Integração de todos os módulos',
+      'Resultado, margem e fluxo lado a lado',
+      'Projeções e simulação de cenários',
+      'Antecipação de problemas e oportunidades',
     ],
-    iconPath: 'gear',
-    iconType: 'gear' as const,
-    cor: '#8B6914',
-    corLight: 'rgba(139, 105, 20, 0.08)',
+    iconPath: 'compass',
+    iconType: 'compass' as const,
+    cor: '#4A6FA5',
+    corLight: 'rgba(74, 111, 165, 0.08)',
     badge: 'Em breve',
     badgeStyle: 'olive' as const,
     href: null,
   },
-
 ]
 
 function ModuleIcon({ type, path }: { type: string; path: string }) {
@@ -114,6 +137,14 @@ function ModuleIcon({ type, path }: { type: string; path: string }) {
         <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2" />
         <path d="M2 9.5a2.5 2.5 0 0 1 0 5" />
         <circle cx="15.5" cy="9.5" r="1" fill="currentColor" />
+      </svg>
+    )
+  }
+  if (type === 'compass') {
+    return (
+      <svg {...props}>
+        <circle cx="12" cy="12" r="10" />
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none" />
       </svg>
     )
   }
@@ -243,7 +274,7 @@ export default function BlumenVisionSuitPage() {
                     fontWeight: 700,
                   }}
                 >
-                  Ecossistema de Gestão
+                  Plataforma de Inteligência Empresarial
                 </p>
               </div>
 
@@ -265,7 +296,7 @@ export default function BlumenVisionSuitPage() {
                   </span>
                 </span>
                 <span
-                  className="block text-lg sm:text-xl mt-3"
+                  className="block text-lg sm:text-xl mt-3 italic"
                   style={{
                     color: 'var(--text-secondary)',
                     fontFamily: 'var(--font-display)',
@@ -273,7 +304,7 @@ export default function BlumenVisionSuitPage() {
                     letterSpacing: '0.08em',
                   }}
                 >
-                  Suite
+                  Ver. Entender. Decidir.
                 </span>
               </h1>
 
@@ -286,11 +317,61 @@ export default function BlumenVisionSuitPage() {
                   animationDelay: '300ms',
                 }}
               >
-                Três módulos integrados que transformam dados brutos em
-                decisões estratégicas. Da auditoria financeira à gestão de
-                capital, cada módulo foi desenhado para oferecer clareza e
-                precisão.
+                Você cuida do negócio todo dia. Mas quem te dá a visão de como ele realmente funciona?
               </p>
+
+              <p
+                className="opacity-0 animate-fade-in-up mt-4 text-sm max-w-2xl mx-auto leading-relaxed"
+                style={{
+                  color: 'var(--text-muted)',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 300,
+                  animationDelay: '450ms',
+                }}
+              >
+                Todo empresário assume dois papéis: o de diretor — que opera, resolve, aprova e apaga incêndio — e o de presidente, que precisa enxergar o todo e decidir o futuro. O problema é que um consome o tempo do outro. O Blúmen Vision foi construído para os dois momentos: para o diretor que precisa controlar o presente e para o presidente que precisa decidir o futuro.
+              </p>
+        </div>
+      </section>
+
+      {/* ===== DESTAQUE ===== */}
+      <section className="pb-12 sm:pb-16">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <div
+            className="opacity-0 animate-fade-in-up py-6 rounded-xl"
+            style={{
+              background: 'var(--navy, #1D3B5F)',
+              animationDelay: '500ms',
+              animationFillMode: 'forwards',
+            }}
+          >
+            <p
+              className="text-lg sm:text-xl tracking-[0.15em] uppercase font-semibold"
+              style={{
+                color: '#ffffff',
+                fontFamily: 'var(--font-display)',
+              }}
+            >
+              Ver. Entender. Decidir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SEÇÃO "OS MÓDULOS" ===== */}
+      <section className="pb-8 sm:pb-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <p
+            className="text-[11px] tracking-[0.35em] uppercase mb-2"
+            style={{
+              color: 'var(--olive)',
+              fontFamily: 'var(--font-body)',
+              fontWeight: 700,
+            }}
+          >
+            Os Módulos
+          </p>
+          <div className="h-px" style={{ background: 'var(--border-primary)' }} />
         </div>
       </section>
 
@@ -307,7 +388,7 @@ export default function BlumenVisionSuitPage() {
                   style={{
                     background: 'var(--bg-secondary)',
                     borderColor: 'var(--border-primary)',
-                    animationDelay: `${(i + 2) * 150}ms`,
+                    animationDelay: `${(i + 3) * 150}ms`,
                     animationFillMode: 'forwards',
                   }}
                   onMouseEnter={(e) => {
@@ -376,6 +457,17 @@ export default function BlumenVisionSuitPage() {
                             {modulo.badge}
                           </span>
                         </div>
+
+                        {/* Headline do módulo */}
+                        <h4
+                          className="text-base sm:text-lg font-semibold mb-4"
+                          style={{
+                            color: 'var(--olive)',
+                            fontFamily: 'var(--font-display)',
+                          }}
+                        >
+                          {modulo.headline}
+                        </h4>
 
                         <p
                           className="text-sm leading-relaxed mb-6"
@@ -521,9 +613,29 @@ export default function BlumenVisionSuitPage() {
       <footer className="pb-12">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div
-            className="h-px max-w-xs mx-auto mb-8"
-            style={{ background: 'var(--border-primary)' }}
-          />
+            className="rounded-xl py-8 px-6 mb-8"
+            style={{ background: 'var(--navy, #1D3B5F)' }}
+          >
+            <p
+              className="text-base sm:text-lg font-semibold"
+              style={{
+                color: '#ffffff',
+                fontFamily: 'var(--font-display)',
+              }}
+            >
+              Blúmen Vision · Plataforma de Inteligência Empresarial
+            </p>
+            <p
+              className="text-sm mt-2 italic"
+              style={{
+                color: 'rgba(255, 255, 255, 0.7)',
+                fontFamily: 'var(--font-display)',
+              }}
+            >
+              Ver. Entender. Decidir. · Blúmen Biz © 2026
+            </p>
+          </div>
+
           <DarkLogo
             lightSrc="/logo-camila-arnuti.png"
             darkSrc="/logo-camila-arnuti-white.png"
@@ -532,16 +644,6 @@ export default function BlumenVisionSuitPage() {
             height={30}
             className="h-5 w-auto mx-auto opacity-30"
           />
-          <p
-            className="text-xs mt-3"
-            style={{
-              color: 'var(--text-muted)',
-              fontFamily: 'var(--font-body)',
-              opacity: 0.5,
-            }}
-          >
-            Blúmen Vision Suite — Plataforma Integrada de Gestão
-          </p>
           <Link
             href="/"
             className="inline-block mt-4 text-xs transition-colors duration-300"
