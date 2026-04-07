@@ -301,18 +301,6 @@ export default function BlumenVisionSuitPage() {
                   >
                     Plataforma de Inteligência Empresarial
                   </p>
-                  <span
-                    className="px-3 py-1 rounded-md text-[9px] tracking-[0.15em] uppercase font-bold"
-                    style={{
-                      background: 'var(--olive)',
-                      color: '#ffffff',
-                      fontFamily: 'var(--font-body)',
-                      letterSpacing: '0.12em',
-                      boxShadow: '0 2px 8px rgba(111, 150, 62, 0.3)',
-                    }}
-                  >
-                    Auditoria & Conciliação
-                  </span>
                 </div>
               </div>
 
