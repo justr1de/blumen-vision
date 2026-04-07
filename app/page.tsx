@@ -72,27 +72,27 @@ export default function LandingPage() {
               <a
                 href="#solucao"
                 className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-                style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)', fontWeight: 600 }}
+                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
               >
                 Solução
               </a>
               <a
                 href="/blumen-vision/suit"
                 className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-                style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)', fontWeight: 600 }}
+                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
               >
                 Blúmen Vision
               </a>
               <a
                 href="#contato"
                 className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
-                style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)', fontWeight: 600 }}
+                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', fontWeight: 700, textShadow: '0 0 8px rgba(255,255,255,0.6)' }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--olive)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-primary)' }}
               >
                 Contato
               </a>
