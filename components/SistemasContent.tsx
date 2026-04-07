@@ -272,10 +272,16 @@ export default function SistemasContent({ user }: SistemasContentProps) {
             className="h-5 w-auto mx-auto opacity-30"
           />
           <p
-            className="text-xs mt-3"
-            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', opacity: 0.5 }}
+            className="text-xs mt-3 text-center"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)', fontWeight: 500, opacity: 0.5 }}
           >
-            Blúmen Vision — Plataforma Integrada de Gestão
+            Blúmen Vision
+          </p>
+          <p
+            className="text-xs mt-1 text-center"
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.15em', opacity: 0.4 }}
+          >
+            VER. ENTENDER. DECIDIR.
           </p>
         </div>
       </main>
