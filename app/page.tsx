@@ -161,13 +161,19 @@ export default function LandingPage() {
         <div className="relative max-w-5xl mx-auto px-6 pb-24 pt-32 w-full" style={{ zIndex: 2 }}>
           {mounted && (
             <>
-              <div className="opacity-0 animate-fade-in-up">
-                <p
-                  className="text-[11px] tracking-[0.35em] uppercase mb-8"
-                  style={{ color: 'var(--olive)', fontFamily: 'var(--font-body)', fontWeight: 700 }}
+              <div className="opacity-0 animate-fade-in-up mb-8">
+                <span
+                  className="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] tracking-[0.25em] uppercase backdrop-blur-md border"
+                  style={{
+                    color: 'var(--olive)',
+                    fontFamily: 'var(--font-body)',
+                    fontWeight: 700,
+                    backgroundColor: 'color-mix(in srgb, var(--olive) 10%, transparent)',
+                    borderColor: 'color-mix(in srgb, var(--olive) 30%, transparent)',
+                  }}
                 >
                   Auditoria &amp; Concilia&ccedil;&atilde;o
-                </p>
+                </span>
               </div>
 
               <h1 className="opacity-0 animate-fade-in-up animate-delay-100">
