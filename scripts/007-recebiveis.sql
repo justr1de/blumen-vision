@@ -8,42 +8,38 @@
 --
 -- Status: 'aberto', 'pago', 'vencido', 'renegociado', 'cancelado'
 --
+-- NOTA: A tabela recebiveis pode já existir de migrações
+-- anteriores. Todas as colunas são garantidas via ALTER TABLE.
+--
 -- Todos os IDs são INTEGER (serial). Todos os comandos idempotentes.
 -- ============================================================
 
 CREATE TABLE IF NOT EXISTS recebiveis (
   id SERIAL PRIMARY KEY,
   tenant_id INTEGER NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
-  unit_id INTEGER REFERENCES units(id) ON DELETE SET NULL,
-  bank_account_id INTEGER REFERENCES bank_accounts(id) ON DELETE SET NULL,
-  category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL,
-  cpf_cliente VARCHAR(20),
-  nome_cliente VARCHAR(500),
-  contrato VARCHAR(100),
-  descricao TEXT,
-  valor_original DECIMAL(15,2) NOT NULL DEFAULT 0,
-  valor_pago DECIMAL(15,2) DEFAULT 0,
-  valor_pendente DECIMAL(15,2) DEFAULT 0,
-  data_emissao DATE,
-  data_vencimento DATE,
-  data_pagamento DATE,
-  parcela_atual INTEGER,
-  total_parcelas INTEGER,
   status VARCHAR(50) DEFAULT 'aberto',
-  tipo VARCHAR(50) DEFAULT 'boleto',
-  observacao TEXT,
-  metadata JSONB,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Colunas que podem estar faltando
+-- Garantir que TODAS as colunas existam (a tabela pode já existir)
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS tenant_id INTEGER;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS unit_id INTEGER;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS bank_account_id INTEGER;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS category_id INTEGER;
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS cpf_cliente VARCHAR(20);
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS nome_cliente VARCHAR(500);
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS contrato VARCHAR(100);
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS descricao TEXT;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS valor_original DECIMAL(15,2) DEFAULT 0;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS valor_pago DECIMAL(15,2) DEFAULT 0;
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS valor_pendente DECIMAL(15,2) DEFAULT 0;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS data_emissao DATE;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS data_vencimento DATE;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS data_pagamento DATE;
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS parcela_atual INTEGER;
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS total_parcelas INTEGER;
+ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'aberto';
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS tipo VARCHAR(50) DEFAULT 'boleto';
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS observacao TEXT;
 ALTER TABLE recebiveis ADD COLUMN IF NOT EXISTS metadata JSONB;
