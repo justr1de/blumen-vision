@@ -10,9 +10,10 @@ interface DarkLogoProps {
   width?: number
   height?: number
   className?: string
+  style?: React.CSSProperties
 }
 
-export default function DarkLogo({ lightSrc, darkSrc, alt, width = 120, height = 36, className = '' }: DarkLogoProps) {
+export default function DarkLogo({ lightSrc, darkSrc, alt, width = 120, height = 36, className = '', style }: DarkLogoProps) {
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function DarkLogo({ lightSrc, darkSrc, alt, width = 120, height =
       width={width}
       height={height}
       className={className}
+      style={style}
     />
   )
 }

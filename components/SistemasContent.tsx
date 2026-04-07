@@ -267,9 +267,10 @@ export default function SistemasContent({ user }: SistemasContentProps) {
             lightSrc="/logo-camila-arnuti.png"
             darkSrc="/logo-camila-arnuti-white.png"
             alt="Camila Arnuti"
-            width={46}
-            height={14}
-            className="w-auto mx-auto opacity-30"
+            width={28}
+            height={9}
+            className="w-auto mx-auto"
+            style={{ opacity: 0.25, height: '8px' }}
           />
           <p
             className="mt-3 text-center"
