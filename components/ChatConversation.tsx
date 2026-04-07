@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useKeySound } from '@/hooks/useKeySound'
+
 
 interface Message {
   role: 'user' | 'system'
@@ -42,7 +42,7 @@ export default function ChatConversation() {
   const [started, setStarted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const playKeySound = useKeySound(0.03)
+
 
   // Intersection Observer
   useEffect(() => {
@@ -92,10 +92,7 @@ export default function ChatConversation() {
         return copy
       })
 
-      // Tocar som de tecla (pular espaços para soar mais natural)
-      if (fullText[charIndex - 1] !== ' ') {
-        playKeySound()
-      }
+
 
       if (charIndex >= fullText.length) {
         clearInterval(interval)
@@ -106,7 +103,7 @@ export default function ChatConversation() {
     }, speed)
 
     return () => clearInterval(interval)
-  }, [typingIndex, playKeySound])
+  }, [typingIndex])
 
   // Auto-scroll
   useEffect(() => {

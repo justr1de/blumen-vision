@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useKeySound } from '@/hooks/useKeySound'
+
 
 interface TypeWriterProps {
   text: string
@@ -16,7 +16,7 @@ export default function TypeWriter({ text, speed = 80, className = '', style = {
   const [started, setStarted] = useState(false)
   const [done, setDone] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  const playKeySound = useKeySound(0.04)
+
 
   // Intersection Observer — inicia quando o elemento entra na viewport
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function TypeWriter({ text, speed = 80, className = '', style = {
     const interval = setInterval(() => {
       i++
       setDisplayed(text.slice(0, i))
-      playKeySound()
+
       if (i >= text.length) {
         clearInterval(interval)
         setDone(true)
@@ -53,7 +53,7 @@ export default function TypeWriter({ text, speed = 80, className = '', style = {
     }, speed)
 
     return () => clearInterval(interval)
-  }, [started, text, speed, done, onComplete, playKeySound])
+  }, [started, text, speed, done, onComplete])
 
   return (
     <div ref={ref} className={className} style={style}>
