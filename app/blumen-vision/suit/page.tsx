@@ -197,47 +197,70 @@ export default function BlumenVisionSuitPage() {
             />
           </Link>
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-5">
+            <div className="hidden md:flex items-center gap-2">
               <Link
                 href="/#solucao"
-                className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
+                className="px-4 py-1.5 rounded-lg text-[11px] tracking-[0.1em] uppercase transition-all duration-300"
                 style={{
-                  color: 'var(--text-secondary)',
+                  color: 'var(--text-primary)',
                   fontFamily: 'var(--font-body)',
                   fontWeight: 600,
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-primary)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--olive)'
+                  e.currentTarget.style.color = '#ffffff'
+                  e.currentTarget.style.background = 'var(--olive)'
+                  e.currentTarget.style.borderColor = 'var(--olive)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--text-secondary)'
+                  e.currentTarget.style.color = 'var(--text-primary)'
+                  e.currentTarget.style.background = 'var(--bg-tertiary)'
+                  e.currentTarget.style.borderColor = 'var(--border-primary)'
                 }}
               >
                 Solução
               </Link>
-              <span
-                className="text-xs tracking-[0.12em] uppercase"
+              <Link
+                href="/blumen-vision/suit"
+                className="px-4 py-1.5 rounded-lg text-[11px] tracking-[0.1em] uppercase transition-all duration-300"
                 style={{
-                  color: 'var(--olive)',
+                  color: '#ffffff',
                   fontFamily: 'var(--font-body)',
                   fontWeight: 700,
+                  background: 'var(--olive)',
+                  border: '1px solid var(--olive)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'var(--olive-dark, #5a7a32)'
+                  e.currentTarget.style.borderColor = 'var(--olive-dark, #5a7a32)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'var(--olive)'
+                  e.currentTarget.style.borderColor = 'var(--olive)'
                 }}
               >
                 Blúmen Vision
-              </span>
+              </Link>
               <Link
                 href="/#contato"
-                className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
+                className="px-4 py-1.5 rounded-lg text-[11px] tracking-[0.1em] uppercase transition-all duration-300"
                 style={{
-                  color: 'var(--text-secondary)',
+                  color: 'var(--text-primary)',
                   fontFamily: 'var(--font-body)',
                   fontWeight: 600,
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-primary)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--olive)'
+                  e.currentTarget.style.color = '#ffffff'
+                  e.currentTarget.style.background = 'var(--navy)'
+                  e.currentTarget.style.borderColor = 'var(--navy)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--text-secondary)'
+                  e.currentTarget.style.color = 'var(--text-primary)'
+                  e.currentTarget.style.background = 'var(--bg-tertiary)'
+                  e.currentTarget.style.borderColor = 'var(--border-primary)'
                 }}
               >
                 Contato
@@ -267,16 +290,30 @@ export default function BlumenVisionSuitPage() {
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <div className="max-w-5xl mx-auto px-6 text-center">
               <div className="opacity-0 animate-fade-in-up">
-                <p
-                  className="text-[11px] tracking-[0.35em] uppercase mb-6"
-                  style={{
-                    color: 'var(--olive)',
-                    fontFamily: 'var(--font-body)',
-                    fontWeight: 700,
-                  }}
-                >
-                  Plataforma de Inteligência Empresarial
-                </p>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <p
+                    className="text-[11px] tracking-[0.35em] uppercase"
+                    style={{
+                      color: 'var(--olive)',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 700,
+                    }}
+                  >
+                    Plataforma de Inteligência Empresarial
+                  </p>
+                  <span
+                    className="px-3 py-1 rounded-md text-[9px] tracking-[0.15em] uppercase font-bold"
+                    style={{
+                      background: 'var(--olive)',
+                      color: '#ffffff',
+                      fontFamily: 'var(--font-body)',
+                      letterSpacing: '0.12em',
+                      boxShadow: '0 2px 8px rgba(111, 150, 62, 0.3)',
+                    }}
+                  >
+                    Auditoria & Conciliação
+                  </span>
+                </div>
               </div>
 
               <h1

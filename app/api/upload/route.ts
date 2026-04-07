@@ -2,11 +2,26 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import pool from '@/lib/db'
 import * as XLSX from 'xlsx'
+import { extractDataFromPDF } from '@/lib/gemini-ocr'
 
 export const config = {
   api: {
     bodyParser: false,
   },
+}
+
+// Formatos suportados
+const SPREADSHEET_EXTS = ['xlsx', 'xls', 'csv']
+const PDF_EXTS = ['pdf']
+const IMAGE_EXTS = ['png', 'jpg', 'jpeg', 'webp']
+const ALL_SUPPORTED = [...SPREADSHEET_EXTS, ...PDF_EXTS, ...IMAGE_EXTS]
+
+const MIME_MAP: Record<string, string> = {
+  pdf: 'application/pdf',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  webp: 'image/webp',
 }
 
 // Normalizar nome de coluna para facilitar mapeamento
@@ -20,7 +35,7 @@ function normalizeCol(col: string): string {
     .replace(/^_|_$/g, '')
 }
 
-// Tentar extrair campos comuns de uma linha
+// Tentar extrair campos comuns de uma linha de planilha
 function extractCommonFields(row: Record<string, unknown>, colMap: Record<string, string>) {
   const get = (keys: string[]): string | null => {
     for (const k of keys) {
@@ -42,10 +57,8 @@ function extractCommonFields(row: Record<string, unknown>, colMap: Record<string
   const getDate = (keys: string[]): string | null => {
     const v = get(keys)
     if (!v) return null
-    // Tentar parse de data dd/mm/yyyy
     const match = v.match(/(\d{2})\/(\d{2})\/(\d{4})/)
     if (match) return `${match[3]}-${match[2]}-${match[1]}`
-    // Tentar yyyy-mm-dd
     if (v.match(/\d{4}-\d{2}-\d{2}/)) return v.substring(0, 10)
     return null
   }
@@ -60,6 +73,62 @@ function extractCommonFields(row: Record<string, unknown>, colMap: Record<string
     valor_parcela: getNum(['valor_parcela', 'vlr_parcela', 'parcela']),
     data_operacao: getDate(['data_operacao', 'dt_operacao', 'data_entrada', 'data_entrada_pn', 'data_de_entrada_na_pn']),
     data_pagamento: getDate(['data_pagamento', 'dt_pagamento', 'data_de_pagamento']),
+  }
+}
+
+// Processar planilha (xlsx, xls, csv)
+async function processSpreadsheet(buffer: Buffer) {
+  const workbook = XLSX.read(buffer, { type: 'buffer' })
+  const sheetName = workbook.SheetNames[0]
+  const sheet = workbook.Sheets[sheetName]
+  const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' }) as Record<string, unknown>[]
+
+  if (rows.length === 0) {
+    throw new Error('Planilha vazia ou sem dados válidos')
+  }
+
+  const originalCols = Object.keys(rows[0])
+  const colMap: Record<string, string> = {}
+  for (const col of originalCols) {
+    colMap[normalizeCol(col)] = col
+  }
+
+  const processedRows = rows.map((row) => {
+    const common = extractCommonFields(row, colMap)
+    return { raw: row, processed: common }
+  })
+
+  return { rows: processedRows, columns: originalCols, source: 'spreadsheet' as const }
+}
+
+// Processar PDF/imagem via Gemini OCR
+async function processDocument(buffer: Buffer, mimeType: string, filename: string) {
+  const result = await extractDataFromPDF(buffer, mimeType, filename)
+
+  if (!result.success && result.rows.length === 0) {
+    throw new Error(result.error || 'Falha ao processar documento via OCR')
+  }
+
+  const processedRows = result.rows.map((row) => ({
+    raw: row,
+    processed: {
+      cpf: row.cpf || null,
+      nome_cliente: row.nome_cliente || null,
+      contrato: row.contrato || null,
+      produto: row.produto || null,
+      status_operacao: row.status_operacao || null,
+      valor_principal: typeof row.valor_principal === 'number' ? row.valor_principal : null,
+      valor_parcela: typeof row.valor_parcela === 'number' ? row.valor_parcela : null,
+      data_operacao: row.data_operacao || null,
+      data_pagamento: row.data_pagamento || null,
+    },
+  }))
+
+  return {
+    rows: processedRows,
+    columns: result.columns || [],
+    source: 'gemini_ocr' as const,
+    raw_text: result.raw_text,
   }
 }
 
@@ -82,66 +151,80 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Arquivo muito grande. Máximo 32MB.' }, { status: 400 })
     }
 
-    const ext = file.name.split('.').pop()?.toLowerCase()
-    if (!['xlsx', 'xls', 'csv'].includes(ext || '')) {
-      return NextResponse.json({ error: 'Formato não suportado. Use .xlsx, .xls ou .csv' }, { status: 400 })
+    const ext = file.name.split('.').pop()?.toLowerCase() || ''
+    if (!ALL_SUPPORTED.includes(ext)) {
+      return NextResponse.json({
+        error: `Formato .${ext} não suportado. Use: ${ALL_SUPPORTED.join(', ')}`,
+      }, { status: 400 })
     }
 
-    // Ler arquivo
     const buffer = Buffer.from(await file.arrayBuffer())
-    const workbook = XLSX.read(buffer, { type: 'buffer' })
-    const sheetName = workbook.SheetNames[0]
-    const sheet = workbook.Sheets[sheetName]
-    const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' }) as Record<string, unknown>[]
 
-    if (rows.length === 0) {
-      return NextResponse.json({ error: 'Planilha vazia ou sem dados válidos' }, { status: 400 })
+    // Processar conforme tipo
+    let result
+    if (SPREADSHEET_EXTS.includes(ext)) {
+      result = await processSpreadsheet(buffer)
+    } else {
+      const mimeType = MIME_MAP[ext] || 'application/octet-stream'
+      result = await processDocument(buffer, mimeType, file.name)
     }
 
-    // Mapear colunas normalizadas para nomes originais
-    const originalCols = Object.keys(rows[0])
-    const colMap: Record<string, string> = {}
-    for (const col of originalCols) {
-      colMap[normalizeCol(col)] = col
+    if (result.rows.length === 0) {
+      return NextResponse.json({
+        error: 'Nenhum dado foi extraído do documento. Verifique se o arquivo contém dados tabulares.',
+      }, { status: 400 })
     }
 
+    // Salvar no banco de dados (isolado por tenant)
     const client = await pool.connect()
     try {
       await client.query('BEGIN')
 
-      // Criar registro de upload
       const storedFilename = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
       const uploadResult = await client.query(
         `INSERT INTO uploads (tenant_id, user_id, original_filename, stored_filename, file_size, file_type, status, row_count, processed_at)
-         VALUES ($1, $2, $3, $4, $5, $6, 'completed', $7, NOW())
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())
          RETURNING id`,
-        [session.tenantId, session.id, file.name, storedFilename, file.size, ext, rows.length]
+        [
+          session.tenantId,
+          session.id,
+          file.name,
+          storedFilename,
+          file.size,
+          ext,
+          'completed',
+          result.rows.length,
+        ]
       )
       const uploadId = uploadResult.rows[0].id
 
-      // Processar cada linha
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i]
-        const common = extractCommonFields(row, colMap)
+      // Inserir cada linha processada
+      for (let i = 0; i < result.rows.length; i++) {
+        const { raw, processed } = result.rows[i]
 
         await client.query(
-          `INSERT INTO report_data (tenant_id, upload_id, row_number, cpf, nome_cliente, contrato, produto, status_operacao, valor_principal, valor_parcela, data_operacao, data_pagamento, raw_data, processed_data)
+          `INSERT INTO report_data (
+            tenant_id, upload_id, row_number,
+            cpf, nome_cliente, contrato, produto, status_operacao,
+            valor_principal, valor_parcela, data_operacao, data_pagamento,
+            raw_data, processed_data
+          )
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
           [
             session.tenantId,
             uploadId,
             i + 1,
-            common.cpf,
-            common.nome_cliente,
-            common.contrato,
-            common.produto,
-            common.status_operacao,
-            common.valor_principal,
-            common.valor_parcela,
-            common.data_operacao,
-            common.data_pagamento,
-            JSON.stringify(row),
-            JSON.stringify(common),
+            processed.cpf,
+            processed.nome_cliente,
+            processed.contrato,
+            processed.produto,
+            processed.status_operacao,
+            processed.valor_principal,
+            processed.valor_parcela,
+            processed.data_operacao,
+            processed.data_pagamento,
+            JSON.stringify(raw),
+            JSON.stringify(processed),
           ]
         )
       }
@@ -151,8 +234,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         ok: true,
         uploadId,
-        rowCount: rows.length,
-        columns: originalCols,
+        rowCount: result.rows.length,
+        columns: result.columns,
+        source: result.source,
+        message: result.source === 'gemini_ocr'
+          ? `Documento processado via OCR inteligente. ${result.rows.length} registros extraídos.`
+          : `Planilha processada. ${result.rows.length} registros importados.`,
       })
     } catch (error) {
       await client.query('ROLLBACK')
@@ -163,6 +250,7 @@ export async function POST(req: NextRequest) {
     }
   } catch (error) {
     console.error('Upload error:', error)
-    return NextResponse.json({ error: 'Erro ao processar arquivo' }, { status: 500 })
+    const message = error instanceof Error ? error.message : 'Erro ao processar arquivo'
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
