@@ -34,6 +34,7 @@ const caixaItems = [
   { href: '/painel/caixa/lancamentos', label: 'Lançamentos', icon: Receipt, tooltip: 'Entradas, saídas e transferências' },
   { href: '/painel/caixa/extrato', label: 'Extrato', icon: FileText, tooltip: 'Extrato bancário por conta' },
   { href: '/painel/caixa/conciliacao', label: 'Conciliação', icon: ShieldCheck, tooltip: 'Conciliação bancária' },
+  { href: '/painel/caixa/telas', label: 'Telas', icon: BarChart3, tooltip: 'Documentação das telas do Vision Caixa' },
 ]
 
 const dataItems = [

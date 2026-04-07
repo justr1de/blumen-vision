@@ -8,7 +8,6 @@ import {
   Activity,
   AlertTriangle,
   CheckCircle2,
-  Clock,
   Lock,
   BarChart3,
   Wallet,
@@ -21,51 +20,59 @@ import {
   ArrowUpRight,
   ArrowDownRight,
   Minus,
+  ChevronRight,
 } from 'lucide-react'
+import Link from 'next/link'
 
 /* ─── Dados mockados (futuramente virão da API) ─── */
 
 const kpis = [
   {
-    label: 'Receita Total',
-    valor: 2847500.0,
-    variacao: 12.4,
+    label: 'Receita total',
+    valor: 2100000,
+    variacao: 6,
     icon: DollarSign,
     tooltip: 'Receita total consolidada de todos os segmentos',
     cor: 'var(--olive)',
+    detalhe: '+6% vs mês anterior',
   },
   {
-    label: 'Resultado Operacional',
-    valor: 485200.0,
-    variacao: 8.2,
+    label: 'Resultado operacional',
+    valor: 945000,
+    variacao: 0,
     icon: TrendingUp,
-    tooltip: 'Resultado operacional líquido do período',
+    tooltip: 'Receita menos custos e despesas operacionais',
     cor: 'var(--olive)',
+    detalhe: 'Margem operacional 45%',
   },
   {
-    label: 'Comprometimento Financeiro',
-    valor: 67.3,
-    variacao: -2.1,
-    icon: AlertTriangle,
-    tooltip: 'Percentual da receita comprometida com despesas fixas',
+    label: 'Comprometimento financeiro',
+    valor: 210000,
+    variacao: 0,
+    icon: CreditCard,
+    tooltip: 'Empréstimos, dívidas e investimentos que comprometem a receita',
     cor: 'var(--navy)',
-    sufixo: '%',
+    detalhe: '10% da receita',
+    extra: 'Empréstimos, dívidas e invest.',
   },
   {
-    label: 'Fluxo Líquido',
-    valor: 312800.0,
-    variacao: 15.7,
+    label: 'Fluxo líquido',
+    valor: 735000,
+    variacao: 0,
     icon: Activity,
     tooltip: 'Diferença entre entradas e saídas no período',
     cor: 'var(--olive)',
+    detalhe: 'Entradas menos saídas do período',
   },
   {
     label: 'Endividamento',
-    valor: 1250000.0,
-    variacao: -5.3,
-    icon: CreditCard,
-    tooltip: 'Total de dívidas e financiamentos ativos',
-    cor: 'var(--navy)',
+    valor: 38,
+    variacao: 0,
+    icon: AlertTriangle,
+    tooltip: 'Percentual de endividamento em relação à receita',
+    cor: '#e07a5f',
+    detalhe: 'Atenção: meta 30%',
+    sufixo: '%',
   },
 ]
 
@@ -73,48 +80,100 @@ const segmentos = [
   {
     nome: 'Serviços Financeiros',
     icon: Briefcase,
-    receita: 1520000,
-    resultado: 285000,
-    margem: 18.75,
+    unidades: 4,
+    receita: 980000,
+    resOperacional: 510000,
+    resOperacionalPct: 52,
+    resLiquido: 380000,
+    resLiquidoPct: 39,
+    fluxoLiquido: 420000,
     status: 'saudavel' as const,
     tendencia: 'alta' as const,
   },
   {
     nome: 'Varejo',
     icon: ShoppingBag,
-    receita: 890000,
-    resultado: 142000,
-    margem: 15.96,
+    unidades: 5,
+    receita: 720000,
+    resOperacional: 223000,
+    resOperacionalPct: 31,
+    resLiquido: 144000,
+    resLiquidoPct: 20,
+    fluxoLiquido: 190000,
     status: 'atencao' as const,
     tendencia: 'estavel' as const,
   },
   {
     nome: 'Indústria',
     icon: Factory,
-    receita: 437500,
-    resultado: 58200,
-    margem: 13.3,
-    status: 'saudavel' as const,
+    unidades: 2,
+    receita: 400000,
+    resOperacional: 152000,
+    resOperacionalPct: 38,
+    resLiquido: 116000,
+    resLiquidoPct: 29,
+    fluxoLiquido: 125000,
+    status: 'no_alvo' as const,
     tendencia: 'alta' as const,
   },
 ]
 
 const modulos = [
-  { nome: 'Vision Caixa', status: 'ativo' as const, descricao: 'Fluxo de caixa, lançamentos, conciliação e recebíveis', icon: Wallet, contratado: true },
-  { nome: 'Vision Produção', status: 'nao_contratado' as const, descricao: 'Controle de produção, custos industriais e estoque', icon: Factory, contratado: false },
-  { nome: 'Vision Capital', status: 'nao_contratado' as const, descricao: 'Gestão de investimentos, patrimônio e endividamento', icon: PiggyBank, contratado: false },
+  {
+    nome: 'Vision Caixa',
+    status: 'ativo' as const,
+    descricao: 'Fluxo equilibrado no grupo. 5 contas a vencer esta semana.',
+    statusLabel: 'Saudável',
+    statusType: 'saudavel' as const,
+    icon: Wallet,
+    link: '/painel/caixa',
+  },
+  {
+    nome: 'Vision Capital',
+    status: 'ativo' as const,
+    descricao: 'Endividamento acima da meta no Varejo. Demais segmentos dentro do limite.',
+    statusLabel: 'Atenção',
+    statusType: 'atencao' as const,
+    icon: PiggyBank,
+    link: null,
+  },
+  {
+    nome: 'Vision Produção',
+    status: 'ativo' as const,
+    descricao: 'Margem positiva em todos os segmentos. Folha média em 27% da receita.',
+    statusLabel: 'Saudável',
+    statusType: 'saudavel' as const,
+    icon: Factory,
+    link: null,
+  },
+  {
+    nome: 'Vision Decisão',
+    status: 'ativo' as const,
+    descricao: 'Margem líquida consolidada 40%. Projeção trimestral dentro da meta do grupo.',
+    statusLabel: 'No alvo',
+    statusType: 'no_alvo' as const,
+    icon: BarChart3,
+    link: null,
+  },
 ]
 
 /* ─── Helpers ─── */
 
 function formatCurrency(value: number): string {
+  if (value >= 1000000) return `R$ ${(value / 1000000).toFixed(1)}M`
+  if (value >= 1000) return `R$ ${(value / 1000).toFixed(0)}k`
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
 }
 
-function StatusBadge({ status }: { status: 'saudavel' | 'atencao' | 'critico' }) {
+function formatCurrencyFull(value: number): string {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+}
+
+function StatusBadge({ status }: { status: 'saudavel' | 'atencao' | 'no_alvo' | 'critico' }) {
   const config = {
     saudavel: { label: 'Saudável', class: 'badge-olive', icon: CheckCircle2 },
     atencao: { label: 'Atenção', class: 'badge-warning', icon: AlertTriangle },
+    no_alvo: { label: 'No alvo', class: 'badge-navy', icon: CheckCircle2 },
     critico: { label: 'Crítico', class: 'badge-danger', icon: AlertTriangle },
   }
   const c = config[status]
@@ -130,20 +189,6 @@ function TendenciaIcon({ tendencia }: { tendencia: 'alta' | 'estavel' | 'baixa' 
   if (tendencia === 'alta') return <ArrowUpRight className="w-4 h-4" style={{ color: 'var(--olive)' }} />
   if (tendencia === 'baixa') return <ArrowDownRight className="w-4 h-4" style={{ color: '#dc2626' }} />
   return <Minus className="w-4 h-4" style={{ color: 'var(--text-muted)' }} />
-}
-
-function ModuloStatusBadge({ status }: { status: 'ativo' | 'nao_contratado' }) {
-  const config = {
-    ativo: { label: 'Contratado', class: 'badge-olive', icon: CheckCircle2 },
-    nao_contratado: { label: 'Não contratado', class: 'badge-warning', icon: Lock },
-  }
-  const c = config[status]
-  return (
-    <span className={`badge ${c.class} flex items-center gap-1`}>
-      <c.icon className="w-3 h-3" />
-      {c.label}
-    </span>
-  )
 }
 
 /* ─── Componente ─── */
@@ -168,7 +213,7 @@ export default function VisaoGeralPage() {
               Visão Geral
             </h1>
             <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
-              Indicadores consolidados do Grupo Imediata — Período atual
+              Grupo Imediata — todos os segmentos · Período atual
             </p>
           </div>
         </div>
@@ -196,20 +241,14 @@ export default function VisaoGeralPage() {
               <p className="text-xl font-extrabold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
                 {kpi.sufixo ? `${kpi.valor}${kpi.sufixo}` : formatCurrency(kpi.valor)}
               </p>
-              <div className="flex items-center gap-1 mt-2">
-                {kpi.variacao >= 0 ? (
-                  <TrendingUp className="w-3 h-3" style={{ color: 'var(--olive)' }} />
-                ) : (
-                  <TrendingDown className="w-3 h-3" style={{ color: '#dc2626' }} />
-                )}
-                <span
-                  className="text-xs font-bold"
-                  style={{ color: kpi.variacao >= 0 ? 'var(--olive)' : '#dc2626' }}
-                >
-                  {kpi.variacao > 0 ? '+' : ''}{kpi.variacao}%
-                </span>
-                <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>vs mês anterior</span>
-              </div>
+              <p className="text-[10px] mt-1" style={{ color: kpi.cor }}>
+                {kpi.detalhe}
+              </p>
+              {kpi.extra && (
+                <p className="text-[9px] mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                  {kpi.extra}
+                </p>
+              )}
             </div>
           </Tooltip>
         ))}
@@ -217,8 +256,8 @@ export default function VisaoGeralPage() {
 
       {/* Resultado por Segmento */}
       <div className="mb-8">
-        <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-          Resultado por Segmento
+        <h2 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>
+          Resultado por segmento
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {segmentos.map((seg) => (
@@ -231,14 +270,17 @@ export default function VisaoGeralPage() {
                   >
                     <seg.icon className="w-4 h-4 text-white" />
                   </div>
-                  <h3 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
-                    {seg.nome}
-                  </h3>
+                  <div>
+                    <h3 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+                      {seg.nome}
+                    </h3>
+                    <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>{seg.unidades} unidades</p>
+                  </div>
                 </div>
                 <StatusBadge status={seg.status} />
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>Receita</span>
                   <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
@@ -246,19 +288,24 @@ export default function VisaoGeralPage() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>Resultado</span>
-                  <span className="text-sm font-bold" style={{ color: 'var(--olive)' }}>
-                    {formatCurrency(seg.resultado)}
+                  <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>Res. operacional</span>
+                  <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+                    {formatCurrency(seg.resOperacional)}{' '}
+                    <span style={{ color: 'var(--olive)' }}>{seg.resOperacionalPct}%</span>
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>Margem</span>
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
-                      {seg.margem}%
-                    </span>
-                    <TendenciaIcon tendencia={seg.tendencia} />
-                  </div>
+                  <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>Res. líquido</span>
+                  <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+                    {formatCurrency(seg.resLiquido)}{' '}
+                    <span style={{ color: seg.status === 'atencao' ? '#e07a5f' : 'var(--olive)' }}>{seg.resLiquidoPct}%</span>
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>Fluxo líquido</span>
+                  <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+                    {formatCurrency(seg.fluxoLiquido)}
+                  </span>
                 </div>
 
                 {/* Barra de margem */}
@@ -267,15 +314,21 @@ export default function VisaoGeralPage() {
                     <div
                       className="h-2 rounded-full transition-all duration-700"
                       style={{
-                        width: `${Math.min(seg.margem * 4, 100)}%`,
-                        background: seg.status === 'saudavel'
-                          ? 'linear-gradient(90deg, var(--olive), var(--olive-light))'
-                          : 'linear-gradient(90deg, #f59e0b, #fbbf24)',
+                        width: `${Math.min(seg.resOperacionalPct * 1.5, 100)}%`,
+                        background: seg.status === 'atencao'
+                          ? 'linear-gradient(90deg, #f59e0b, #fbbf24)'
+                          : seg.status === 'no_alvo'
+                            ? 'linear-gradient(90deg, var(--navy), var(--navy-light))'
+                            : 'linear-gradient(90deg, var(--olive), var(--olive-light))',
                       }}
                     />
                   </div>
                 </div>
               </div>
+
+              <p className="text-[8px] mt-3 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                Res. operacional = receita − custos e despesas operacionais · Res. líquido = após comprometimento financeiro · Fluxo líquido = entradas − saídas do período
+              </p>
             </div>
           ))}
         </div>
@@ -283,39 +336,47 @@ export default function VisaoGeralPage() {
 
       {/* Status dos Módulos */}
       <div>
-        <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-          Suíte Blúmen Vision
+        <h2 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>
+          Status dos módulos
         </h2>
-        <h3 className="text-sm mb-4" style={{ color: 'var(--text-tertiary)' }}>
-          Cada módulo é contratado individualmente. Entre em contato para ativar novos módulos.
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {modulos.map((mod) => (
-            <Tooltip key={mod.nome} text={mod.descricao} position="bottom">
-              <div
-                className={`card-glass p-5 cursor-default ${mod.status === 'nao_contratado' ? 'opacity-60' : ''}`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div
-                    className="w-9 h-9 rounded-lg flex items-center justify-center"
-                    style={{
-                      background: mod.status === 'ativo'
-                        ? 'linear-gradient(135deg, var(--olive), var(--olive-light))'
-                        : 'linear-gradient(135deg, #94a3b8, #64748b)',
-                    }}
-                  >
-                    <mod.icon className="w-4 h-4 text-white" />
+            <div key={mod.nome} className="card-glass p-5">
+              <div className="flex items-start gap-3">
+                <div
+                  className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0"
+                  style={{
+                    background: mod.statusType === 'saudavel' ? 'var(--olive)'
+                      : mod.statusType === 'atencao' ? '#e07a5f'
+                      : 'var(--navy)',
+                  }}
+                />
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <mod.icon className="w-4 h-4" style={{ color: 'var(--navy)' }} />
+                      <h3 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+                        {mod.nome}
+                      </h3>
+                    </div>
+                    <StatusBadge status={mod.statusType} />
                   </div>
-                  <ModuloStatusBadge status={mod.status} />
+                  <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                    {mod.descricao}
+                  </p>
+                  {mod.link && (
+                    <Link
+                      href={mod.link}
+                      className="inline-flex items-center gap-1 mt-2 text-xs font-semibold transition-colors"
+                      style={{ color: 'var(--navy)' }}
+                    >
+                      Acessar módulo
+                      <ChevronRight className="w-3 h-3" />
+                    </Link>
+                  )}
                 </div>
-                <h3 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
-                  {mod.nome}
-                </h3>
-                <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
-                  {mod.descricao}
-                </p>
               </div>
-            </Tooltip>
+            </div>
           ))}
         </div>
       </div>

@@ -9,16 +9,17 @@ import {
   TrendingDown,
   Activity,
   AlertTriangle,
-  Clock,
-  ArrowRight,
   Calendar,
-  DollarSign,
   ArrowUpRight,
   ArrowDownRight,
   FileText,
   RefreshCw,
-  Filter,
   ChevronRight,
+  Clock,
+  Tag,
+  CheckCircle2,
+  XCircle,
+  LayoutList,
 } from 'lucide-react'
 
 /* ─── Dados mockados (futuramente virão da API) ─── */
@@ -26,43 +27,43 @@ import {
 const kpis = [
   {
     label: 'Disponibilidades',
-    valor: 487350.0,
+    valor: 1300000,
     icon: Wallet,
     tooltip: 'Saldo total disponível em todas as contas bancárias',
     cor: 'var(--olive)',
-    variacao: 5.2,
+    detalhe: 'Saldo em todas as contas',
   },
   {
     label: 'Projeção 30 dias',
-    valor: 312800.0,
+    valor: 1080000,
     icon: TrendingUp,
     tooltip: 'Projeção do saldo líquido para os próximos 30 dias',
     cor: 'var(--navy)',
-    variacao: -2.1,
+    detalhe: 'Saldo projetado em 30 dias',
   },
   {
-    label: 'Fluxo Líquido',
-    valor: 174550.0,
+    label: 'Fluxo líquido',
+    valor: 735000,
     icon: Activity,
     tooltip: 'Diferença entre entradas e saídas no período atual',
     cor: 'var(--olive)',
-    variacao: 8.7,
+    detalhe: 'Entradas menos saídas',
   },
   {
-    label: 'Necessidade de Caixa',
-    valor: 95200.0,
+    label: 'Necessidade de caixa',
+    valor: 85000,
     icon: AlertTriangle,
     tooltip: 'Valor necessário para cobrir compromissos dos próximos 7 dias',
     cor: '#e07a5f',
-    variacao: -12.3,
+    detalhe: 'Compromissos próximos 7 dias',
   },
 ]
 
 const situacao = [
-  { label: 'A receber em aberto', valor: 328500, count: 47, cor: 'var(--olive)', icon: ArrowUpRight },
-  { label: 'A receber em atraso', valor: 42300, count: 8, cor: '#dc2626', icon: AlertTriangle },
-  { label: 'A pagar em aberto', valor: 195700, count: 32, cor: 'var(--navy)', icon: ArrowDownRight },
-  { label: 'A pagar em atraso', valor: 18900, count: 3, cor: '#dc2626', icon: AlertTriangle },
+  { label: 'A receber em aberto', valor: 485000, count: 67, cor: 'var(--olive)', icon: ArrowUpRight },
+  { label: 'A receber em atraso', valor: 52300, count: 12, cor: '#dc2626', icon: AlertTriangle },
+  { label: 'A pagar em aberto', valor: 295700, count: 48, cor: 'var(--navy)', icon: ArrowDownRight },
+  { label: 'A pagar em atraso', valor: 28900, count: 5, cor: '#dc2626', icon: AlertTriangle },
 ]
 
 const projecaoMensal = [
@@ -75,20 +76,37 @@ const projecaoMensal = [
   { mes: 'Jul', realizado: null, projetado: 372000 },
 ]
 
-const agenda = [
-  { data: '2026-04-05', descricao: 'Fornecedor ABC Ltda', tipo: 'pagar' as const, valor: 12500 },
-  { data: '2026-04-05', descricao: 'Cliente XYZ S.A.', tipo: 'receber' as const, valor: 28000 },
-  { data: '2026-04-06', descricao: 'Aluguel Loja Centro', tipo: 'pagar' as const, valor: 8500 },
-  { data: '2026-04-07', descricao: 'Parcela Financiamento', tipo: 'pagar' as const, valor: 15200 },
-  { data: '2026-04-07', descricao: 'Recebível Cartão', tipo: 'receber' as const, valor: 45000 },
-  { data: '2026-04-08', descricao: 'Folha de Pagamento', tipo: 'pagar' as const, valor: 67800 },
-  { data: '2026-04-09', descricao: 'Cliente DEF Ltda', tipo: 'receber' as const, valor: 18500 },
-  { data: '2026-04-10', descricao: 'Energia Elétrica', tipo: 'pagar' as const, valor: 4200 },
+interface AgendaItem {
+  data: string
+  descricao: string
+  categoria: string
+  tipo: 'receber' | 'pagar'
+  valor: number
+  status: 'pendente' | 'confirmado' | 'atrasado'
+}
+
+const agenda: AgendaItem[] = [
+  { data: '2026-04-07', descricao: 'Cliente XYZ S.A.', categoria: 'Recebível Cartão', tipo: 'receber', valor: 45000, status: 'confirmado' },
+  { data: '2026-04-07', descricao: 'Parcela Financiamento BRB', categoria: 'Financiamento', tipo: 'pagar', valor: 15200, status: 'pendente' },
+  { data: '2026-04-08', descricao: 'Folha de Pagamento', categoria: 'Pessoal', tipo: 'pagar', valor: 67800, status: 'pendente' },
+  { data: '2026-04-08', descricao: 'Fornecedor ABC Ltda', categoria: 'Fornecedores', tipo: 'pagar', valor: 12500, status: 'pendente' },
+  { data: '2026-04-09', descricao: 'Cliente DEF Ltda', categoria: 'Recebível Boleto', tipo: 'receber', valor: 28000, status: 'pendente' },
+  { data: '2026-04-09', descricao: 'Aluguel Loja Centro', categoria: 'Ocupação', tipo: 'pagar', valor: 8500, status: 'confirmado' },
+  { data: '2026-04-10', descricao: 'Energia Elétrica', categoria: 'Utilidades', tipo: 'pagar', valor: 4200, status: 'pendente' },
+  { data: '2026-04-10', descricao: 'Recebível Cartão Visa', categoria: 'Recebível Cartão', tipo: 'receber', valor: 32000, status: 'confirmado' },
+  { data: '2026-04-11', descricao: 'Cliente GHI S.A.', categoria: 'Recebível Boleto', tipo: 'receber', valor: 18500, status: 'pendente' },
+  { data: '2026-04-12', descricao: 'Internet e Telefonia', categoria: 'Utilidades', tipo: 'pagar', valor: 2800, status: 'atrasado' },
 ]
 
 /* ─── Helpers ─── */
 
 function formatCurrency(value: number): string {
+  if (value >= 1000000) return `R$ ${(value / 1000000).toFixed(1)}M`
+  if (value >= 1000) return `R$ ${Math.round(value / 1000)}k`
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+}
+
+function formatCurrencyFull(value: number): string {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
 }
 
@@ -97,21 +115,29 @@ function formatDate(dateStr: string): string {
   return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })
 }
 
-/* ─── Componente do Gráfico Simples (barras) ─── */
+function formatDateFull(dateStr: string): string {
+  const d = new Date(dateStr + 'T12:00:00')
+  return d.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' })
+}
+
+/* ─── Componente do Gráfico ─── */
 
 function ProjecaoChart() {
   const maxVal = Math.max(...projecaoMensal.map((p) => p.realizado || p.projetado || 0))
 
   return (
-    <div className="flex items-end gap-3 h-48 px-2">
+    <div className="flex items-end gap-3 h-52 px-2">
       {projecaoMensal.map((item, i) => {
         const val = item.realizado || item.projetado || 0
         const height = (val / maxVal) * 100
         const isProjetado = item.projetado !== null
 
         return (
-          <Tooltip key={i} text={`${item.mes}: ${formatCurrency(val)}${isProjetado ? ' (projetado)' : ' (realizado)'}`} position="top">
-            <div className="flex-1 flex flex-col items-center gap-1">
+          <Tooltip key={i} text={`${item.mes}: ${formatCurrencyFull(val)}${isProjetado ? ' (projetado)' : ' (realizado)'}`} position="top">
+            <div className="flex-1 flex flex-col items-center gap-1.5">
+              <span className="text-[9px] font-bold" style={{ color: 'var(--text-muted)' }}>
+                {formatCurrency(val)}
+              </span>
               <div
                 className="w-full rounded-t-md transition-all duration-500"
                 style={{
@@ -134,6 +160,23 @@ function ProjecaoChart() {
   )
 }
 
+/* ─── Status Badge ─── */
+
+function StatusBadge({ status }: { status: 'pendente' | 'confirmado' | 'atrasado' }) {
+  const config = {
+    pendente: { label: 'Pendente', class: 'badge-warning', icon: Clock },
+    confirmado: { label: 'Confirmado', class: 'badge-olive', icon: CheckCircle2 },
+    atrasado: { label: 'Atrasado', class: 'badge-danger', icon: XCircle },
+  }
+  const c = config[status]
+  return (
+    <span className={`badge ${c.class} flex items-center gap-1`}>
+      <c.icon className="w-3 h-3" />
+      {c.label}
+    </span>
+  )
+}
+
 /* ─── Componente Principal ─── */
 
 export default function PainelCaixaPage() {
@@ -143,6 +186,13 @@ export default function PainelCaixaPage() {
     if (filtroAgenda === 'todos') return true
     return item.tipo === filtroAgenda
   })
+
+  // Agrupar agenda por data
+  const agendaAgrupada = agendaFiltrada.reduce((acc, item) => {
+    if (!acc[item.data]) acc[item.data] = []
+    acc[item.data].push(item)
+    return acc
+  }, {} as Record<string, AgendaItem[]>)
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -163,7 +213,7 @@ export default function PainelCaixaPage() {
               Vision Caixa
             </h1>
             <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
-              Painel de controle do fluxo de caixa
+              Painel do Caixa — Grupo Imediata
             </p>
           </div>
         </div>
@@ -172,6 +222,12 @@ export default function PainelCaixaPage() {
             <button className="btn-glass btn-glass-sm">
               <RefreshCw className="w-4 h-4" />
             </button>
+          </Tooltip>
+          <Tooltip text="Documentação das telas" position="bottom">
+            <Link href="/painel/caixa/telas" className="btn-glass btn-glass-sm flex items-center gap-2">
+              <LayoutList className="w-4 h-4" />
+              Telas
+            </Link>
           </Tooltip>
           <Tooltip text="Acessar lançamentos" position="bottom">
             <Link href="/painel/caixa/lancamentos" className="btn-glass btn-glass-navy btn-glass-sm flex items-center gap-2">
@@ -204,17 +260,9 @@ export default function PainelCaixaPage() {
               <p className="text-2xl font-extrabold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
                 {formatCurrency(kpi.valor)}
               </p>
-              <div className="flex items-center gap-1 mt-2">
-                {kpi.variacao >= 0 ? (
-                  <TrendingUp className="w-3 h-3" style={{ color: 'var(--olive)' }} />
-                ) : (
-                  <TrendingDown className="w-3 h-3" style={{ color: '#dc2626' }} />
-                )}
-                <span className="text-xs font-bold" style={{ color: kpi.variacao >= 0 ? 'var(--olive)' : '#dc2626' }}>
-                  {kpi.variacao > 0 ? '+' : ''}{kpi.variacao}%
-                </span>
-                <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>vs mês anterior</span>
-              </div>
+              <p className="text-[10px] mt-1" style={{ color: kpi.cor }}>
+                {kpi.detalhe}
+              </p>
             </div>
           </Tooltip>
         ))}
@@ -249,11 +297,11 @@ export default function PainelCaixaPage() {
 
         {/* Cards de Situação */}
         <div className="space-y-3">
-          <h2 className="text-base font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
-            Situação Financeira
+          <h2 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>
+            Situação financeira
           </h2>
           {situacao.map((item) => (
-            <Tooltip key={item.label} text={`${item.count} títulos — ${formatCurrency(item.valor)}`} position="left">
+            <Tooltip key={item.label} text={`${item.count} títulos — ${formatCurrencyFull(item.valor)}`} position="left">
               <div
                 className="card-glass p-4 cursor-default"
                 style={{ borderLeft: `3px solid ${item.cor}` }}
@@ -286,96 +334,105 @@ export default function PainelCaixaPage() {
             </h2>
           </div>
           <div className="flex items-center gap-2">
-            <Tooltip text="Filtrar por tipo de lançamento" position="bottom">
-              <div className="flex items-center gap-1 p-1 rounded-lg" style={{ background: 'var(--bg-tertiary)' }}>
-                <button
-                  onClick={() => setFiltroAgenda('todos')}
-                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200 ${
-                    filtroAgenda === 'todos' ? 'text-white' : ''
-                  }`}
-                  style={{
-                    background: filtroAgenda === 'todos' ? 'var(--navy)' : 'transparent',
-                    color: filtroAgenda === 'todos' ? '#ffffff' : 'var(--text-tertiary)',
-                  }}
-                >
-                  Todos
-                </button>
-                <button
-                  onClick={() => setFiltroAgenda('receber')}
-                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200`}
-                  style={{
-                    background: filtroAgenda === 'receber' ? 'var(--olive)' : 'transparent',
-                    color: filtroAgenda === 'receber' ? '#ffffff' : 'var(--text-tertiary)',
-                  }}
-                >
-                  A receber
-                </button>
-                <button
-                  onClick={() => setFiltroAgenda('pagar')}
-                  className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200`}
-                  style={{
-                    background: filtroAgenda === 'pagar' ? '#dc2626' : 'transparent',
-                    color: filtroAgenda === 'pagar' ? '#ffffff' : 'var(--text-tertiary)',
-                  }}
-                >
-                  A pagar
-                </button>
-              </div>
-            </Tooltip>
+            <div className="flex items-center gap-1 p-1 rounded-lg" style={{ background: 'var(--bg-tertiary)' }}>
+              <button
+                onClick={() => setFiltroAgenda('todos')}
+                className="px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200"
+                style={{
+                  background: filtroAgenda === 'todos' ? 'var(--navy)' : 'transparent',
+                  color: filtroAgenda === 'todos' ? '#ffffff' : 'var(--text-tertiary)',
+                }}
+              >
+                Todos
+              </button>
+              <button
+                onClick={() => setFiltroAgenda('receber')}
+                className="px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200"
+                style={{
+                  background: filtroAgenda === 'receber' ? 'var(--olive)' : 'transparent',
+                  color: filtroAgenda === 'receber' ? '#ffffff' : 'var(--text-tertiary)',
+                }}
+              >
+                A receber
+              </button>
+              <button
+                onClick={() => setFiltroAgenda('pagar')}
+                className="px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200"
+                style={{
+                  background: filtroAgenda === 'pagar' ? '#dc2626' : 'transparent',
+                  color: filtroAgenda === 'pagar' ? '#ffffff' : 'var(--text-tertiary)',
+                }}
+              >
+                A pagar
+              </button>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-2">
-          {agendaFiltrada.map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-between p-3 rounded-xl transition-all duration-300 hover:translate-x-1"
-              style={{ background: 'var(--bg-tertiary)' }}
-            >
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: item.tipo === 'receber'
-                      ? 'linear-gradient(135deg, var(--olive), var(--olive-light))'
-                      : 'linear-gradient(135deg, #dc2626, #ef4444)',
-                  }}
-                >
-                  {item.tipo === 'receber' ? (
-                    <ArrowUpRight className="w-4 h-4 text-white" />
-                  ) : (
-                    <ArrowDownRight className="w-4 h-4 text-white" />
-                  )}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
-                    {item.descricao}
-                  </p>
-                  <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
-                    {formatDate(item.data)}
-                  </p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p
-                  className="text-sm font-extrabold"
-                  style={{
-                    color: item.tipo === 'receber' ? 'var(--olive)' : '#dc2626',
-                    fontFamily: 'var(--font-display)',
-                  }}
-                >
-                  {item.tipo === 'receber' ? '+' : '-'} {formatCurrency(item.valor)}
-                </p>
-                <span className={`badge ${item.tipo === 'receber' ? 'badge-olive' : 'badge-danger'}`}>
-                  {item.tipo === 'receber' ? 'Entrada' : 'Saída'}
-                </span>
+        {/* Agenda agrupada por data */}
+        <div className="space-y-4">
+          {Object.entries(agendaAgrupada).map(([data, items]) => (
+            <div key={data}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>
+                {formatDateFull(data)}
+              </p>
+              <div className="space-y-2">
+                {items.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center justify-between p-3 rounded-xl transition-all duration-300 hover:translate-x-1"
+                    style={{ background: 'var(--bg-tertiary)' }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: item.tipo === 'receber'
+                            ? 'linear-gradient(135deg, var(--olive), var(--olive-light))'
+                            : 'linear-gradient(135deg, #dc2626, #ef4444)',
+                        }}
+                      >
+                        {item.tipo === 'receber' ? (
+                          <ArrowUpRight className="w-4 h-4 text-white" />
+                        ) : (
+                          <ArrowDownRight className="w-4 h-4 text-white" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                          {item.descricao}
+                        </p>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="flex items-center gap-1 text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                            <Tag className="w-3 h-3" />
+                            {item.categoria}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <StatusBadge status={item.status} />
+                      <div className="text-right">
+                        <p
+                          className="text-sm font-extrabold"
+                          style={{
+                            color: item.tipo === 'receber' ? 'var(--olive)' : '#dc2626',
+                            fontFamily: 'var(--font-display)',
+                          }}
+                        >
+                          {item.tipo === 'receber' ? '+' : '-'} {formatCurrencyFull(item.valor)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
 
         {/* Link para mais */}
-        <div className="mt-4 flex justify-center">
+        <div className="mt-5 flex justify-center">
           <Tooltip text="Ver todos os lançamentos agendados" position="top">
             <Link href="/painel/caixa/lancamentos" className="btn-glass btn-glass-sm flex items-center gap-2">
               Ver todos os lançamentos
