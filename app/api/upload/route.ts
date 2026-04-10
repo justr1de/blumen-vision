@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import pool from '@/lib/db'
-import * as XLSX from 'xlsx'
 import { extractDataFromPDF } from '@/lib/gemini-ocr'
 
 export const config = {
@@ -9,6 +8,9 @@ export const config = {
     bodyParser: false,
   },
 }
+
+// URL do Python Processor (pandas + Vertex AI) — configurada como variável de ambiente no Cloud Run
+const PYTHON_PROCESSOR_URL = process.env.PYTHON_PROCESSOR_URL || ''
 
 // Formatos suportados
 const SPREADSHEET_EXTS = ['xlsx', 'xls', 'csv']
@@ -27,81 +29,60 @@ const MIME_MAP: Record<string, string> = {
   csv: 'text/csv',
 }
 
-// Normalizar nome de coluna para facilitar mapeamento
-function normalizeCol(col: string): string {
-  return col
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]/g, '_')
-    .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '')
-}
-
-// Tentar extrair campos comuns de uma linha de planilha
-function extractCommonFields(row: Record<string, unknown>, colMap: Record<string, string>) {
-  const get = (keys: string[]): string | null => {
-    for (const k of keys) {
-      const mapped = colMap[k]
-      if (mapped && row[mapped] != null && String(row[mapped]).trim() !== '') {
-        return String(row[mapped]).trim()
-      }
-    }
-    return null
+// Processar planilha delegando ao Python Processor (pandas + Vertex AI)
+async function processSpreadsheet(buffer: Buffer, filename: string) {
+  if (!PYTHON_PROCESSOR_URL) {
+    throw new Error('PYTHON_PROCESSOR_URL não configurada. O serviço Python Processor não está disponível.')
   }
 
-  const getNum = (keys: string[]): number | null => {
-    const v = get(keys)
-    if (!v) return null
-    const n = parseFloat(v.replace(/[^\d.,-]/g, '').replace(',', '.'))
-    return isNaN(n) ? null : n
-  }
+  const form = new FormData()
+  form.append('file', new Blob([buffer as unknown as ArrayBuffer]), filename)
 
-  const getDate = (keys: string[]): string | null => {
-    const v = get(keys)
-    if (!v) return null
-    const match = v.match(/(\d{2})\/(\d{2})\/(\d{4})/)
-    if (match) return `${match[3]}-${match[2]}-${match[1]}`
-    if (v.match(/\d{4}-\d{2}-\d{2}/)) return v.substring(0, 10)
-    return null
-  }
-
-  return {
-    cpf: get(['cpf', 'cpf_cliente', 'cpf_do_cliente', 'cpf_agente']),
-    nome_cliente: get(['nome_cliente', 'cliente', 'nome', 'nome_do_cliente', 'nome_completo']),
-    contrato: get(['contrato', 'numero_contrato', 'nro_contrato', 'numero_operacao', 'numero_operacao_bmg', 'numero_da_operacao_no_bmg']),
-    produto: get(['produto', 'nome_servico', 'nome_do_servico', 'tipo_servico', 'tipo_do_servico']),
-    status_operacao: get(['status', 'status_operacao', 'status_da_operacao', 'situacao']),
-    valor_principal: getNum(['valor_financiado', 'vlr_base', 'valor', 'valor_total', 'valor_total_emprestimo', 'valor_do_emprestimo']),
-    valor_parcela: getNum(['valor_parcela', 'vlr_parcela', 'parcela']),
-    data_operacao: getDate(['data_operacao', 'dt_operacao', 'data_entrada', 'data_entrada_pn', 'data_de_entrada_na_pn']),
-    data_pagamento: getDate(['data_pagamento', 'dt_pagamento', 'data_de_pagamento']),
-  }
-}
-
-// Processar planilha (xlsx, xls, csv)
-async function processSpreadsheet(buffer: Buffer) {
-  const workbook = XLSX.read(buffer, { type: 'buffer' })
-  const sheetName = workbook.SheetNames[0]
-  const sheet = workbook.Sheets[sheetName]
-  const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' }) as Record<string, unknown>[]
-
-  if (rows.length === 0) {
-    throw new Error('Planilha vazia ou sem dados válidos')
-  }
-
-  const originalCols = Object.keys(rows[0])
-  const colMap: Record<string, string> = {}
-  for (const col of originalCols) {
-    colMap[normalizeCol(col)] = col
-  }
-
-  const processedRows = rows.map((row) => {
-    const common = extractCommonFields(row, colMap)
-    return { raw: row, processed: common }
+  const resp = await fetch(`${PYTHON_PROCESSOR_URL}/process?gerar_relatorio_ia=true`, {
+    method: 'POST',
+    body: form,
   })
 
-  return { rows: processedRows, columns: originalCols, source: 'spreadsheet' as const }
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: resp.statusText }))
+    throw new Error(err.detail || `Python Processor retornou ${resp.status}`)
+  }
+
+  const data = await resp.json() as {
+    rows: Record<string, unknown>[]
+    columns: string[]
+    resumo: Record<string, unknown>
+    analise_por_status: unknown[]
+    layout_camila_detectado: boolean
+    relatorio_ia: string | null
+    mapeamento_realizado: Record<string, string>
+  }
+
+  // Adaptar rows para o formato esperado pela etapa de inserção no banco
+  const processedRows = data.rows.map((row) => ({
+    raw: row,
+    processed: {
+      cpf: (row.cpf as string | null) ?? null,
+      nome_cliente: (row.nome_cliente as string | null) ?? null,
+      contrato: (row.contrato as string | null) ?? null,
+      produto: (row.produto as string | null) ?? null,
+      status_operacao: (row.status_operacao as string | null) ?? null,
+      valor_principal: typeof row.valor_principal === 'number' ? row.valor_principal : null,
+      valor_parcela: typeof row.valor_parcela === 'number' ? row.valor_parcela : null,
+      data_operacao: (row.data_operacao as string | null) ?? null,
+      data_pagamento: (row.data_pagamento as string | null) ?? null,
+    },
+  }))
+
+  return {
+    rows: processedRows,
+    columns: data.columns,
+    source: 'pandas_vertex' as const,
+    resumo: data.resumo,
+    analise_por_status: data.analise_por_status,
+    layout_camila_detectado: data.layout_camila_detectado,
+    relatorio_ia: data.relatorio_ia,
+  }
 }
 
 // Processar PDF/imagem via Gemini OCR
@@ -166,7 +147,7 @@ export async function POST(req: NextRequest) {
     // Processar conforme tipo
     let result
     if (SPREADSHEET_EXTS.includes(ext)) {
-      result = await processSpreadsheet(buffer)
+      result = await processSpreadsheet(buffer, file.name)
     } else {
       const mimeType = MIME_MAP[ext] || 'application/octet-stream'
       result = await processDocument(buffer, mimeType, file.name)
@@ -203,6 +184,8 @@ export async function POST(req: NextRequest) {
             row_count: result.rows.length,
             columns: result.columns,
             source: result.source,
+            resumo: 'resumo' in result ? result.resumo : undefined,
+            layout_camila_detectado: 'layout_camila_detectado' in result ? result.layout_camila_detectado : undefined,
           }),
         ]
       )
@@ -247,9 +230,21 @@ export async function POST(req: NextRequest) {
         rowCount: result.rows.length,
         columns: result.columns,
         source: result.source,
+        ...('resumo' in result && result.resumo ? { resumo: result.resumo } : {}),
+        ...('analise_por_status' in result && result.analise_por_status
+          ? { analise_por_status: result.analise_por_status }
+          : {}),
+        ...('layout_camila_detectado' in result
+          ? { layout_camila_detectado: result.layout_camila_detectado }
+          : {}),
+        ...('relatorio_ia' in result && result.relatorio_ia
+          ? { relatorio_ia: result.relatorio_ia }
+          : {}),
         message: result.source === 'gemini_ocr'
           ? `Documento processado via OCR inteligente. ${result.rows.length} registros extraídos.`
-          : `Planilha processada. ${result.rows.length} registros importados.`,
+          : result.source === 'pandas_vertex'
+            ? `Planilha processada com pandas + Vertex AI. ${result.rows.length} registros importados.`
+            : `Planilha processada. ${result.rows.length} registros importados.`,
       })
     } catch (error) {
       await client.query('ROLLBACK')

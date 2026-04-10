@@ -1,13 +1,21 @@
 steps:
-  # Build the container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-app', '.']
+  # ── Next.js App ─────────────────────────────────────────────────────────────
 
-  # Push the container image to Artifact Registry
+  # Build da imagem Next.js
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-app']
+    args:
+      - 'build'
+      - '-t'
+      - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-app'
+      - '.'
 
-  # Deploy container image to Cloud Run
+  # Push da imagem Next.js
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-app'
+
+  # Deploy Next.js no Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -24,8 +32,46 @@ steps:
       - '--port'
       - '8080'
 
+  # ── Python Processor (pandas + Vertex AI) ───────────────────────────────────
+
+  # Build da imagem Python
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-processor'
+      - './python-service'
+
+  # Push da imagem Python
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-processor'
+
+  # Deploy Python Processor no Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'blumen-vision-processor'
+      - '--image'
+      - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-processor'
+      - '--region'
+      - 'southamerica-east1'
+      - '--platform'
+      - 'managed'
+      - '--no-allow-unauthenticated'
+      - '--port'
+      - '8081'
+      - '--set-env-vars'
+      - 'GOOGLE_CLOUD_PROJECT=$PROJECT_ID,VERTEX_AI_LOCATION=us-central1'
+      - '--service-account'
+      - 'blumen-vision-processor@$PROJECT_ID.iam.gserviceaccount.com'
+
 images:
   - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-app'
+  - 'southamerica-east1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/blumen-vision-processor'
 
 options:
   logging: CLOUD_LOGGING_ONLY
